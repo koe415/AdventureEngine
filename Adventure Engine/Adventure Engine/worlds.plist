@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bunk1</key>
+	<dict>
+		<key>background</key>
+		<string>bunk1</string>
+		<key>xSpawn</key>
+		<integer>100</integer>
+		<key>xBoundary</key>
+		<integer>50</integer>
+		<key>yBoundary</key>
+		<integer>1150</integer>
+	</dict>
+	<key>bunk2</key>
+	<dict>
+		<key>background</key>
+		<string>mtns</string>
+		<key>xSpawn</key>
+		<integer>500</integer>
+		<key>xBoundary</key>
+		<integer>300</integer>
+		<key>yBoundary</key>
+		<integer>700</integer>
+	</dict>
+	<key>bunk_outside</key>
+	<dict>
+		<key>background</key>
+		<string>mtns</string>
+		<key>xSpawn</key>
+		<integer>210</integer>
+		<key>xBoundary</key>
+		<integer>0</integer>
+		<key>yBoundary</key>
+		<integer>420</integer>
+	</dict>
+</dict>
+</plist>

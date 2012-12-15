@@ -1,0 +1,380 @@
+//
+//  HelloWorldLayer.m
+//  Certainty
+//
+//  Created by Galen Koehne on 11/10/12.
+//  Copyright __MyCompanyName__ 2012. All rights reserved.
+//
+
+// Import the interfaces
+#import "Engine.h"
+
+#pragma mark - Engine
+
+@implementation Engine
+
+//@synthesize dialogueLayer = _dialogueLayer;
+//@synthesize worldLayer = _worldLayer;
+//@synthesize hudLayer = _hudLayer;
+
++(CCScene *) continueGameScene
+{
+	// 'scene' is an autorelease object.
+	CCScene *scene = [CCScene node];
+	
+	// layers are autorelease objects.
+	Engine *engine = [Engine node];
+    //WorldLayer *worldLayer = [WorldLayer node];
+    //HUDLayer *hudLayer = [HUDLayer node];
+    //DialogueLayer *dialogueLayer = [DialogueLayer node];
+	
+	// add layers as children to scene
+	[scene addChild: engine];
+    //[scene addChild: worldLayer];
+    //[scene addChild: hudLayer];
+    //[scene addChild: dialogueLayer];
+    
+    //engine.worldLayer = worldLayer;
+    //engine.hudLayer = hudLayer;
+    //engine.dialogueLayer = dialogueLayer;
+    
+    //[engine continueGame];
+    
+	return scene;
+}
+
++(CCScene *) newGameScene
+{
+	// 'scene' is an autorelease object.
+	CCScene *scene = [CCScene node];
+	
+	// layers are autorelease objects.
+	Engine *engine = [Engine node];
+    //WorldLayer *worldLayer = [WorldLayer node];
+    //HUDLayer *hudLayer = [HUDLayer node];
+    //DialogueLayer *dialogueLayer = [DialogueLayer node];
+	
+	// add layers as children to scene
+	[scene addChild: engine];
+    //[scene addChild: worldLayer];
+    //[scene addChild: hudLayer];
+    //[scene addChild: dialogueLayer];
+    
+    //engine.worldLayer = worldLayer;
+    //engine.hudLayer = hudLayer;
+    //engine.dialogueLayer = dialogueLayer;
+    
+    // New Game
+    [engine newGame];
+    
+	return scene;
+}
+
+-(id) init
+{
+	if( (self=[super init]) ) {
+        NSLog(@"engine inited");
+        //runningActions = [[GameActionArray alloc] init];
+        self.isTouchEnabled = true;
+        [self schedule:@selector(tick:)];
+        
+        
+        [self addChild:[TestLayerBottom node] z:0];
+        [self addChild:[TestLayerTop node] z:0];
+	}
+	return self;
+}
+/*
+-(void) runNextAction {
+    GameAction * action = [runningActions pop];
+    [self runGameAction:action];
+    gameActionDelay = [action getDelay];
+}*/
+
+-(void) tick:(ccTime) dt {
+    // Check for triggers at spawn
+    // todo: move to loadMap method
+    // issue as is, can't run pushscene during class initiation which causes map load flicker
+    /*
+    if (firstTimeRunningWorld) {
+        GameActionArray * potentialArray = [Logic checkPlayerTriggeringGameActionArray];
+        
+        if (potentialArray) {
+            if (![potentialArray isEmpty]) {
+                // add array to running actions
+                [runningActions addArray:potentialArray];
+                
+                // run first action
+                [self runNextAction];
+            }
+        }
+        
+        firstTimeRunningWorld = false;
+    }
+    
+    if ([_hudLayer isItemPickupShown]) {
+        // Ignore running anything if item pickup screen shown
+    } else if ([_dialogueLayer displayingDialogue]) {
+        // Ignore running actions or any movement attempts
+    } else if (gameActionDelay>0) {
+        if ([_hudLayer isMovePanelVisible])
+            [_hudLayer setMovePanelVisibility:false];
+        //NSLog(@"waiting!");
+        gameActionDelay--;
+    } else if (![runningActions isEmpty]) {
+        [self runNextAction];
+    } else if (movingLeft) {
+        [Logic attemptPlayerMoveLeft];
+        // check for trigger
+        GameActionArray * potentialArray = [Logic checkPlayerTriggeringGameActionArray];
+        
+        if (potentialArray) {
+            if (![potentialArray isEmpty]) {
+                // add array to running actions
+                [runningActions addArray:potentialArray];
+                
+                // run first action
+                [self runNextAction];
+            }
+        }
+        
+    } else if (movingRight) {
+        [Logic attemptPlayerMoveRight];
+        // check for trigger
+        GameActionArray * potentialArray = [Logic checkPlayerTriggeringGameActionArray];
+        
+        if (potentialArray) {
+            if (![potentialArray isEmpty]) {
+                // add array to running actions
+                [runningActions addArray:potentialArray];
+                
+                // run first action
+                [self runNextAction];
+            }
+        }
+    }
+    
+    [_worldLayer updateWorld];*/
+}
+/*
+-(void) pickupItem:(NSString *) item {
+    [_hudLayer setItemPickup:item];
+    [Logic addPlayerItem:item];
+}
+
+-(void) runGameAction: (GameAction *) actionToRun {
+    movingLeft = movingRight = false;
+    
+    switch ([actionToRun getType]) {
+        case 1:
+            if (Display_Debug_Text) NSLog(@"Engine: Cutscene to run:%@",[actionToRun getValue]);
+            [[CCDirector sharedDirector] pushScene:[Cutscene sceneWithCutscene:[actionToRun getValue]]];
+            break;
+        case 2:
+            if (Display_Debug_Text) NSLog(@"Engine: Dialogue to run:%@",[actionToRun getValue]);
+            [_dialogueLayer startDialogue:[actionToRun getValue]];
+            [_hudLayer setMovePanelVisibility: false];
+            break;
+        case 3:
+            if (Display_Debug_Text) NSLog(@"Engine: World to load:%@",[actionToRun getValue]);
+            [self loadMap:[actionToRun getValue]];
+            break;
+        case 4:
+            if (Display_Debug_Text) NSLog(@"Engine: Item to pick up:%@",[actionToRun getValue]);
+            [self pickupItem:[actionToRun getValue]];
+            [_hudLayer setMovePanelVisibility:false];
+            break;
+        case 5:
+            if (Display_Debug_Text) NSLog(@"Engine: Item to remove:%@",[actionToRun getValue]);
+            [Logic removePlayerItem:[actionToRun getValue]];
+            break;
+        case 6:
+            if (Display_Debug_Text) NSLog(@"Engine: Text to show:%@",[actionToRun getValue]);
+            [[CCDirector sharedDirector] pushScene:[Readable sceneWithText:[actionToRun getValue]]];
+            break;
+        case 7:
+            if (Display_Debug_Text) NSLog(@"Engine: Game ending!");
+            [[CCDirector sharedDirector] replaceScene:[MainMenu scene]];
+            break;
+        default:
+            if (Display_Debug_Text) NSLog(@"Engine: ERROR - Given improper game action (%d) with text:%@",[actionToRun getType],[actionToRun getValue]);
+            break;
+    }
+}*/
+
+-(void) newGame {
+    [GameData instance]._playerInventory = [[NSMutableArray alloc] init];
+    
+    //GameData * gd = [GameData instance];
+    
+    [Logic removeAllPlayerItems];
+    //[self loadMap:@"bunk1"];
+}
+/*
+-(void) continueGame {
+    // file system load player map and prior gamedata
+    [self loadMap:@"mtns"];
+}
+
+-(void) loadMap:(NSString *) map {
+    World worldLoaded = [Worlds access:map];
+    
+    [GameData instance]._playerPosition = worldLoaded.playerSpawn;
+    [GameData instance]._mapLeftBoundary = worldLoaded.mapLeftBoundary;
+    [GameData instance]._mapRightBoundary = worldLoaded.mapRightBoundary;
+    [GameData instance]._worldTappables = worldLoaded.worldTappables;
+    [GameData instance]._worldTriggerables = worldLoaded.worldTriggerables;
+    
+    [_worldLayer setupWorld:worldLoaded.background];
+    
+    firstTimeRunningWorld = true;
+}
+
+
+-(void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    NSArray *touchArr = [touches allObjects];
+    UITouch *aTouch = [touchArr objectAtIndex:0];
+    CGPoint location = [aTouch locationInView:[aTouch view]];
+    
+    // check pause button selection!
+    if (location.x < 60 && location.y < 60) { // Handled by hud
+        //NSLog(@"pause button pressed!");
+        [_hudLayer setPauseButtonPressed:true];
+        pauseButtonTap = true;
+    } else if ([_hudLayer isItemPickupShown]) { // Handled by hud
+        
+    } else if ([_dialogueLayer displayingDialogue]) { // Handled by dialogue
+        [_dialogueLayer touchBegan:true];
+        
+    } else if (gameActionDelay>0) { // Every touch handler has to verify that gameactiondelay is not active
+    } else if (![runningActions isEmpty]) { // Every touch handler has to verify this as well
+    } else if (location.x < 60) { // Handled by hud
+        //NSLog(@"move left!");
+        movingLeft = true;
+    } else if (location.x > 420) { // Handled by hud
+        //NSLog(@"move right?");
+        movingRight = true;
+    } 
+}
+
+-(void) ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    NSArray *touchArr = [touches allObjects];
+    UITouch *aTouch = [touchArr objectAtIndex:0];
+    CGPoint location = [aTouch locationInView:[aTouch view]];
+    
+    if (pauseButtonTap) {
+        if ([_hudLayer isPauseButtonPressed]) {
+            // Check for player dragging outside pause button
+            if (location.x > 60 || location.y > 60) {
+                [_hudLayer setPauseButtonPressed:false];
+            }
+        } else {
+            // Check for player dragging back inside pause button
+            if (location.x < 60 && location.y < 60) {
+                [_hudLayer setPauseButtonPressed:true];
+            }
+        }
+    }
+}
+
+-(void) ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    NSArray *touchArr = [touches allObjects];
+    UITouch *aTouch = [touchArr objectAtIndex:0];
+    CGPoint location = [aTouch locationInView:[aTouch view]];
+    
+    if (movingLeft) {
+        //NSLog(@"Moving Left Released");
+        movingLeft = false;
+        return;
+    } else if (movingRight) {
+        //NSLog(@"Moving Right Released");
+        movingRight = false;
+        return;
+    } else if (pauseButtonTap) {
+        if ([_hudLayer isPauseButtonPressed]) {
+            //if (Display_Debug_Text) NSLog(@"paused bitch!");
+            [_hudLayer setPauseButtonPressed:false];
+            [[CCDirector sharedDirector] pushScene:[PauseMenu scene]];
+        }
+        pauseButtonTap = false;
+        
+    } else if ([_hudLayer isItemPickupShown]) { 
+        [_hudLayer setItemPickupVisibility:false];
+        [_hudLayer setMovePanelVisibility:true];
+    } else if ([_dialogueLayer displayingDialogue] && [_dialogueLayer touchOriginatedInDialogue]) {
+        [_dialogueLayer touchBegan:false];
+        if ([_dialogueLayer isMultiChoice]) {
+            if (location.y > 220) {
+                
+                NSString * potentialGA;
+                
+                // determine what players choice
+                if (location.x < 120) 
+                    potentialGA = [_dialogueLayer chooseNode:1];
+                else if (location.x < 240)
+                    potentialGA = [_dialogueLayer chooseNode:2];
+                else if (location.x < 360)
+                    potentialGA = [_dialogueLayer chooseNode:3];
+                else if (location.x < 480)
+                    potentialGA = [_dialogueLayer chooseNode:4];
+                
+                if (![potentialGA isEqualToString:@""]) {
+                    GameActionArray * potentialArray = [Logic checkDialogueGameActionArray:potentialGA];
+                    [runningActions addArray:potentialArray];
+                }
+            }
+            
+        } else {
+            NSString * potentialGA = [_dialogueLayer getAction];
+            
+            if (![potentialGA isEqualToString:@""]) {
+                GameActionArray * potentialArray = [Logic checkDialogueGameActionArray:potentialGA];
+                [runningActions addArray:potentialArray];
+            }
+            
+            if ([_dialogueLayer hasMoreDialogue]) {
+                [_dialogueLayer continueDialogue];
+            } else {
+                if (gameActionDelay==0)
+                    [_hudLayer setMovePanelVisibility: YES];
+            }
+        }
+    } else if (gameActionDelay>0) {
+        if (Display_Debug_Text) NSLog(@"Engine: Ignored tap. Is waiting!");
+    } else if (![runningActions isEmpty]) {
+        if (Display_Debug_Text) NSLog(@"Engine: Ignored tap. Is running an action still!");
+    } else {
+        //NSLog(@"tap coords:%f,%f",location.x,location.y);
+        //NSLog(@"camera coords:%f,%f",[GameData instance]._cameraPosition.x,[GameData instance]._cameraPosition.y);
+        
+        // determine tap location on map
+        CGPoint tapPositionInWorld = [Logic worldPositionFromTap:location];
+        // retrieve potential action on map from tap
+        GameActionArray * potentialArray = [_worldLayer handleWorldTapAt:tapPositionInWorld];
+        
+        // if array is valid
+        if (potentialArray) {
+            //if (Display_Debug_Text) NSLog(@"Engine: Found array. Is valid!");
+            // if array has actions
+            if (![potentialArray isEmpty]) {
+                //if (Display_Debug_Text) NSLog(@"Engine: Found array has items!");
+                
+                // add array to running actions
+                [runningActions addArray:potentialArray];
+                
+                // run first action
+                [self runNextAction];
+            }
+        }
+    }
+}*/
+
+// on "dealloc" you need to release all your retained objects
+- (void) dealloc
+{
+	[super dealloc];
+}
+
+@end

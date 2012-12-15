@@ -128,7 +128,21 @@
 		5153228E167D32AB00863C43 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 5153228D167D32AB00863C43 /* vec4.c */; };
 		51532293167D32AB00863C43 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 51532292167D32AB00863C43 /* main.m */; };
 		51532296167D32AB00863C43 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 51532295167D32AB00863C43 /* AppDelegate.m */; };
-		51532299167D32AB00863C43 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 51532298167D32AB00863C43 /* HelloWorldLayer.m */; };
+		515322A4167D337B00863C43 /* worldGameActions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5153229F167D337B00863C43 /* worldGameActions.plist */; };
+		515322A5167D337B00863C43 /* dialogueGameActions.plist in Resources */ = {isa = PBXBuildFile; fileRef = 515322A0167D337B00863C43 /* dialogueGameActions.plist */; };
+		515322A6167D337B00863C43 /* worlds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 515322A1167D337B00863C43 /* worlds.plist */; };
+		515322A7167D337B00863C43 /* playerItems.plist in Resources */ = {isa = PBXBuildFile; fileRef = 515322A2167D337B00863C43 /* playerItems.plist */; };
+		515322A8167D337B00863C43 /* readings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 515322A3167D337B00863C43 /* readings.plist */; };
+		515322AA167D338400863C43 /* pausebutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 515322A9167D338400863C43 /* pausebutton.png */; };
+		515322BC167D339A00863C43 /* TestLayerTop.m in Sources */ = {isa = PBXBuildFile; fileRef = 515322AB167D339A00863C43 /* TestLayerTop.m */; };
+		515322BD167D339A00863C43 /* TestLayerBottom.m in Sources */ = {isa = PBXBuildFile; fileRef = 515322AD167D339A00863C43 /* TestLayerBottom.m */; };
+		515322BE167D339A00863C43 /* GameData.m in Sources */ = {isa = PBXBuildFile; fileRef = 515322AF167D339A00863C43 /* GameData.m */; };
+		515322BF167D339A00863C43 /* Engine.m in Sources */ = {isa = PBXBuildFile; fileRef = 515322B0167D339A00863C43 /* Engine.m */; };
+		515322C0167D339A00863C43 /* Logic.m in Sources */ = {isa = PBXBuildFile; fileRef = 515322B4167D339A00863C43 /* Logic.m */; };
+		515322C1167D339A00863C43 /* intro_cutscene.plist in Resources */ = {isa = PBXBuildFile; fileRef = 515322B7167D339A00863C43 /* intro_cutscene.plist */; };
+		515322C2167D339A00863C43 /* dialogue.plist in Resources */ = {isa = PBXBuildFile; fileRef = 515322B8167D339A00863C43 /* dialogue.plist */; };
+		515322C3167D339A00863C43 /* HUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 515322B9167D339A00863C43 /* HUDLayer.m */; };
+		515322C4167D339A00863C43 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 515322BB167D339A00863C43 /* Player.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -386,8 +400,29 @@
 		51532292167D32AB00863C43 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		51532294167D32AB00863C43 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		51532295167D32AB00863C43 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		51532297167D32AB00863C43 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		51532298167D32AB00863C43 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
+		5153229F167D337B00863C43 /* worldGameActions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = worldGameActions.plist; sourceTree = "<group>"; };
+		515322A0167D337B00863C43 /* dialogueGameActions.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dialogueGameActions.plist; sourceTree = "<group>"; };
+		515322A1167D337B00863C43 /* worlds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = worlds.plist; sourceTree = "<group>"; };
+		515322A2167D337B00863C43 /* playerItems.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = playerItems.plist; sourceTree = "<group>"; };
+		515322A3167D337B00863C43 /* readings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = readings.plist; sourceTree = "<group>"; };
+		515322A9167D338400863C43 /* pausebutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pausebutton.png; sourceTree = "<group>"; };
+		515322AB167D339A00863C43 /* TestLayerTop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLayerTop.m; sourceTree = "<group>"; };
+		515322AC167D339A00863C43 /* TestLayerTop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLayerTop.h; sourceTree = "<group>"; };
+		515322AD167D339A00863C43 /* TestLayerBottom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestLayerBottom.m; sourceTree = "<group>"; };
+		515322AE167D339A00863C43 /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
+		515322AF167D339A00863C43 /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
+		515322B0167D339A00863C43 /* Engine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Engine.m; sourceTree = "<group>"; };
+		515322B1167D339A00863C43 /* TestLayerBottom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestLayerBottom.h; sourceTree = "<group>"; };
+		515322B2167D339A00863C43 /* Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Engine.h; sourceTree = "<group>"; };
+		515322B3167D339A00863C43 /* Logic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logic.h; sourceTree = "<group>"; };
+		515322B4167D339A00863C43 /* Logic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logic.m; sourceTree = "<group>"; };
+		515322B5167D339A00863C43 /* HUDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDLayer.h; sourceTree = "<group>"; };
+		515322B6167D339A00863C43 /* DebugFlags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugFlags.h; sourceTree = "<group>"; };
+		515322B7167D339A00863C43 /* intro_cutscene.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = intro_cutscene.plist; sourceTree = "<group>"; };
+		515322B8167D339A00863C43 /* dialogue.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = dialogue.plist; sourceTree = "<group>"; };
+		515322B9167D339A00863C43 /* HUDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDLayer.m; sourceTree = "<group>"; };
+		515322BA167D339A00863C43 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		515322BB167D339A00863C43 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -446,10 +481,31 @@
 		51532123167D32A900863C43 /* Adventure Engine */ = {
 			isa = PBXGroup;
 			children = (
+				5153229F167D337B00863C43 /* worldGameActions.plist */,
+				515322A0167D337B00863C43 /* dialogueGameActions.plist */,
+				515322A1167D337B00863C43 /* worlds.plist */,
+				515322A2167D337B00863C43 /* playerItems.plist */,
+				515322A3167D337B00863C43 /* readings.plist */,
+				515322A9167D338400863C43 /* pausebutton.png */,
+				515322AB167D339A00863C43 /* TestLayerTop.m */,
+				515322AC167D339A00863C43 /* TestLayerTop.h */,
+				515322AD167D339A00863C43 /* TestLayerBottom.m */,
+				515322AE167D339A00863C43 /* GameData.h */,
+				515322AF167D339A00863C43 /* GameData.m */,
+				515322B0167D339A00863C43 /* Engine.m */,
+				515322B1167D339A00863C43 /* TestLayerBottom.h */,
+				515322B2167D339A00863C43 /* Engine.h */,
+				515322B3167D339A00863C43 /* Logic.h */,
+				515322B4167D339A00863C43 /* Logic.m */,
+				515322B5167D339A00863C43 /* HUDLayer.h */,
+				515322B6167D339A00863C43 /* DebugFlags.h */,
+				515322B7167D339A00863C43 /* intro_cutscene.plist */,
+				515322B8167D339A00863C43 /* dialogue.plist */,
+				515322B9167D339A00863C43 /* HUDLayer.m */,
+				515322BA167D339A00863C43 /* Player.h */,
+				515322BB167D339A00863C43 /* Player.m */,
 				51532294167D32AB00863C43 /* AppDelegate.h */,
 				51532295167D32AB00863C43 /* AppDelegate.m */,
-				51532297167D32AB00863C43 /* HelloWorldLayer.h */,
-				51532298167D32AB00863C43 /* HelloWorldLayer.m */,
 				51532124167D32A900863C43 /* Resources */,
 				5153213C167D32A900863C43 /* libs */,
 				51532290167D32AB00863C43 /* Supporting Files */,
@@ -878,6 +934,14 @@
 				51532138167D32A900863C43 /* Icon@2x.png in Resources */,
 				5153213B167D32A900863C43 /* iTunesArtwork in Resources */,
 				51532274167D32AB00863C43 /* ChangeLog in Resources */,
+				515322A4167D337B00863C43 /* worldGameActions.plist in Resources */,
+				515322A5167D337B00863C43 /* dialogueGameActions.plist in Resources */,
+				515322A6167D337B00863C43 /* worlds.plist in Resources */,
+				515322A7167D337B00863C43 /* playerItems.plist in Resources */,
+				515322A8167D337B00863C43 /* readings.plist in Resources */,
+				515322AA167D338400863C43 /* pausebutton.png in Resources */,
+				515322C1167D339A00863C43 /* intro_cutscene.plist in Resources */,
+				515322C2167D339A00863C43 /* dialogue.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -988,7 +1052,13 @@
 				5153228E167D32AB00863C43 /* vec4.c in Sources */,
 				51532293167D32AB00863C43 /* main.m in Sources */,
 				51532296167D32AB00863C43 /* AppDelegate.m in Sources */,
-				51532299167D32AB00863C43 /* HelloWorldLayer.m in Sources */,
+				515322BC167D339A00863C43 /* TestLayerTop.m in Sources */,
+				515322BD167D339A00863C43 /* TestLayerBottom.m in Sources */,
+				515322BE167D339A00863C43 /* GameData.m in Sources */,
+				515322BF167D339A00863C43 /* Engine.m in Sources */,
+				515322C0167D339A00863C43 /* Logic.m in Sources */,
+				515322C3167D339A00863C43 /* HUDLayer.m in Sources */,
+				515322C4167D339A00863C43 /* Player.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

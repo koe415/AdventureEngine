@@ -1,0 +1,753 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>temp</key>
+	<dict>
+		<key>content</key>
+		<string>Hey Jacob!</string>
+		<key>speaker</key>
+		<string>Kid</string>
+		<key>nextNode</key>
+		<string>temp2</string>
+	</dict>
+	<key>temp2</key>
+	<dict>
+		<key>content</key>
+		<string>Go the fuck back to sleep right now.</string>
+		<key>speaker</key>
+		<string>Jacob</string>
+		<key>nextNode</key>
+		<string>temp3</string>
+	</dict>
+	<key>temp3</key>
+	<dict>
+		<key>content</key>
+		<string>That was kind of mean...</string>
+		<key>speaker</key>
+		<string>Kid</string>
+		<key>nextNode</key>
+		<string></string>
+	</dict>
+	<key>CH_temp4</key>
+	<dict>
+		<key>content1</key>
+		<string>first choice</string>
+		<key>nextNode1</key>
+		<string>temp</string>
+		<key>content2</key>
+		<string>second choice</string>
+		<key>nextNode2</key>
+		<string>temp2</string>
+		<key>content3</key>
+		<string>third choice</string>
+		<key>nextNode3</key>
+		<string>CH_temp5</string>
+		<key>content4</key>
+		<string>end this charade! Can this really rearrange to the bounding box?</string>
+		<key>nextNode4</key>
+		<string></string>
+	</dict>
+	<key>CH_temp5</key>
+	<dict>
+		<key>content1</key>
+		<string>Back to beginning!</string>
+		<key>nextNode1</key>
+		<string>temp</string>
+		<key>content2</key>
+		<string>Dialogue 1</string>
+		<key>nextNode2</key>
+		<string>CH_temp4</string>
+		<key>content3</key>
+		<string>standard linear</string>
+		<key>nextNode3</key>
+		<string>temp3</string>
+		<key>content4</key>
+		<string>end this charade!</string>
+		<key>nextNode4</key>
+		<string></string>
+	</dict>
+	<key>1_1</key>
+	<dict>
+		<key>content</key>
+		<string>......Jacob? What are you doing up?</string>
+		<key>speaker</key>
+		<string>Sleepy Child</string>
+		<key>nextNode</key>
+		<string>CH_1_1</string>
+	</dict>
+	<key>CH_1_1</key>
+	<dict>
+		<key>content1</key>
+		<string>I heard something outside.</string>
+		<key>nextNode1</key>
+		<string>1_2</string>
+		<key>content2</key>
+		<string>Danny. This is just a dream. Go back to sleep.</string>
+		<key>nextNode2</key>
+		<string>1_3</string>
+		<key>content3</key>
+		<string>If you mention this to anyone, I&apos;m telling the whole bunk that you&apos;re a wetter like Sandra.</string>
+		<key>nextNode3</key>
+		<string>1_4</string>
+		<key>content4</key>
+		<string></string>
+		<key>nextNode4</key>
+		<string></string>
+	</dict>
+	<key>1_2</key>
+	<dict>
+		<key>content</key>
+		<string>Get back in your bunk! If they see you walking around..</string>
+		<key>speaker</key>
+		<string>Sleepy Child</string>
+		<key>nextNode</key>
+		<string>CH_1_2</string>
+	</dict>
+	<key>1_3</key>
+	<dict>
+		<key>content</key>
+		<string>Oh....This doesn&apos;t feel like a dream. How do I know I&apos;m dreaming?</string>
+		<key>speaker</key>
+		<string>Sleepy Child</string>
+		<key>nextNode</key>
+		<string>CH_1_3</string>
+	</dict>
+	<key>1_4</key>
+	<dict>
+		<key>content</key>
+		<string>I&apos;m asleep! I&apos;m asleep!</string>
+		<key>speaker</key>
+		<string>Sleepy Child</string>
+		<key>nextNode</key>
+		<string></string>
+	</dict>
+	<key>CH_1_2</key>
+	<dict>
+		<key>content1</key>
+		<string>They won&apos;t.</string>
+		<key>nextNode1</key>
+		<string>1_5</string>
+		<key>content2</key>
+		<string>The only way they&apos;ll catch me is if you keep running on!</string>
+		<key>nextNode2</key>
+		<string>1_6</string>
+		<key>content3</key>
+		<string></string>
+		<key>nextNode3</key>
+		<string></string>
+		<key>content4</key>
+		<string></string>
+		<key>nextNode4</key>
+		<string></string>
+	</dict>
+	<key>CH_1_3</key>
+	<dict>
+		<key>content1</key>
+		<string>Because of the lack of monsters obviously.</string>
+		<key>nextNode1</key>
+		<string>1_7</string>
+		<key>content2</key>
+		<string>If you ask one more question, this is going to be a nightmare.</string>
+		<key>nextNode2</key>
+		<string>1_8</string>
+		<key>content3</key>
+		<string></string>
+		<key>nextNode3</key>
+		<string></string>
+		<key>content4</key>
+		<string></string>
+		<key>nextNode4</key>
+		<string></string>
+	</dict>
+	<key>1_5</key>
+	<dict>
+		<key>content</key>
+		<string>I&apos;m having nothing to do with this!</string>
+		<key>speaker</key>
+		<string>Sleepy Child</string>
+		<key>nextNode</key>
+		<string></string>
+	</dict>
+	<key>1_6</key>
+	<dict>
+		<key>content</key>
+		<string>Sorry Jacob. I was just trying to help.</string>
+		<key>speaker</key>
+		<string>Sleepy Child</string>
+		<key>nextNode</key>
+		<string></string>
+	</dict>
+	<key>1_7</key>
+	<dict>
+		<key>content</key>
+		<string>Oh....you&apos;re right! I wonder if I&apos;ll remember this in the morning...</string>
+		<key>speaker</key>
+		<string>Sleepy Child</string>
+		<key>nextNode</key>
+		<string></string>
+	</dict>
+	<key>1_8</key>
+	<dict>
+		<key>content</key>
+		<string>I&apos;m asleep! Dream Jacob is a bigger jerk than real life Jacob.</string>
+		<key>speaker</key>
+		<string>Sleepy Child</string>
+		<key>nextNode</key>
+		<string></string>
+	</dict>
+	<key>sleepingBoy1</key>
+	<dict>
+		<key>content</key>
+		<string>zZzZz</string>
+		<key>speaker</key>
+		<string>Sleeping Kid</string>
+		<key>nextNode</key>
+		<string></string>
+	</dict>
+	<key>gameactiontester1</key>
+	<dict>
+		<key>content</key>
+		<string>Game Action successfully run</string>
+		<key>speaker</key>
+		<string>Sleeping Kid</string>
+		<key>nextNode</key>
+		<string></string>
+	</dict>
+	<key>sleepingBoy2</key>
+	<dict>
+		<key>content</key>
+		<string>...</string>
+		<key>speaker</key>
+		<string>Sleeping Kid</string>
+		<key>nextNode</key>
+		<string></string>
+	</dict>
+	<key>sleepingBoy3</key>
+	<dict>
+		<key>content</key>
+		<string>....mommy?</string>
+		<key>speaker</key>
+		<string>Sleeping Kid</string>
+		<key>nextNode</key>
+		<string></string>
+	</dict>
+	<key>nicePainting</key>
+	<dict>
+		<key>content</key>
+		<string>...Nice painting I guess.</string>
+		<key>speaker</key>
+		<string>Jacob</string>
+		<key>nextNode</key>
+		<string></string>
+	</dict>
+	<key>pickUpDoorKnob1a</key>
+	<dict>
+		<key>content</key>
+		<string>The door is locked. They don&apos;t like us out at night.</string>
+		<key>speaker</key>
+		<string>Jacob</string>
+		<key>nextNode</key>
+		<string>pickUpDoorKnob1b</string>
+	</dict>
+	<key>pickUpDoorKnob1b</key>
+	<dict>
+		<key>content</key>
+		<string>Huh? The door knob is loose...</string>
+		<key>speaker</key>
+		<string>Jacob</string>
+		<key>nextNode</key>
+		<string></string>
+	</dict>
+	<key>CH_GATester</key>
+	<dict>
+		<key>content1</key>
+		<string>just dial</string>
+		<key>nextNode1</key>
+		<string>temp3</string>
+		<key>action1</key>
+		<string></string>
+		<key>content2</key>
+		<string>Load Dial and cause something</string>
+		<key>nextNode2</key>
+		<string>temp3</string>
+		<key>action2</key>
+		<string>bunk1_gafromDialTest</string>
+		<key>content3</key>
+		<string>cause something, no dial</string>
+		<key>nextNode3</key>
+		<string></string>
+		<key>action3</key>
+		<string>bunk1_gafromDialTest</string>
+		<key>content4</key>
+		<string></string>
+		<key>nextNode4</key>
+		<string></string>
+	</dict>
+	<key>pickUpDoorKnob2a</key>
+	<dict>
+		<key>content</key>
+		<string>You picked up a Door Knob! Careful! One edge is kind of sharp!</string>
+		<key>speaker</key>
+		<string></string>
+		<key>nextNode</key>
+		<string></string>
+	</dict>
+	<key>loadNextWorld</key>
+	<dict>
+		<key>content</key>
+		<string>Tap to load the next world.</string>
+		<key>speaker</key>
+		<string></string>
+		<key>nextNode</key>
+		<string></string>
+	</dict>
+	<key>pickUpMatches1a</key>
+	<dict>
+		<key>content</key>
+		<string>There&apos;s something under my bed...</string>
+		<key>speaker</key>
+		<string>Jacob</string>
+		<key>nextNode</key>
+		<string></string>
+	</dict>
+	<key>1_9</key>
+	<dict>
+		<key>content</key>
+		<string>Just what do you think you&apos;re doing?</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>nextNode</key>
+		<string>CH_1_9a</string>
+	</dict>
+	<key>CH_1_9a</key>
+	<dict>
+		<key>content1</key>
+		<string>Go outside</string>
+		<key>nextNode1</key>
+		<string>1_10</string>
+		<key>action1</key>
+		<string>bunk1_moveToOutsideTalk</string>
+		<key>content2</key>
+		<string>Stay inside</string>
+		<key>nextNode2</key>
+		<string>1_11</string>
+		<key>action2</key>
+		<string>good_ending_cutscene</string>
+		<key>content3</key>
+		<string></string>
+		<key>nextNode3</key>
+		<string></string>
+		<key>action3</key>
+		<string></string>
+		<key>content4</key>
+		<string></string>
+		<key>nextNode4</key>
+		<string></string>
+	</dict>
+	<key>1_10</key>
+	<dict>
+		<key>content</key>
+		<string>So be it. Come with me</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>nextNode</key>
+		<string></string>
+	</dict>
+	<key>1_11</key>
+	<dict>
+		<key>content</key>
+		<string>Is that so? Well go back to bed now before I decide to report you.</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>nextNode</key>
+		<string></string>
+	</dict>
+	<key>2_1_temp</key>
+	<dict>
+		<key>content</key>
+		<string>What were you doing out here?</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>nextNode</key>
+		<string>CH_2_1a</string>
+	</dict>
+	<key>CH_2_1a_temp</key>
+	<dict>
+		<key>content1</key>
+		<string>fail interrogation</string>
+		<key>requiresItem1</key>
+		<string>DoorKnob</string>
+		<key>nextNode1</key>
+		<string></string>
+		<key>action1</key>
+		<string>bad_ending_cutscene</string>
+		<key>content2</key>
+		<string>pass interrogation</string>
+		<key>nextNode2</key>
+		<string></string>
+		<key>action2</key>
+		<string>good_ending_cutscene</string>
+		<key>content3</key>
+		<string></string>
+		<key>nextNode3</key>
+		<string></string>
+		<key>action3</key>
+		<string></string>
+		<key>content4</key>
+		<string></string>
+		<key>nextNode4</key>
+		<string></string>
+	</dict>
+	<key>2_1</key>
+	<dict>
+		<key>content</key>
+		<string>....You know, it&apos;s not polite to eavesdrop?</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>nextNode</key>
+		<string>CH_2_1</string>
+	</dict>
+	<key>CH_2_1</key>
+	<dict>
+		<key>content1</key>
+		<string>I&apos;m sorry. I htought I heard something outside.</string>
+		<key>nextNode1</key>
+		<string>2_2</string>
+		<key>content2</key>
+		<string>It&apos;s also not polite to keep secrets.</string>
+		<key>nextNode2</key>
+		<string>2_3</string>
+		<key>content3</key>
+		<string>&lt;&lt;Remain silent&gt;&gt;</string>
+		<key>nextNode3</key>
+		<string>2_4</string>
+		<key>content4</key>
+		<string></string>
+		<key>nextNode4</key>
+		<string></string>
+	</dict>
+	<key>2_2</key>
+	<dict>
+		<key>content</key>
+		<string>Oh yeah? What did you find?</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>nextNode</key>
+		<string>CH_2_2</string>
+	</dict>
+	<key>2_3</key>
+	<dict>
+		<key>content</key>
+		<string>I beg your pardon? What are you doing up, sneaking around so late?</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>nextNode</key>
+		<string>CH_2_3</string>
+	</dict>
+	<key>2_4</key>
+	<dict>
+		<key>content</key>
+		<string>I think someone&apos;s a little tired. Come along, young Jacob, we need to have a talk outside.</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>action</key>
+		<string>bunk1_moveToOutsideTalk</string>
+	</dict>
+	<key>CH_2_2</key>
+	<dict>
+		<key>content1</key>
+		<string>Some captains were talking about something happening...soon.</string>
+		<key>nextNode1</key>
+		<string>2_5</string>
+		<key>content2</key>
+		<string>I heard everything! I know what&apos;s going on!</string>
+		<key>nextNode2</key>
+		<string>2_6</string>
+		<key>content3</key>
+		<string>It was nothing. Just my imagination.</string>
+		<key>nextNode3</key>
+		<string>2_7</string>
+		<key>content4</key>
+		<string></string>
+		<key>nextNode4</key>
+		<string></string>
+	</dict>
+	<key>CH_2_3</key>
+	<dict>
+		<key>content1</key>
+		<string>I should ask you the same. This isn&apos;t even your house.</string>
+		<key>nextNode1</key>
+		<string>2_8</string>
+		<key>content2</key>
+		<string>...I was using the restroom.</string>
+		<key>nextNode2</key>
+		<string>2_9</string>
+		<key>content3</key>
+		<string>I heard everything! I know what&apos;s going on!</string>
+		<key>nextNode3</key>
+		<string>2_6</string>
+		<key>content4</key>
+		<string></string>
+		<key>nextNode4</key>
+		<string></string>
+	</dict>
+	<key>2_5</key>
+	<dict>
+		<key>content</key>
+		<string>Well isn&apos;t that a little vague. I think this is a conversation we should have outside. Come along, young Jacob.</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>action</key>
+		<string>bunk1_moveToOutsideTalk</string>
+	</dict>
+	<key>2_6</key>
+	<dict>
+		<key>content</key>
+		<string>Jacob! I think you&apos;re a little confused. This is a conversation for outside, lest we wake your whole bunk.</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>action</key>
+		<string>bunk1_moveToOutsideTalk</string>
+	</dict>
+	<key>2_7</key>
+	<dict>
+		<key>content</key>
+		<string>Go back to bed Jacob, and try to rest. The morning tends to fix problems of most.</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>action</key>
+		<string>good_ending_cutscene</string>
+	</dict>
+	<key>2_8</key>
+	<dict>
+		<key>content</key>
+		<string>Well you sure do have a mouth. Get back to bed before I tell your house captain and you spend some time in the box.</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>action</key>
+		<string>good_ending_cutscene</string>
+	</dict>
+	<key>2_9</key>
+	<dict>
+		<key>content</key>
+		<string>Is that so? I&apos;ll be telling your house captain in the morning. That is something you do before you go to bed. Now to bed with you!</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>action</key>
+		<string>good_ending_cutscene</string>
+	</dict>
+	<key>3_1</key>
+	<dict>
+		<key>content</key>
+		<string>I find you in the wee hours of the morning. You understand how this looks right? Can you at least see this from my perspective? What would you have me do, Jacob? ... Explain yourself.</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>nextNode</key>
+		<string>CH_3_1</string>
+	</dict>
+	<key>CH_3_1</key>
+	<dict>
+		<key>content1</key>
+		<string>I don&apos;t even know what I&apos;m doing anymore.</string>
+		<key>nextNode1</key>
+		<string>3_2</string>
+		<key>content2</key>
+		<string>I heard your plans for tonight.</string>
+		<key>nextNode2</key>
+		<string>3_3</string>
+		<key>content3</key>
+		<string>&lt;&lt;Remain silent&gt;&gt;</string>
+		<key>nextNode3</key>
+		<string>3_4</string>
+		<key>content4</key>
+		<string></string>
+		<key>nextNode4</key>
+		<string></string>
+	</dict>
+	<key>3_2</key>
+	<dict>
+		<key>content</key>
+		<string>That......I can understand where you&apos;re coming from. Sometimes we do things that we look back on and don&apos;t see why....It&apos;s almost......It&apos;s almost as if those moments show...</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>nextNode</key>
+		<string>CH_3_2</string>
+	</dict>
+	<key>3_3</key>
+	<dict>
+		<key>content</key>
+		<string>That&apos;s what I thought. It&apos;s unfortunate but I do respect you for being honest. I&apos;m sorry Jacob but this is for the best. Do it.</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>action</key>
+		<string>player_beat_up_then_bad_ending</string>
+	</dict>
+	<key>3_4</key>
+	<dict>
+		<key>content</key>
+		<string>Jacob, you&apos;re not in trouble. I just want to know what you were thinking.</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>nextNode</key>
+		<string>CH_3_4</string>
+	</dict>
+	<key>CH_3_2</key>
+	<dict>
+		<key>content1</key>
+		<string>....you&apos;re a different person.</string>
+		<key>nextNode1</key>
+		<string>3_5</string>
+		<key>content2</key>
+		<string>.....deep down, you&apos;re a monster.</string>
+		<key>nextNode2</key>
+		<string>3_6</string>
+		<key>content3</key>
+		<string></string>
+		<key>nextNode3</key>
+		<string></string>
+		<key>content4</key>
+		<string></string>
+		<key>nextNode4</key>
+		<string></string>
+	</dict>
+	<key>CH_3_4</key>
+	<dict>
+		<key>content1</key>
+		<string>&lt;&lt;Remain silent&gt;&gt;</string>
+		<key>nextNode1</key>
+		<string>3_7</string>
+		<key>content2</key>
+		<string>I heard your plans for tonight.</string>
+		<key>nextNode2</key>
+		<string>3_3</string>
+		<key>content3</key>
+		<string>&lt;&lt;Stab in eye with Door Knob&gt;&gt;</string>
+		<key>nextNode3</key>
+		<string>3_8</string>
+		<key>requiresItem3</key>
+		<string>DoorKnob</string>
+		<key>content4</key>
+		<string></string>
+		<key>nextNode4</key>
+		<string></string>
+	</dict>
+	<key>3_5</key>
+	<dict>
+		<key>content</key>
+		<string>...Yeah. Go to sleep and I won&apos;t tell your bunk captain.</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>action</key>
+		<string>good_ending_cutscene</string>
+	</dict>
+	<key>3_6</key>
+	<dict>
+		<key>content</key>
+		<string>...I think I&apos;ve heard all I need to hear from you. Goodbye Jacob. Do it.</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>action</key>
+		<string>player_beat_up_then_bad_ending</string>
+	</dict>
+	<key>3_7</key>
+	<dict>
+		<key>content</key>
+		<string>Well then, you&apos;ve given me no choice in the matter. Do it.</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>action</key>
+		<string>player_beat_up_then_bad_ending</string>
+	</dict>
+	<key>3_8</key>
+	<dict>
+		<key>content</key>
+		<string>aRGGH MY EYE!! Get him! Get him!</string>
+		<key>speaker</key>
+		<string>Guard</string>
+		<key>action</key>
+		<string>player_beat_up_then_bad_ending</string>
+	</dict>
+	<key>eavesdrop_dial_1</key>
+	<dict>
+		<key>content</key>
+		<string>We&apos;ve done all we can for these kids. This is not our problem anymore. Sometimes you simply can&apos;t do the right thing.</string>
+		<key>speaker</key>
+		<string>Left Guard</string>
+		<key>nextNode</key>
+		<string>eavesdrop_dial_2</string>
+	</dict>
+	<key>eavesdrop_dial_2</key>
+	<dict>
+		<key>content</key>
+		<string>This is insane. There has to be more to this. These kids won&apos;t stand a chance.</string>
+		<key>speaker</key>
+		<string>Right Guard</string>
+		<key>nextNode</key>
+		<string>eavesdrop_dial_3</string>
+	</dict>
+	<key>eavesdrop_dial_3</key>
+	<dict>
+		<key>content</key>
+		<string>We have to think about ourselves now. They&apos;re coming and there&apos;s nothing more we can do. Lock up or be left behind. The other captains are already getting ready.</string>
+		<key>speaker</key>
+		<string>Left Guard</string>
+		<key>nextNode</key>
+		<string>eavesdrop_dial_4</string>
+	</dict>
+	<key>eavesdrop_dial_4</key>
+	<dict>
+		<key>content</key>
+		<string>When do we tell them?</string>
+		<key>speaker</key>
+		<string>Right Guard</string>
+		<key>nextNode</key>
+		<string>eavesdrop_dial_5</string>
+	</dict>
+	<key>eavesdrop_dial_5</key>
+	<dict>
+		<key>content</key>
+		<string>Have you been paying attention? The less they know, the better. Hopefully this whole thing will be done by morning.</string>
+		<key>speaker</key>
+		<string>Left Guard</string>
+		<key>nextNode</key>
+		<string>eavesdrop_dial_6</string>
+	</dict>
+	<key>eavesdrop_dial_6</key>
+	<dict>
+		<key>content</key>
+		<string>Maybe if we tell them...let them know why this is happening.....Maybe them, they would go willingly?</string>
+		<key>speaker</key>
+		<string>Right Guard</string>
+		<key>nextNode</key>
+		<string>eavesdrop_dial_7</string>
+	</dict>
+	<key>eavesdrop_dial_7</key>
+	<dict>
+		<key>content</key>
+		<string>Maybe....Would you?</string>
+		<key>speaker</key>
+		<string>Left Guard</string>
+		<key>nextNode</key>
+		<string>eavesdrop_dial_8</string>
+	</dict>
+	<key>eavesdrop_dial_8</key>
+	<dict>
+		<key>content</key>
+		<string>I&apos;m not sure...</string>
+		<key>speaker</key>
+		<string>Right Guard</string>
+		<key>nextNode</key>
+		<string>eavesdrop_dial_9</string>
+	</dict>
+	<key>eavesdrop_dial_9</key>
+	<dict>
+		<key>content</key>
+		<string>That&apos;s a risk we can&apos;t take right now. Get your things and report when you&apos;re prepped. They should be here soon.</string>
+		<key>speaker</key>
+		<string>Left Guard</string>
+		<key>nextNode</key>
+		<string></string>
+	</dict>
+</dict>
+</plist>
