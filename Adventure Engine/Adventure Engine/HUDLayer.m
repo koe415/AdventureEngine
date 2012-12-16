@@ -41,7 +41,7 @@ static int DefaultPauseButtonOpacity = 200;
         [pauseButton setTextureRect:CGRectMake(0, 0, 60, 60)];
         
         
-        
+        /*
         itemPickupBackground = [[CCSprite alloc] initWithFile:@"blackPixel.png"];
         itemPickupBackground.position = CGPointMake(240, 100);
         [itemPickupBackground setTextureRect:CGRectMake(0, 0, 340, 60)];
@@ -60,16 +60,16 @@ static int DefaultPauseButtonOpacity = 200;
         itemPickupText.position = CGPointMake(240, 100);
         itemPickupText.color = ccWHITE;
         [itemPickupText setDimensions: CGSizeMake(320, 40)];
-        itemPickupText.visible = false;
+        itemPickupText.visible = false;*/
         
         
         [self addChild:move_panel_left];
         [self addChild:move_panel_right];
         [self addChild:pauseButton];
         
-        [self addChild:itemPickupBackground];
-        [self addChild:itemPickupIcon];
-        [self addChild:itemPickupText];
+        //[self addChild:itemPickupBackground];
+        //[self addChild:itemPickupIcon];
+        //[self addChild:itemPickupText];
     }
     
     return self;
@@ -99,6 +99,7 @@ static int DefaultPauseButtonOpacity = 200;
         pauseButton.opacity = DefaultPauseButtonOpacity;
 }
 
+/*
 #pragma mark Item Pickup
 
 -(void) setItemPickup:(NSString *) itemName {
@@ -124,7 +125,7 @@ static int DefaultPauseButtonOpacity = 200;
 -(bool) isItemPickupShown {
     return itemPickupIcon.visible || itemPickupText.visible || itemPickupBackground.visible;
 }
-
+*/
 
 
 @end

@@ -6,11 +6,22 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+// Note to self: #ifndef means 'if not defined'...not 'if and defined'
 #ifndef Certainty_DebugFlags_h
 #define Certainty_DebugFlags_h
 
 #define Display_FPS 1
 #define Display_Debug_Text 1
 #define Display_Dev_Objects 0
+
+// Format: ClassName(LineNumber)| Debug Text
+#if Display_Debug_Text
+    #define Log(FORMAT, ...) \
+    fprintf(stderr,"%s(%d)| %s\n", [NSStringFromClass([super class]) UTF8String], \
+    __LINE__, \
+    [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String] )
+#else
+    #define Log(FORMAT, ...)  // Do Nothing
+#endif
 
 #endif

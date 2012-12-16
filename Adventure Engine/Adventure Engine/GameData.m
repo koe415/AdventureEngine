@@ -15,6 +15,14 @@ static GameData *_instance = nil;
 +(GameData *) instance {
     if (_instance) return _instance;
     
+    //id * object;
+    
+    //NSObject * nso = (NSObject *)object;
+    
+    //[nso cut:nso];
+    
+    
+    
     @synchronized([GameData class]) {
         if(!_instance) {
             _instance = [[self alloc] init];

@@ -24,8 +24,8 @@
 //#import "Readable.h"
 //#import "GameActionArray.h"
 
-#import "TestLayerTop.h"
-#import "TestLayerBottom.h"
+#import "HUD.h"
+#import "World.h"
 
 // Engine Layer
 @interface Engine : CCLayer

@@ -73,14 +73,14 @@
 -(id) init
 {
 	if( (self=[super init]) ) {
-        NSLog(@"engine inited");
+        Log(@"engine inited");
         //runningActions = [[GameActionArray alloc] init];
         self.isTouchEnabled = true;
         [self schedule:@selector(tick:)];
         
         
-        [self addChild:[TestLayerBottom node] z:0];
-        [self addChild:[TestLayerTop node] z:0];
+        [self addChild:[World node] z:0];
+        [self addChild:[HUD node] z:0];
 	}
 	return self;
 }
@@ -119,7 +119,7 @@
     } else if (gameActionDelay>0) {
         if ([_hudLayer isMovePanelVisible])
             [_hudLayer setMovePanelVisibility:false];
-        //NSLog(@"waiting!");
+        //Log(@"waiting!");
         gameActionDelay--;
     } else if (![runningActions isEmpty]) {
         [self runNextAction];
@@ -167,37 +167,37 @@
     
     switch ([actionToRun getType]) {
         case 1:
-            if (Display_Debug_Text) NSLog(@"Engine: Cutscene to run:%@",[actionToRun getValue]);
+            if (Display_Debug_Text) Log(@"Engine: Cutscene to run:%@",[actionToRun getValue]);
             [[CCDirector sharedDirector] pushScene:[Cutscene sceneWithCutscene:[actionToRun getValue]]];
             break;
         case 2:
-            if (Display_Debug_Text) NSLog(@"Engine: Dialogue to run:%@",[actionToRun getValue]);
+            if (Display_Debug_Text) Log(@"Engine: Dialogue to run:%@",[actionToRun getValue]);
             [_dialogueLayer startDialogue:[actionToRun getValue]];
             [_hudLayer setMovePanelVisibility: false];
             break;
         case 3:
-            if (Display_Debug_Text) NSLog(@"Engine: World to load:%@",[actionToRun getValue]);
+            if (Display_Debug_Text) Log(@"Engine: World to load:%@",[actionToRun getValue]);
             [self loadMap:[actionToRun getValue]];
             break;
         case 4:
-            if (Display_Debug_Text) NSLog(@"Engine: Item to pick up:%@",[actionToRun getValue]);
+            if (Display_Debug_Text) Log(@"Engine: Item to pick up:%@",[actionToRun getValue]);
             [self pickupItem:[actionToRun getValue]];
             [_hudLayer setMovePanelVisibility:false];
             break;
         case 5:
-            if (Display_Debug_Text) NSLog(@"Engine: Item to remove:%@",[actionToRun getValue]);
+            if (Display_Debug_Text) Log(@"Engine: Item to remove:%@",[actionToRun getValue]);
             [Logic removePlayerItem:[actionToRun getValue]];
             break;
         case 6:
-            if (Display_Debug_Text) NSLog(@"Engine: Text to show:%@",[actionToRun getValue]);
+            if (Display_Debug_Text) Log(@"Engine: Text to show:%@",[actionToRun getValue]);
             [[CCDirector sharedDirector] pushScene:[Readable sceneWithText:[actionToRun getValue]]];
             break;
         case 7:
-            if (Display_Debug_Text) NSLog(@"Engine: Game ending!");
+            if (Display_Debug_Text) Log(@"Engine: Game ending!");
             [[CCDirector sharedDirector] replaceScene:[MainMenu scene]];
             break;
         default:
-            if (Display_Debug_Text) NSLog(@"Engine: ERROR - Given improper game action (%d) with text:%@",[actionToRun getType],[actionToRun getValue]);
+            if (Display_Debug_Text) Log(@"Engine: ERROR - Given improper game action (%d) with text:%@",[actionToRun getType],[actionToRun getValue]);
             break;
     }
 }*/
@@ -239,7 +239,7 @@
     
     // check pause button selection!
     if (location.x < 60 && location.y < 60) { // Handled by hud
-        //NSLog(@"pause button pressed!");
+        //Log(@"pause button pressed!");
         [_hudLayer setPauseButtonPressed:true];
         pauseButtonTap = true;
     } else if ([_hudLayer isItemPickupShown]) { // Handled by hud
@@ -250,10 +250,10 @@
     } else if (gameActionDelay>0) { // Every touch handler has to verify that gameactiondelay is not active
     } else if (![runningActions isEmpty]) { // Every touch handler has to verify this as well
     } else if (location.x < 60) { // Handled by hud
-        //NSLog(@"move left!");
+        //Log(@"move left!");
         movingLeft = true;
     } else if (location.x > 420) { // Handled by hud
-        //NSLog(@"move right?");
+        //Log(@"move right?");
         movingRight = true;
     } 
 }
@@ -285,16 +285,16 @@
     CGPoint location = [aTouch locationInView:[aTouch view]];
     
     if (movingLeft) {
-        //NSLog(@"Moving Left Released");
+        //Log(@"Moving Left Released");
         movingLeft = false;
         return;
     } else if (movingRight) {
-        //NSLog(@"Moving Right Released");
+        //Log(@"Moving Right Released");
         movingRight = false;
         return;
     } else if (pauseButtonTap) {
         if ([_hudLayer isPauseButtonPressed]) {
-            //if (Display_Debug_Text) NSLog(@"paused bitch!");
+            //if (Display_Debug_Text) Log(@"paused bitch!");
             [_hudLayer setPauseButtonPressed:false];
             [[CCDirector sharedDirector] pushScene:[PauseMenu scene]];
         }
@@ -342,12 +342,12 @@
             }
         }
     } else if (gameActionDelay>0) {
-        if (Display_Debug_Text) NSLog(@"Engine: Ignored tap. Is waiting!");
+        if (Display_Debug_Text) Log(@"Engine: Ignored tap. Is waiting!");
     } else if (![runningActions isEmpty]) {
-        if (Display_Debug_Text) NSLog(@"Engine: Ignored tap. Is running an action still!");
+        if (Display_Debug_Text) Log(@"Engine: Ignored tap. Is running an action still!");
     } else {
-        //NSLog(@"tap coords:%f,%f",location.x,location.y);
-        //NSLog(@"camera coords:%f,%f",[GameData instance]._cameraPosition.x,[GameData instance]._cameraPosition.y);
+        //Log(@"tap coords:%f,%f",location.x,location.y);
+        //Log(@"camera coords:%f,%f",[GameData instance]._cameraPosition.x,[GameData instance]._cameraPosition.y);
         
         // determine tap location on map
         CGPoint tapPositionInWorld = [Logic worldPositionFromTap:location];
@@ -356,10 +356,10 @@
         
         // if array is valid
         if (potentialArray) {
-            //if (Display_Debug_Text) NSLog(@"Engine: Found array. Is valid!");
+            //if (Display_Debug_Text) Log(@"Engine: Found array. Is valid!");
             // if array has actions
             if (![potentialArray isEmpty]) {
-                //if (Display_Debug_Text) NSLog(@"Engine: Found array has items!");
+                //if (Display_Debug_Text) Log(@"Engine: Found array has items!");
                 
                 // add array to running actions
                 [runningActions addArray:potentialArray];

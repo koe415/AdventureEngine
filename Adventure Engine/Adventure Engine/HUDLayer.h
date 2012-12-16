@@ -19,9 +19,9 @@
     CCSprite * pauseButton;
     bool pausePressed;
 
-    CCSprite * itemPickupIcon;
-    CCLabelTTF * itemPickupText;
-    CCSprite * itemPickupBackground;
+    //CCSprite * itemPickupIcon;
+    //CCLabelTTF * itemPickupText;
+    //CCSprite * itemPickupBackground;
 }
 
 -(void) setMovePanelVisibility: (bool) vis;
@@ -29,8 +29,8 @@
 -(void) setPauseButtonPressed: (bool) isPressed;
 -(bool) isPauseButtonPressed;
 
--(void) setItemPickup:(NSString *) itemName;
--(void) setItemPickupVisibility: (bool) vis;
--(bool) isItemPickupShown;
+//-(void) setItemPickup:(NSString *) itemName;
+//-(void) setItemPickupVisibility: (bool) vis;
+//-(bool) isItemPickupShown;
 
 @end

@@ -35,10 +35,10 @@
     for (TriggerableGameActionArray * triggerableGameAction in [GameData instance]._worldTriggerables) {
         //if they are close enough and item is enabled
         if ([triggerableGameAction contains:pt] && [triggerableGameAction isEnabled]) {
-            if (Display_Debug_Text) NSLog(@"WorldLayer: Found triggerable array in world");
+            Log(@"WorldLayer: Found triggerable array in world");
             
             if ([triggerableGameAction isOneTimeUse]) {
-                if (Display_Debug_Text) NSLog(@"WorldLayer: Triggerable array is one time use");
+                Log(@"WorldLayer: Triggerable array is one time use");
                 
                 [triggerableGameAction setEnabled:false];
                 [[triggerableGameAction getSpriteReference] setVisible:false];
@@ -92,29 +92,29 @@
 
 +(bool) doesPlayerHave:(NSString *) item {
     for (NSString * obj in [GameData instance]._playerInventory) {
-        if (Display_Debug_Text) NSLog(@"Logic: Checking if (%@) is equal to (%@)",item,obj);
+        Log(@"Checking if (%@) is equal to (%@)",item,obj);
         if ([obj isEqualToString:item]) {
-            if (Display_Debug_Text) NSLog(@"Logic: Player has %@!",item);
+            Log(@"Player has %@!",item);
             return true;
         }
     }
     
-    if (Display_Debug_Text) NSLog(@"Logic: Player does NOT have %@...",item);
+    Log(@"Player does NOT have %@...",item);
     return false;
 }
 
 +(void) addPlayerItem:(NSString *) item {
-    if (Display_Debug_Text) NSLog(@"Logic: Item added (%@)",item);
+    Log(@"Item added (%@)",item);
     [[GameData instance]._playerInventory addObject:item];
 }
 
 +(void) removePlayerItem:(NSString *) item {
-    if (Display_Debug_Text) NSLog(@"Logic: Item removed (%@)",item);
+    Log(@"Item removed (%@)",item);
     [[GameData instance]._playerInventory removeObject:item];
 }
 
 +(void) removeAllPlayerItems {
-    if (Display_Debug_Text) NSLog(@"Logic: Inventory cleared out!");
+    Log(@"Inventory cleared out!");
     [[GameData instance]._playerInventory removeAllObjects];
 }
 
