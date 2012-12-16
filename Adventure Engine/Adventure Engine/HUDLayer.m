@@ -99,7 +99,7 @@ static int DefaultPauseButtonOpacity = 200;
         pauseButton.opacity = DefaultPauseButtonOpacity;
 }
 
-/*
+/* ***** MAKE ITS OWN LAYER TO ADD ON TOP OF SCENE! ********
 #pragma mark Item Pickup
 
 -(void) setItemPickup:(NSString *) itemName {

@@ -13,6 +13,7 @@
 
 @interface World : CCLayer {
     GameData * gd;
+    CCLabelTTF * currentAction;
 }
 
 

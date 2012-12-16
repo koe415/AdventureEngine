@@ -21,11 +21,29 @@
     
     gd = [GameData instance];
     
+    currentAction = [[CCLabelTTF alloc] initWithString:@"" fontName:@"Helvetica-Bold" fontSize:20];
+    [currentAction setHorizontalAlignment:kCCTextAlignmentCenter];
+    [currentAction setColor:ccc3(255, 255, 255)];
+    currentAction.position = CGPointMake(240, 160);
+    [self addChild:currentAction];
+    
     return self;
 }
 
 -(void) tick:(ccTime) dt {
-    //NSLog(@"bottom layer tick");
+    if (gd._playerMovingLeft) {
+        if (![[currentAction string] isEqualToString:@"Moving Left"]) {
+            [currentAction setString:@"Moving Left"];
+        }
+    } else if (gd._playerMovingRight) {
+        if (![[currentAction string] isEqualToString:@"Moving Right"]) {
+            [currentAction setString:@"Moving Right"];
+        }
+    } else {
+        if (![[currentAction string] isEqualToString:@""]) {
+            [currentAction setString:@""];
+        }
+    }
 }
 
 - (void)registerWithTouchDispatcher {
@@ -33,15 +51,15 @@
 }
 
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-    //NSLog(@"bottom layer recognized touch begin");
+    //Log(@"bottom layer recognized touch begin");
     //if (gd._pausePressed) NSLog(@"Tap Ignored");
-    Log(@"Tap recognized at bottom layer!");
+    //Log(@"Tap recognized at bottom layer!");
     
     return YES;
 }
 
 -(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
-    Log(@"bottom layer recognized touch end");
+    //Log(@"bottom layer recognized touch end");
 }
 
 

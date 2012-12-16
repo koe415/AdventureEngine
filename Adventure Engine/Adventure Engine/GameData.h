@@ -9,19 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface GameData : NSObject {    
-    //NSMutableArray * worldTappables;
-    //NSMutableArray * worldTriggerables;
-    //NSMutableArray * playerInventory;
-    
-    //float playerPosition;
-    //float mapLeftBoundary;
-    //float mapRightBoundary;
-    //CGPoint cameraPosition;
-    
-    //bool isPaused;
-    //bool touchHandled; // Player's touch already handled?
-}
+@interface GameData : NSObject
 
 @property(nonatomic) float _playerPosition;
 @property(nonatomic, retain) NSMutableArray * _worldTappables;
@@ -31,7 +19,8 @@
 @property(nonatomic) float _mapRightBoundary;
 @property(nonatomic) CGPoint _cameraPosition;
 
-@property(nonatomic) bool _paused, _touchHandled;
+//@property(nonatomic) bool _paused;
+@property(nonatomic) bool _playerMovingLeft,_playerMovingRight;
 
 +(GameData *) instance;
 -(id) init;

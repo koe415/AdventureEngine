@@ -16,10 +16,13 @@
 
 // Format: ClassName(LineNumber)| Debug Text
 #if Display_Debug_Text
+//#define Log(FORMAT, ...) \
+fprintf(stderr,"%s(%d)| %s\n", [NSStringFromClass([super class]) UTF8String], \
+__LINE__, \
+[[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String] )
+
     #define Log(FORMAT, ...) \
-    fprintf(stderr,"%s(%d)| %s\n", [NSStringFromClass([super class]) UTF8String], \
-    __LINE__, \
-    [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String] )
+    fprintf(stderr,"%20.20s| %s\n", [[NSString stringWithFormat:@"%@(%4.4d)", NSStringFromClass([super class]), __LINE__] UTF8String], [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String] )
 #else
     #define Log(FORMAT, ...)  // Do Nothing
 #endif

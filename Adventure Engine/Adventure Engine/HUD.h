@@ -16,7 +16,12 @@
     GameData * gd;
     
     bool touchOriginatedOnPause;
+    bool touchDragOffPause;
     CCSprite * pauseButton;
+    
+    CCSprite * move_panel_left;
+    CCSprite * move_panel_right;
+    int move_panel_opacity;
 }
 
 @end

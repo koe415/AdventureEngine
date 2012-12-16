@@ -18,8 +18,6 @@ static int DefaultPauseButtonOpacity = 200;
     
     self.isTouchEnabled = true;
     
-    //[self schedule:@selector(tick:)];
-    
     gd = [GameData instance];
     
     pauseButton = [[CCSprite alloc] initWithFile:@"pausebutton.png"];
@@ -27,14 +25,30 @@ static int DefaultPauseButtonOpacity = 200;
     pauseButton.opacity = DefaultPauseButtonOpacity;
     [pauseButton setTextureRect:CGRectMake(0, 0, 60, 60)];
     
+    move_panel_opacity = 30;
+    
+    move_panel_left = [[CCSprite alloc] initWithFile:@"checkers_pattern.png"];
+    move_panel_right = [[CCSprite alloc] initWithFile:@"checkers_pattern.png"];
+    
+    move_panel_left.position = CGPointMake(20, 160 - (40/2));
+    move_panel_right.position = CGPointMake(460, 160);
+    
+    [move_panel_left setTextureRect:CGRectMake(0, 0, 40, 320 - 40)];
+    [move_panel_right setTextureRect:CGRectMake(0, 0, 40, 320)];
+    
+    ccTexParams params = {GL_LINEAR,GL_LINEAR,GL_REPEAT,GL_REPEAT};
+    [move_panel_left.texture setTexParameters:&params];
+    [move_panel_right.texture setTexParameters:&params];
+    
+    move_panel_left.opacity = move_panel_opacity;
+    move_panel_right.opacity = move_panel_opacity;
+    
     [self addChild:pauseButton];
+    [self addChild:move_panel_left];
+    [self addChild:move_panel_right];
     
     return self;
 }
-
-//-(void) tick:(ccTime) dt {
-    //NSLog(@"top layer tick");
-//}
 
 - (void)registerWithTouchDispatcher {
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
@@ -45,9 +59,19 @@ static int DefaultPauseButtonOpacity = 200;
     
     if (location.x < 60 && location.y < 60) {
         touchOriginatedOnPause = true;
-        gd._touchHandled = true;
+        touchDragOffPause = false;
         pauseButton.opacity = DefaultPauseButtonOpacity/2;
-        Log(@"changed pause opacity!");
+        Log(@"Touch began on pause");
+        
+        return YES;
+    } else if (location.x < 60) {
+        gd._playerMovingLeft = true;
+        Log(@"Touch began on move left");
+        
+        return YES;
+    } else if (location.x > 420) {
+        gd._playerMovingRight = true;
+        Log(@"Touch began on move right");
         
         return YES;
     }
@@ -56,37 +80,34 @@ static int DefaultPauseButtonOpacity = 200;
 }
 
 -(void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
-    //NSArray *touchArr = [touches allObjects];
-    //UITouch *aTouch = [touchArr objectAtIndex:0];
     CGPoint location = [touch locationInView:[touch view]];
     
-    if (!touchOriginatedOnPause) return;
-    
-    if (location.x >= 60 || location.y >= 60) {
-        if (pauseButton.opacity!=DefaultPauseButtonOpacity) {
-            pauseButton.opacity = DefaultPauseButtonOpacity;
-            Log(@"changed pause opacity");
+    if (touchOriginatedOnPause) {
+        if (location.x >= 60 || location.y >= 60) {
+            if (pauseButton.opacity!=DefaultPauseButtonOpacity) {
+                pauseButton.opacity = DefaultPauseButtonOpacity;
+                touchDragOffPause = true;
+                Log(@"Touch dragged off pause");
+            }
         }
     }
 }
 
 -(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
-    //NSArray *touchArr = [touches allObjects];
-    //UITouch *aTouch = [touchArr objectAtIndex:0];
-    CGPoint location = [touch locationInView:[touch view]];
-    
     if (touchOriginatedOnPause) {
-        // check pause button selection!
-        if (location.x < 60 && location.y < 60) {
-            //pauseButton.opacity = DefaultPauseButtonOpacity;
-            gd._paused = true;
-            //[[CCDirector sharedDirector] pushScene:[PauseMenu node]];
-        }
-        
         pauseButton.opacity = DefaultPauseButtonOpacity;
         touchOriginatedOnPause = false;
         
-        gd._touchHandled = false;
+        if (!touchDragOffPause) {
+            touchDragOffPause = false;
+            [[CCDirector sharedDirector] pushScene:[PauseMenu node]];
+        }
+    } else if (gd._playerMovingLeft) {
+        gd._playerMovingLeft = false;
+        Log(@"Touch ended on move left");
+    } else if (gd._playerMovingRight) {
+        gd._playerMovingRight = false;
+        Log(@"Touch ended on move right");
     }
 }
 

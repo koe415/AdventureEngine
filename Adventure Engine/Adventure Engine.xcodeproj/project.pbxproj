@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		513AA5C9167DA5A4004AD5A6 /* checkers_pattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 513AA5C8167DA5A4004AD5A6 /* checkers_pattern.png */; };
 		51532112167D32A900863C43 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51532111167D32A900863C43 /* QuartzCore.framework */; };
 		51532114167D32A900863C43 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51532113167D32A900863C43 /* OpenGLES.framework */; };
 		51532116167D32A900863C43 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51532115167D32A900863C43 /* OpenAL.framework */; };
@@ -147,6 +148,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		513AA5C8167DA5A4004AD5A6 /* checkers_pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkers_pattern.png; sourceTree = "<group>"; };
 		5153210D167D32A900863C43 /* Adventure Engine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Adventure Engine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		51532111167D32A900863C43 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		51532113167D32A900863C43 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -408,12 +410,12 @@
 		515322A3167D337B00863C43 /* readings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = readings.plist; sourceTree = "<group>"; };
 		515322A9167D338400863C43 /* pausebutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pausebutton.png; sourceTree = "<group>"; };
 		515322AB167D339A00863C43 /* HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUD.m; sourceTree = "<group>"; };
-		515322AC167D339A00863C43 /* HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; path = HUD.h; sourceTree = "<group>"; };
+		515322AC167D339A00863C43 /* HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUD.h; sourceTree = "<group>"; };
 		515322AD167D339A00863C43 /* World.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = World.m; sourceTree = "<group>"; };
 		515322AE167D339A00863C43 /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameData.h; sourceTree = "<group>"; };
 		515322AF167D339A00863C43 /* GameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameData.m; sourceTree = "<group>"; };
 		515322B0167D339A00863C43 /* Engine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Engine.m; sourceTree = "<group>"; };
-		515322B1167D339A00863C43 /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; path = World.h; sourceTree = "<group>"; };
+		515322B1167D339A00863C43 /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
 		515322B2167D339A00863C43 /* Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Engine.h; sourceTree = "<group>"; };
 		515322B3167D339A00863C43 /* Logic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logic.h; sourceTree = "<group>"; };
 		515322B4167D339A00863C43 /* Logic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logic.m; sourceTree = "<group>"; };
@@ -448,6 +450,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		513AA5C6167DA587004AD5A6 /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				515322A9167D338400863C43 /* pausebutton.png */,
+				513AA5C8167DA5A4004AD5A6 /* checkers_pattern.png */,
+			);
+			name = HUD;
+			sourceTree = "<group>";
+		};
 		51532102167D32A900863C43 = {
 			isa = PBXGroup;
 			children = (
@@ -488,12 +499,12 @@
 				515322B6167D339A00863C43 /* DebugFlags.h */,
 				515322AE167D339A00863C43 /* GameData.h */,
 				515322AF167D339A00863C43 /* GameData.m */,
+				515322B2167D339A00863C43 /* Engine.h */,
+				515322B0167D339A00863C43 /* Engine.m */,
 				515322AC167D339A00863C43 /* HUD.h */,
 				515322AB167D339A00863C43 /* HUD.m */,
 				515322B1167D339A00863C43 /* World.h */,
 				515322AD167D339A00863C43 /* World.m */,
-				515322B2167D339A00863C43 /* Engine.h */,
-				515322B0167D339A00863C43 /* Engine.m */,
 				515322B3167D339A00863C43 /* Logic.h */,
 				515322B4167D339A00863C43 /* Logic.m */,
 				515322B5167D339A00863C43 /* HUDLayer.h */,
@@ -510,7 +521,7 @@
 			isa = PBXGroup;
 			children = (
 				515322CC167D3C4500863C43 /* World Assets */,
-				515322A9167D338400863C43 /* pausebutton.png */,
+				513AA5C6167DA587004AD5A6 /* HUD */,
 				51532125167D32A900863C43 /* Default.png */,
 				51532139167D32A900863C43 /* Info.plist */,
 				515322CB167D3BDD00863C43 /* Debug Font */,
@@ -991,6 +1002,7 @@
 				515322AA167D338400863C43 /* pausebutton.png in Resources */,
 				515322C1167D339A00863C43 /* intro_cutscene.plist in Resources */,
 				515322C2167D339A00863C43 /* dialogue.plist in Resources */,
+				513AA5C9167DA5A4004AD5A6 /* checkers_pattern.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1216,6 +1228,7 @@
 				5153229E167D32AB00863C43 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

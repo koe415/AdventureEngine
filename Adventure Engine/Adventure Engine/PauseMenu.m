@@ -46,13 +46,13 @@
 
 - (void)onExit:(id)sender
 {
-    NSLog(@"Exit Clicked");
+    Log(@"Exit Clicked");
     //[[CCDirector sharedDirector] replaceScene:[MainMenu scene]];
 }
 
 - (void)onCancel:(id)sender
 {
-    NSLog(@"Cancel Clicked");
+    Log(@"Cancel Clicked");
     [[CCDirector sharedDirector] popScene];
 }
 

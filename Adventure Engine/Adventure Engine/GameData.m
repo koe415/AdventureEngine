@@ -15,14 +15,6 @@ static GameData *_instance = nil;
 +(GameData *) instance {
     if (_instance) return _instance;
     
-    //id * object;
-    
-    //NSObject * nso = (NSObject *)object;
-    
-    //[nso cut:nso];
-    
-    
-    
     @synchronized([GameData class]) {
         if(!_instance) {
             _instance = [[self alloc] init];
@@ -36,7 +28,6 @@ static GameData *_instance = nil;
 
 -(id) init {
     if (self = [super init]) {
-        //NSLog(@"Game Data initiated");
         self._worldTappables = [[NSMutableArray alloc] init];
         self._worldTriggerables = [[NSMutableArray alloc] init];
     }
@@ -47,5 +38,6 @@ static GameData *_instance = nil;
 @synthesize _playerPosition, _worldTappables, _mapLeftBoundary, _mapRightBoundary, _cameraPosition;
 @synthesize _worldTriggerables;
 @synthesize _playerInventory;
-@synthesize _paused, _touchHandled;
+//@synthesize _paused;
+@synthesize _playerMovingLeft, _playerMovingRight;
 @end
