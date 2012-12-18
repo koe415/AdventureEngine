@@ -44,10 +44,12 @@
     return self;
 }
 
+// Potential issue : if there is more than just pause and engine scenes running
 - (void)onExit:(id)sender
 {
     Log(@"Exit Clicked");
-    //[[CCDirector sharedDirector] replaceScene:[MainMenu scene]];
+    [[CCDirector sharedDirector] popScene];
+    [[CCDirector sharedDirector] replaceScene:[MainMenu scene]];
 }
 
 - (void)onCancel:(id)sender

@@ -145,11 +145,17 @@
 		515322C3167D339A00863C43 /* HUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 515322B9167D339A00863C43 /* HUDLayer.m */; };
 		515322C4167D339A00863C43 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 515322BB167D339A00863C43 /* Player.m */; };
 		515322D0167D3D6000863C43 /* PauseMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 515322CF167D3D6000863C43 /* PauseMenu.m */; };
+		5161BF56167E67AC00D1E557 /* MainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5161BF55167E67AC00D1E557 /* MainMenu.m */; };
+		5161BF5E167E6F6800D1E557 /* ItemPickup.m in Sources */ = {isa = PBXBuildFile; fileRef = 5161BF5D167E6F6800D1E557 /* ItemPickup.m */; };
+		5161BF60167E707800D1E557 /* blackPixel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5161BF5F167E707800D1E557 /* blackPixel.png */; };
+		5183A886167FC5A3009B6DFB /* Puzzles.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5183A885167FC5A3009B6DFB /* Puzzles.rtf */; };
+		5183A888167FC5C3009B6DFB /* Story.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5183A887167FC5C3009B6DFB /* Story.rtf */; };
+		5183A88A167FC64D009B6DFB /* Overview.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5183A889167FC64D009B6DFB /* Overview.rtf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		513AA5C8167DA5A4004AD5A6 /* checkers_pattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkers_pattern.png; sourceTree = "<group>"; };
-		5153210D167D32A900863C43 /* Adventure Engine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Adventure Engine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5153210D167D32A900863C43 /* Adven!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Adven!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		51532111167D32A900863C43 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		51532113167D32A900863C43 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		51532115167D32A900863C43 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -428,6 +434,14 @@
 		515322BB167D339A00863C43 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		515322CE167D3D6000863C43 /* PauseMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PauseMenu.h; sourceTree = "<group>"; };
 		515322CF167D3D6000863C43 /* PauseMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PauseMenu.m; sourceTree = "<group>"; };
+		5161BF54167E67AC00D1E557 /* MainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenu.h; sourceTree = "<group>"; };
+		5161BF55167E67AC00D1E557 /* MainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenu.m; sourceTree = "<group>"; };
+		5161BF5C167E6F6800D1E557 /* ItemPickup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemPickup.h; sourceTree = "<group>"; };
+		5161BF5D167E6F6800D1E557 /* ItemPickup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemPickup.m; sourceTree = "<group>"; };
+		5161BF5F167E707800D1E557 /* blackPixel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackPixel.png; sourceTree = "<group>"; };
+		5183A885167FC5A3009B6DFB /* Puzzles.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Puzzles.rtf; sourceTree = "<group>"; };
+		5183A887167FC5C3009B6DFB /* Story.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Story.rtf; sourceTree = "<group>"; };
+		5183A889167FC64D009B6DFB /* Overview.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Overview.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -462,6 +476,7 @@
 		51532102167D32A900863C43 = {
 			isa = PBXGroup;
 			children = (
+				5183A883167FC58A009B6DFB /* Documents */,
 				51532123167D32A900863C43 /* Core Engine */,
 				515322CD167D3CB900863C43 /* Menus */,
 				51532124167D32A900863C43 /* Resources */,
@@ -472,7 +487,7 @@
 		5153210E167D32A900863C43 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5153210D167D32A900863C43 /* Adventure Engine.app */,
+				5153210D167D32A900863C43 /* Adven!.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -507,6 +522,8 @@
 				515322AD167D339A00863C43 /* World.m */,
 				515322B3167D339A00863C43 /* Logic.h */,
 				515322B4167D339A00863C43 /* Logic.m */,
+				5161BF5C167E6F6800D1E557 /* ItemPickup.h */,
+				5161BF5D167E6F6800D1E557 /* ItemPickup.m */,
 				515322B5167D339A00863C43 /* HUDLayer.h */,
 				515322B9167D339A00863C43 /* HUDLayer.m */,
 				515322BA167D339A00863C43 /* Player.h */,
@@ -523,6 +540,7 @@
 				515322CC167D3C4500863C43 /* World Assets */,
 				513AA5C6167DA587004AD5A6 /* HUD */,
 				51532125167D32A900863C43 /* Default.png */,
+				5161BF5F167E707800D1E557 /* blackPixel.png */,
 				51532139167D32A900863C43 /* Info.plist */,
 				515322CB167D3BDD00863C43 /* Debug Font */,
 				515322CA167D3BCA00863C43 /* Icons */,
@@ -925,11 +943,23 @@
 		515322CD167D3CB900863C43 /* Menus */ = {
 			isa = PBXGroup;
 			children = (
+				5161BF54167E67AC00D1E557 /* MainMenu.h */,
+				5161BF55167E67AC00D1E557 /* MainMenu.m */,
 				515322CE167D3D6000863C43 /* PauseMenu.h */,
 				515322CF167D3D6000863C43 /* PauseMenu.m */,
 			);
 			name = Menus;
 			path = "Adventure Engine";
+			sourceTree = "<group>";
+		};
+		5183A883167FC58A009B6DFB /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				5183A887167FC5C3009B6DFB /* Story.rtf */,
+				5183A885167FC5A3009B6DFB /* Puzzles.rtf */,
+				5183A889167FC64D009B6DFB /* Overview.rtf */,
+			);
+			name = Documents;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -949,7 +979,7 @@
 			);
 			name = "Adventure Engine";
 			productName = "Adventure Engine";
-			productReference = 5153210D167D32A900863C43 /* Adventure Engine.app */;
+			productReference = 5153210D167D32A900863C43 /* Adven!.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1003,6 +1033,10 @@
 				515322C1167D339A00863C43 /* intro_cutscene.plist in Resources */,
 				515322C2167D339A00863C43 /* dialogue.plist in Resources */,
 				513AA5C9167DA5A4004AD5A6 /* checkers_pattern.png in Resources */,
+				5161BF60167E707800D1E557 /* blackPixel.png in Resources */,
+				5183A886167FC5A3009B6DFB /* Puzzles.rtf in Resources */,
+				5183A888167FC5C3009B6DFB /* Story.rtf in Resources */,
+				5183A88A167FC64D009B6DFB /* Overview.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1121,6 +1155,8 @@
 				515322C3167D339A00863C43 /* HUDLayer.m in Sources */,
 				515322C4167D339A00863C43 /* Player.m in Sources */,
 				515322D0167D3D6000863C43 /* PauseMenu.m in Sources */,
+				5161BF56167E67AC00D1E557 /* MainMenu.m in Sources */,
+				5161BF5E167E6F6800D1E557 /* ItemPickup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1183,7 +1219,7 @@
 					"-lz",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Adven!";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1203,7 +1239,7 @@
 					"-lz",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Adven!";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

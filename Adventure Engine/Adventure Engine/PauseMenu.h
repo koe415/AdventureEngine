@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-//#import "MainMenu.h"
+#import "MainMenu.h"
 #import "DebugFlags.h"
 
 @interface PauseMenu : CCLayer {
