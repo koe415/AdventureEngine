@@ -14,6 +14,9 @@
 @interface World : CCLayer {
     GameData * gd;
     CCLabelTTF * currentAction;
+    
+    CCSprite * myFace;
+    int myFaceCnt,myFaceRefresh;
 }
 
 

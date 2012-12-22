@@ -27,10 +27,28 @@
     currentAction.position = CGPointMake(240, 160);
     [self addChild:currentAction];
     
+    myFace = [[CCSprite alloc] initWithFile:@"1.png"];
+    myFace.scale = 4;
+    myFace.position = CGPointMake(240, 160);
+    [myFace.texture setAliasTexParameters];
+    [self addChild:myFace];
+    
+    
     return self;
 }
 
 -(void) tick:(ccTime) dt {
+    if ((myFaceRefresh--) <=0) {
+        myFaceRefresh = 15;
+        if((++myFaceCnt)>9) myFaceCnt = 1;
+        
+        [myFace setTexture:[[CCSprite spriteWithFile:
+                           [NSString stringWithFormat:@"%d.png",myFaceCnt]
+                           ]texture]];
+        [myFace.texture setAliasTexParameters];
+    }
+    
+    
     if (gd._playerMovingLeft) {
         if (![[currentAction string] isEqualToString:@"Moving Left"]) {
             [currentAction setString:@"Moving Left"];
