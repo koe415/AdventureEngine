@@ -46,14 +46,14 @@
 
 - (void)onContinue:(id)sender
 {
-    if (Display_Debug_Text) NSLog(@"Continue Clicked");
+    if (Display_Debug_Text) Log(@"Continue Clicked");
     
     //[[CCDirector sharedDirector] replaceScene:[Engine continueGameScene]];
 }
 
 - (void)onNewGame:(id)sender
 {
-    if (Display_Debug_Text) NSLog(@"New Game Clicked");
+    if (Display_Debug_Text) Log(@"New Game Clicked");
     
     [[CCDirector sharedDirector] replaceScene:[Engine newGameScene]];
 }

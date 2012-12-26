@@ -10,4 +10,8 @@
 
 @implementation Player
 
+-(void) setPosition:(CGPoint)position {
+    [super setPosition:position];
+}
+
 @end
