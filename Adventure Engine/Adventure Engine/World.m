@@ -272,6 +272,9 @@
     [self addSprite:@"20x20_set_15.png" atTileCoords:CGPointMake(1, 3) inFrontOfPlayer:false];
     [self addSprite:@"20x20_set_15.png" atTileCoords:CGPointMake(1, 4) inFrontOfPlayer:false];
     
+    [self addSprite:@"20x20_set_81.png" atTileCoords:CGPointMake(1, 2) inFrontOfPlayer:false];
+    [self addSprite:@"20x20_set_82.png" atTileCoords:CGPointMake(2, 2) inFrontOfPlayer:false];
+    
     for (int i = 4; i < 14; i++) {
         [self addSprite:@"20x20_set_22.png" atTileCoords:CGPointMake(i, 2) inFrontOfPlayer:false];
         [self addSprite:@"20x20_set_22.png" atTileCoords:CGPointMake(i, 3) inFrontOfPlayer:false];
