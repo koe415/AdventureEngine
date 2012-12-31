@@ -65,12 +65,12 @@ static int DefaultPauseButtonOpacity = 200;
         
         return YES;
     } else if (location.x < 60) {
-        gd._playerMovingLeft = true;
+        gd._playerHoldingLeft = true;
         Log(@"Touch began on move left");
         
         return YES;
     } else if (location.x > 420) {
-        gd._playerMovingRight = true;
+        gd._playerHoldingRight = true;
         Log(@"Touch began on move right");
         
         return YES;
@@ -102,11 +102,11 @@ static int DefaultPauseButtonOpacity = 200;
             touchDragOffPause = false;
             [[CCDirector sharedDirector] pushScene:[PauseMenu node]];
         }
-    } else if (gd._playerMovingLeft) {
-        gd._playerMovingLeft = false;
+    } else if (gd._playerHoldingLeft) {
+        gd._playerHoldingLeft = false;
         Log(@"Touch ended on move left");
-    } else if (gd._playerMovingRight) {
-        gd._playerMovingRight = false;
+    } else if (gd._playerHoldingRight) {
+        gd._playerHoldingRight = false;
         Log(@"Touch ended on move right");
     }
 }

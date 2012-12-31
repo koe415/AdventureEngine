@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5153210C167D32A900863C43"
-               BuildableName = "Adven!.app"
+               BuildableName = "Adven.app"
                BlueprintName = "Adventure Engine"
                ReferencedContainer = "container:Adventure Engine.xcodeproj">
             </BuildableReference>
@@ -32,7 +32,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5153210C167D32A900863C43"
-            BuildableName = "Adven!.app"
+            BuildableName = "Adven.app"
             BlueprintName = "Adventure Engine"
             ReferencedContainer = "container:Adventure Engine.xcodeproj">
          </BuildableReference>
@@ -50,7 +50,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5153210C167D32A900863C43"
-            BuildableName = "Adven!.app"
+            BuildableName = "Adven.app"
             BlueprintName = "Adventure Engine"
             ReferencedContainer = "container:Adventure Engine.xcodeproj">
          </BuildableReference>
@@ -68,7 +68,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5153210C167D32A900863C43"
-            BuildableName = "Adven!.app"
+            BuildableName = "Adven.app"
             BlueprintName = "Adventure Engine"
             ReferencedContainer = "container:Adventure Engine.xcodeproj">
          </BuildableReference>

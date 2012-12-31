@@ -10,7 +10,7 @@
 #import "cocos2d.h"
 #import "DebugFlags.h"
 
-#define DEFAULTFRAMESBETWEENANIMATION 30
+#define DEFAULTFRAMESBETWEENANIMATION 10
 
 @interface CCAnimatedSprite : CCSprite {
     NSArray * spriteNames;
@@ -21,10 +21,12 @@
                     // 1 - count back down to zero
     bool countingDown;
     
+    NSMutableArray * animFrames;
 }
 
 -(id) initWithArray:(NSArray *) a;
 -(id) initWithArray:(NSArray *) a framesBetweenAnimation:(int) frames;
+-(id) initWithArray:(NSArray *) animNames atAnimation:(int) animNumber framesBetweenAnimation:(int) frames;
 -(void) update;
 
 @end

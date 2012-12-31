@@ -14,15 +14,15 @@
 
 @interface Logic : NSObject;
 
-+(bool) attemptPlayerMoveLeft;
-+(bool) attemptPlayerMoveRight;
+//+(bool) attemptPlayerMoveLeft;
+//+(bool) attemptPlayerMoveRight;
 //+(GameActionArray *) checkPlayerTriggeringGameActionArray;
 //+(GameActionArray *) checkDialogueGameActionArray:(NSString *) arrayName;
-+(bool) doesPlayerHave:(NSString *) item;
-+(void) addPlayerItem:(NSString *) item;
-+(void) removePlayerItem:(NSString *) item;
-+(void) removeAllPlayerItems;
-+(CGPoint) worldPositionFromTap: (CGPoint) tapPt;
-+(NSString *) getItemPickupText:(NSString *) itemName;
+//+(bool) doesPlayerHave:(NSString *) item;
+//+(void) addPlayerItem:(NSString *) item;
+//+(void) removePlayerItem:(NSString *) item;
+//+(void) removeAllPlayerItems;
+//+(CGPoint) worldPositionFromTap: (CGPoint) tapPt;
+//+(NSString *) getItemPickupText:(NSString *) itemName;
 
 @end

@@ -203,11 +203,11 @@
 }*/
 
 -(void) newGame {
-    [GameData instance]._playerInventory = [[NSMutableArray alloc] init];
+    //[GameData instance]._playerInventory = [[NSMutableArray alloc] init];
     
     //GameData * gd = [GameData instance];
     
-    [Logic removeAllPlayerItems];
+    //[Logic removeAllPlayerItems];
     //[self loadMap:@"bunk1"];
 }
 /*

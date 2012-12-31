@@ -13,14 +13,16 @@
 #import "Player.h"
 #import "WorldTile.h"
 
-#define WORLDTILES_X 36
-#define WORLDTILES_Y 4
+#define WORLDTILES_X 72
+#define WORLDTILES_Y 8
 
 @interface World : CCLayer {
     GameData * gd;
     Player * player;
     int cameraFocusedOnTile;
     id worldTiles[WORLDTILES_X][WORLDTILES_Y];
+    
+    CCSpriteBatchNode * backgroundBatchNode;
 }
 
 -(void) clearWorld;

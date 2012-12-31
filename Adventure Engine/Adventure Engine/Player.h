@@ -8,9 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "DebugFlags.h"
+#import "SharedTypes.h"
+
+#define MAXPLAYERSPEED 3.0f
 
 @interface Player : CCSprite {
-    
+    Direction playerDirection;
+    float playerVelocity;
 }
+
+-(id) initAtPosition:(CGPoint) pos facing:(Direction) d;
+-(void) attemptMoveInDirection:(Direction) d;
+-(void) attemptNoMove;
+-(void) setPosition:(CGPoint)position;
+-(void) setFacing:(Direction) d;
 
 @end

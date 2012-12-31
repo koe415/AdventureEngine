@@ -12,6 +12,9 @@
 
 #pragma mark Player Movement
 
+//+(bool) attemptMoveTo:(CGPoint) pt {
+//}
+/*
 +(bool) attemptPlayerMoveLeft {
     if ([GameData instance]._playerPosition - 1.5f > [GameData instance]._mapLeftBoundary) {
         [GameData instance]._playerPosition -= 1.5f;
@@ -28,7 +31,7 @@
     }
     
     return false;
-}
+}*/
 /*
 +(GameActionArray *) checkPlayerTriggeringGameActionArray {
     CGPoint pt = CGPointMake([GameData instance]._playerPosition, 30);
@@ -89,7 +92,7 @@
 }
 */
 #pragma mark Inventory Management
-
+/*
 +(bool) doesPlayerHave:(NSString *) item {
     for (NSString * obj in [GameData instance]._playerInventory) {
         Log(@"Checking if (%@) is equal to (%@)",item,obj);
@@ -117,9 +120,9 @@
     Log(@"Inventory cleared out!");
     [[GameData instance]._playerInventory removeAllObjects];
 }
-
+*/
 #pragma mark World
-
+/*
 +(CGPoint) worldPositionFromTap: (CGPoint) tapPt {
     return ccp(
                0 - [GameData instance]._cameraPosition.x + tapPt.x,
@@ -133,6 +136,6 @@
     NSDictionary * plistData = [[NSDictionary dictionaryWithContentsOfFile:inputPath] retain];
     
     return [plistData objectForKey:itemName];
-}
+}*/
 
 @end

@@ -17,19 +17,43 @@
 }
 
 -(id) initWithArray:(NSArray *) a framesBetweenAnimation:(int) frames {
-    currentSpriteFrame = 0;
+    self = [self initWithArray:a atAnimation:0 framesBetweenAnimation:frames];
     
-    NSString * firstString = (NSString *) [a objectAtIndex:currentSpriteFrame];
-//    Log(@"Sprite inited to %@",firstString);
-    self = [super initWithFile:firstString];
+    return self;
+}
+
+-(id) initWithArray:(NSArray *) animNames atAnimation:(int) animNumber framesBetweenAnimation:(int) frames {
+    
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:
+     @"wallcomp.plist"];
+    
+    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode 
+                                      batchNodeWithFile:@"wallcomp.png"];
+    
+    [self addChild:spriteSheet];
+    currentSpriteFrame = animNumber;
+    NSString * firstString = (NSString *)  [animNames objectAtIndex:currentSpriteFrame];
+    self = [super initWithSpriteFrameName:firstString];     
     
     if (!self) return nil;
     
-    spriteNames = [[NSArray alloc] initWithArray:a];
+    spriteNames = [[NSArray alloc] initWithArray:animNames];
+    
+    animFrames = [[NSMutableArray alloc] init];
+    
+    for (int i = 1; i < 4; i++) {
+        CCSpriteFrame * frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"40x40_wallcomp_0%d.png",i]];
+        [animFrames addObject:frame];
+    }
+    
+    CCAnimation *animation = [CCAnimation animationWithSpriteFrames:animFrames delay:0.2f];
+    [self runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithAnimation:animation] ]];
+    
     
     currentFramesBetweenAnimation = framesBetweenAnimation = frames;
     
     typeOfLoop = 1;
+    
     
     return self;
 }
@@ -54,16 +78,52 @@
                 countingDown = true;
             }
         }
-        NSString * nextSpriteFrame = (NSString *) [spriteNames objectAtIndex:currentSpriteFrame];
+        //NSString * nextSpriteFrame = (NSString *) [spriteNames objectAtIndex:currentSpriteFrame];
         
         //Log(@"Updating animated sprite to:%@",nextSpriteFrame);
         
         currentFramesBetweenAnimation = framesBetweenAnimation;
-        [self setTexture:[[CCSprite spriteWithFile:
-                           nextSpriteFrame
-                           ]texture]];
         
-        [[self texture] setAliasTexParameters];
+        
+        
+        
+        
+        //[self setTexture:[[CCSprite spriteWithFile:
+        //                   nextSpriteFrame
+        //                   ]texture]];
+        
+        //CCSpriteFrame *frame = [[CCSpriteFrameCache sharedSpriteFrameCache]
+        //                        spriteFrameByName:
+        //                        nextSpriteFrame];
+        
+        /*
+        [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache]
+                               spriteFrameByName:
+                               nextSpriteFrame]];*/
+        
+        
+        
+        //[self setDisplayFrame:[animFrames objectAtIndex:currentSpriteFrame]];
+        
+        
+        
+        
+        /*
+        NSArray *frames = [animation_ frames];
+        NSUInteger numberOfFrames = [frames count];
+        CCSpriteFrame *frameToDisplay = nil;
+        
+        for( NSUInteger i=nextFrame_; i < numberOfFrames; i++ ) {
+            NSNumber *splitTime = [splitTimes_ objectAtIndex:i];
+            
+            if( [splitTime floatValue] <= t ) {
+                CCAnimationFrame *frame = [frames objectAtIndex:i];
+                frameToDisplay = [frame spriteFrame];
+                [(CCSprite*)target_ setDisplayFrame: frameToDisplay];
+                */
+        
+        //[[self texture] setAliasTexParameters];
+       
         
     }
 }
