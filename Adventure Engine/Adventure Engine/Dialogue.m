@@ -7,24 +7,16 @@
 //
 
 #import "Dialogue.h"
+#import "Engine.h"
 
 @implementation Dialogue
 
-+(CCScene *) nodeWithDialogue:(NSString *) dial {
-    CCScene *scene = [CCScene node];
-	
-	// layers are autorelease objects.
-    Dialogue * dialogue = [[[Dialogue alloc] initWithDialogue:dial] autorelease];
-    
-	// add layers as children to scene
-	[scene addChild: dialogue];
-    
-    return scene;
++(id) nodeWithDialogue:(NSString *) dial
+{
+    return [[[self alloc] initWithDialogue:dial] autorelease];
 }
 
 -(id) initWithDialogue:(NSString *) dial {
-    Log(@"initing dial");
-    
     self = [super init];
     
     if (!self) return nil;
@@ -62,15 +54,16 @@
     [contentBackground addChild:contentLabel];
     
     
-    
-    //action move up by 100, for 1 sec
     [contentBackground runAction:[CCMoveBy actionWithDuration:0.3f position:ccp(0,50)]];
-    [self.parent setMovePanelVisibility:false];
+    
+    // Won't register if run from init
+    // [(Engine *) self.parent setMoveVisibility:false];
     
     return self;
 }
 
 -(void) loadNextDialogue {
+    
     currentDialogue++;
     if (currentDialogue>=[noteContent count])
         [self endDialogue];
@@ -89,12 +82,11 @@
     endingScene = true;
     
 
-    [ self.parent setMovePanelVisibility:true];
+    [(Engine *) self.parent setMoveVisibility:true];
 }
 
 -(void) endScene {
     [self removeFromParentAndCleanup:true];
-    //[[CCDirector sharedDirector] popScene];
 }
 
 -(void) dealloc {
@@ -108,8 +100,16 @@
 }
 
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-    if (endingScene) return false;
-    return true;
+    // If scene is in the process of ending, user likely trying to interact with world
+    if (endingScene) return NO;
+    
+    CGPoint location = [touch locationInView:[touch view]];
+    if (location.x < 60 && location.y < 60) {
+        // Touched pause, needs to fall through this layer
+        return NO;
+    }
+    
+    return YES;
 }
 
 -(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {

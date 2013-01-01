@@ -13,10 +13,6 @@
 
 @implementation Engine
 
-//@synthesize dialogueLayer = _dialogueLayer;
-//@synthesize worldLayer = _worldLayer;
-//@synthesize hud = _hud;
-
 +(CCScene *) continueGameScene
 {
 	// 'scene' is an autorelease object.
@@ -53,32 +49,30 @@
 -(id) init
 {
 	if( (self=[super init]) ) {
-        Log(@"engine inited");
-        //runningActions = [[GameActionArray alloc] init];
-        self.isTouchEnabled = true;
-        [self schedule:@selector(tick:)];
+        //self.isTouchEnabled = true;
+        //[self schedule:@selector(tick:)];
         
-       // _hud = [HUD node];
-        //self.hud = _hud;
+        risky = [HUD node];
         [self addChild:[World node]];
-        [self addChild:[HUD node]];
+        [self addChild:risky];
 	}
 	return self;
 }
 
 -(void) handleTileTapAt:(CGPoint) tilePt {
     // 8,4 or 9,4
-        Log(@"handling Tile Tap");    
+    Log(@"Tapped at tile location:(%.0f,%.0f)",tilePt.x,tilePt.y);
     // Check for actions to run
     if ((tilePt.x == 8) && (tilePt.y == 4)) {
-        Log(@"found action!");
-        //[[CCDirector sharedDirector] pushScene:[Dialogue nodeWithDialogue:@"test"]];
-        [self addChild:[Dialogue nodeWithDialogue:@"test"]];
+        //Log(@"found action!");
+        [self addChild:[Dialogue nodeWithDialogue:@"dsda"]];
+        [self setMoveVisibility:false];
     }
 }
 
--(void) setMovePanelVisibility:(bool) v {
-    //[_hud setMovePanelVisibility:v];
+-(void) setMoveVisibility:(bool) v {
+    //Log(@"engine received move panel call!");
+    [(HUD *)risky setMovePanelVisibility:v];
 }
 /*
 -(void) runNextAction {
@@ -87,7 +81,7 @@
     gameActionDelay = [action getDelay];
 }*/
 
--(void) tick:(ccTime) dt {
+//-(void) tick:(ccTime) dt {
     // Check for triggers at spawn
     // todo: move to loadMap method
     // issue as is, can't run pushscene during class initiation which causes map load flicker
@@ -151,7 +145,9 @@
     }
     
     [_worldLayer updateWorld];*/
-}
+//}
+
+
 /*
 -(void) pickupItem:(NSString *) item {
     [_hudLayer setItemPickup:item];

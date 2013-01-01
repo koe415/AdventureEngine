@@ -21,7 +21,6 @@
     
     CCSprite * move_panel_left;
     CCSprite * move_panel_right;
-    int move_panel_opacity;
 }
 
 -(void) setMovePanelVisibility:(bool) v;

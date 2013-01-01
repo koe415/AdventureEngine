@@ -23,7 +23,7 @@
     
 }
 
-+(CCScene *) nodeWithDialogue:(NSString *) dial;
++(id) nodeWithDialogue:(NSString *) dial;
 -(id) initWithDialogue:(NSString *) dial;
 -(void) loadNextDialogue;
 -(void) endDialogue;

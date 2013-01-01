@@ -12,7 +12,7 @@
 #import "DebugFlags.h"
 #import "Player.h"
 #import "WorldTile.h"
-#import "Engine.h"
+//#import "Engine.h"
 
 #define WORLDTILES_X 72
 #define WORLDTILES_Y 8

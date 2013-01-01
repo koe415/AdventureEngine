@@ -10,21 +10,19 @@
 #import "AppDelegate.h"
 
 // Import.....EVERYTHING!
-//#import "Dialogue.h"
-//#import "WorldLayer.h"
-#import "GameData.h"
-#import "Logic.h"
 //#import "PauseMenu.h"
 //#import "GameAction.h"
-//#import "World.h"
-//#import "Worlds.h"
-#import "DebugFlags.h"
+
 //#import "Cutscene.h"
 //#import "Readable.h"
 //#import "GameActionArray.h"
 
+#import "GameData.h"
+#import "Logic.h"
+#import "DebugFlags.h"
 #import "HUD.h"
 #import "World.h"
+#import "Dialogue.h"
 
 // Engine Layer
 @interface Engine : CCLayer
@@ -33,6 +31,8 @@
     //WorldLayer *_worldLayer;
     //HUDLayer *_hudLayer;
     //HUD * _hud;
+    //World * world;
+    id risky;
     
     // Player moving main character
     //bool movingLeft, movingRight;
@@ -52,7 +52,7 @@
 +(CCScene *) newGameScene;
 //-(void) runNextAction;
 -(void) handleTileTapAt:(CGPoint) tilePt;
--(void) setMovePanelVisibility:(bool) v;
+-(void) setMoveVisibility:(bool) v;
 -(void) newGame;
 //-(void) continueGame;
 //-(void) runGameAction: (GameAction *) actionToRun;

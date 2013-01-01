@@ -7,6 +7,7 @@
 //
 
 #import "World.h"
+#import "Engine.h"
 
 #define Z_PLAYER 5
 #define Z_BELOW_PLAYER 1
@@ -168,7 +169,6 @@
 }
 
 -(void) addAnimatedSprite:(NSArray *) stringArray atTileCoords:(CGPoint) pt inFrontOfPlayer:(bool) ifop {
-    
     CCAnimatedSprite * animatedSprite = [[CCAnimatedSprite alloc] initWithArray:stringArray];
     [animatedSprite setScale:2];
     [animatedSprite setPosition:CGPointMake((pt.x-1) * 40 * 2 + 40, (pt.y-1) * 40 * 2 + 40)];
@@ -186,7 +186,8 @@
     if (animatedSprite.position.x>[player getPosition].x + 260) 
         [((WorldTile *)worldTiles[wtX][wtY]) setVisible:false];
     else if (animatedSprite.position.x<[player getPosition].x - 260) 
-        [((WorldTile *)worldTiles[wtX][wtY]) setVisible:false];}
+        [((WorldTile *)worldTiles[wtX][wtY]) setVisible:false];
+}
 
 -(void) addSprite:(NSString *) s atTileCoords:(CGPoint) pt inFrontOfPlayer:(bool) ifop {
     CCSprite * sprite = [CCSprite spriteWithSpriteFrameName:s];
@@ -219,14 +220,14 @@
     
     [self updateCamera];
     
-    
+    /*
     for (int i = 0; i < WORLDTILES_X; i++) {
         for (int j = 0; j < WORLDTILES_Y; j++) {
             if ([(WorldTile *)worldTiles[i][j] hasAnimatedSprites]) {
                 [(WorldTile *)worldTiles[i][j] update];
             }
         }
-    }
+    }*/
 }
 
 -(void) updateCamera {
@@ -320,7 +321,7 @@
     
     CGPoint tileLocation = CGPointMake((int)worldLocation.x/40 + 1, (int)worldLocation.y/40 + 1);
     
-    Log(@"Tapped at tile location:(%.0f,%.0f)",tileLocation.x,tileLocation.y);
+    //Log(@"Tapped at tile location:(%.0f,%.0f)",tileLocation.x,tileLocation.y);
     
     //[Logic handleTapAt:tileLocation];
     [(Engine *) self.parent handleTileTapAt:tileLocation];

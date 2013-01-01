@@ -8,7 +8,9 @@
 
 #import "HUD.h"
 
-static int DefaultPauseButtonOpacity = 200;
+static int PauseButtonOpacity = 200;
+static float MovePanelTransition = 0.3f;
+static int MovePanelOpacity = 30;
 
 @implementation HUD
 
@@ -22,10 +24,8 @@ static int DefaultPauseButtonOpacity = 200;
     
     pauseButton = [[CCSprite alloc] initWithFile:@"pausebutton.png"];
     pauseButton.position = CGPointMake(30, 290);
-    pauseButton.opacity = DefaultPauseButtonOpacity;
+    pauseButton.opacity = PauseButtonOpacity;
     [pauseButton setTextureRect:CGRectMake(0, 0, 60, 60)];
-    
-    move_panel_opacity = 30;
     
     move_panel_left = [[CCSprite alloc] initWithFile:@"checkers_pattern.png"];
     move_panel_right = [[CCSprite alloc] initWithFile:@"checkers_pattern.png"];
@@ -40,8 +40,8 @@ static int DefaultPauseButtonOpacity = 200;
     [move_panel_left.texture setTexParameters:&params];
     [move_panel_right.texture setTexParameters:&params];
     
-    move_panel_left.opacity = move_panel_opacity;
-    move_panel_right.opacity = move_panel_opacity;
+    move_panel_left.opacity = MovePanelOpacity;
+    move_panel_right.opacity = MovePanelOpacity;
     
     [self addChild:pauseButton];
     [self addChild:move_panel_left];
@@ -55,12 +55,20 @@ static int DefaultPauseButtonOpacity = 200;
     [move_panel_right stopAllActions];
     
     if (v) {
-        [move_panel_left runAction:[CCFadeTo actionWithDuration:0.3 opacity:move_panel_opacity]];
-        [move_panel_right runAction:[CCFadeTo actionWithDuration:0.3 opacity:move_panel_opacity]];
+        Log(@"Making panels visible");
+        [move_panel_left runAction:[CCFadeTo actionWithDuration:MovePanelTransition opacity:MovePanelOpacity]];
+        [move_panel_right runAction:[CCFadeTo actionWithDuration:MovePanelTransition opacity:MovePanelOpacity]];
     } else {
-        [move_panel_left runAction:[CCFadeTo actionWithDuration:0.3 opacity:0]];
-        [move_panel_right runAction:[CCFadeTo actionWithDuration:0.3 opacity:0]];
+        Log(@"Making panels invisible!!");
+        [move_panel_left runAction:[CCFadeTo actionWithDuration:MovePanelTransition opacity:0]];
+        [move_panel_right runAction:[CCFadeTo actionWithDuration:MovePanelTransition opacity:0]];
     }
+    
+    // Alternate transition: fade and scale
+    //[move_panel_left runAction:[CCScaleTo actionWithDuration:0.3f scale:1.0f]];
+    //[move_panel_right runAction:[CCScaleTo actionWithDuration:0.3f scale:1.0f]];
+    //[move_panel_left runAction:[CCFadeTo actionWithDuration:0.3f opacity:move_panel_opacity]];
+    //[move_panel_right runAction:[CCFadeTo actionWithDuration:0.3f opacity:move_panel_opacity]];
 }
 
 -(void) registerWithTouchDispatcher {
@@ -73,7 +81,7 @@ static int DefaultPauseButtonOpacity = 200;
     if (location.x < 60 && location.y < 60) {
         touchOriginatedOnPause = true;
         touchDragOffPause = false;
-        pauseButton.opacity = DefaultPauseButtonOpacity/2;
+        pauseButton.opacity = PauseButtonOpacity/2;
         Log(@"Touch began on pause");
         
         return YES;
@@ -97,8 +105,8 @@ static int DefaultPauseButtonOpacity = 200;
     
     if (touchOriginatedOnPause) {
         if (location.x >= 60 || location.y >= 60) {
-            if (pauseButton.opacity!=DefaultPauseButtonOpacity) {
-                pauseButton.opacity = DefaultPauseButtonOpacity;
+            if (pauseButton.opacity!=PauseButtonOpacity) {
+                pauseButton.opacity = PauseButtonOpacity;
                 touchDragOffPause = true;
                 Log(@"Touch dragged off pause");
             }
@@ -108,7 +116,7 @@ static int DefaultPauseButtonOpacity = 200;
 
 -(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
     if (touchOriginatedOnPause) {
-        pauseButton.opacity = DefaultPauseButtonOpacity;
+        pauseButton.opacity = PauseButtonOpacity;
         touchOriginatedOnPause = false;
         
         if (!touchDragOffPause) {
