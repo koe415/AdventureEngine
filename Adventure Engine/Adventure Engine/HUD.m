@@ -50,7 +50,20 @@ static int DefaultPauseButtonOpacity = 200;
     return self;
 }
 
-- (void)registerWithTouchDispatcher {
+-(void) setMovePanelVisibility:(bool) v {
+    [move_panel_left stopAllActions];
+    [move_panel_right stopAllActions];
+    
+    if (v) {
+        [move_panel_left runAction:[CCFadeTo actionWithDuration:0.3 opacity:move_panel_opacity]];
+        [move_panel_right runAction:[CCFadeTo actionWithDuration:0.3 opacity:move_panel_opacity]];
+    } else {
+        [move_panel_left runAction:[CCFadeTo actionWithDuration:0.3 opacity:0]];
+        [move_panel_right runAction:[CCFadeTo actionWithDuration:0.3 opacity:0]];
+    }
+}
+
+-(void) registerWithTouchDispatcher {
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
 

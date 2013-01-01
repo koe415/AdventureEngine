@@ -15,7 +15,7 @@
 
 //@synthesize dialogueLayer = _dialogueLayer;
 //@synthesize worldLayer = _worldLayer;
-//@synthesize hudLayer = _hudLayer;
+//@synthesize hud = _hud;
 
 +(CCScene *) continueGameScene
 {
@@ -24,19 +24,9 @@
 	
 	// layers are autorelease objects.
 	Engine *engine = [Engine node];
-    //WorldLayer *worldLayer = [WorldLayer node];
-    //HUDLayer *hudLayer = [HUDLayer node];
-    //DialogueLayer *dialogueLayer = [DialogueLayer node];
-	
+    
 	// add layers as children to scene
 	[scene addChild: engine];
-    //[scene addChild: worldLayer];
-    //[scene addChild: hudLayer];
-    //[scene addChild: dialogueLayer];
-    
-    //engine.worldLayer = worldLayer;
-    //engine.hudLayer = hudLayer;
-    //engine.dialogueLayer = dialogueLayer;
     
     //[engine continueGame];
     
@@ -50,19 +40,9 @@
 	
 	// layers are autorelease objects.
 	Engine *engine = [Engine node];
-    //WorldLayer *worldLayer = [WorldLayer node];
-    //HUDLayer *hudLayer = [HUDLayer node];
-    //DialogueLayer *dialogueLayer = [DialogueLayer node];
-	
+    
 	// add layers as children to scene
 	[scene addChild: engine];
-    //[scene addChild: worldLayer];
-    //[scene addChild: hudLayer];
-    //[scene addChild: dialogueLayer];
-    
-    //engine.worldLayer = worldLayer;
-    //engine.hudLayer = hudLayer;
-    //engine.dialogueLayer = dialogueLayer;
     
     // New Game
     [engine newGame];
@@ -78,11 +58,27 @@
         self.isTouchEnabled = true;
         [self schedule:@selector(tick:)];
         
-        
-        [self addChild:[World node] z:0];
-        [self addChild:[HUD node] z:0];
+       // _hud = [HUD node];
+        //self.hud = _hud;
+        [self addChild:[World node]];
+        [self addChild:[HUD node]];
 	}
 	return self;
+}
+
+-(void) handleTileTapAt:(CGPoint) tilePt {
+    // 8,4 or 9,4
+        Log(@"handling Tile Tap");    
+    // Check for actions to run
+    if ((tilePt.x == 8) && (tilePt.y == 4)) {
+        Log(@"found action!");
+        //[[CCDirector sharedDirector] pushScene:[Dialogue nodeWithDialogue:@"test"]];
+        [self addChild:[Dialogue nodeWithDialogue:@"test"]];
+    }
+}
+
+-(void) setMovePanelVisibility:(bool) v {
+    //[_hud setMovePanelVisibility:v];
 }
 /*
 -(void) runNextAction {

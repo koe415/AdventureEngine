@@ -32,6 +32,7 @@
     //DialogueLayer *_dialogueLayer;
     //WorldLayer *_worldLayer;
     //HUDLayer *_hudLayer;
+    //HUD * _hud;
     
     // Player moving main character
     //bool movingLeft, movingRight;
@@ -50,6 +51,8 @@
 +(CCScene *) continueGameScene;
 +(CCScene *) newGameScene;
 //-(void) runNextAction;
+-(void) handleTileTapAt:(CGPoint) tilePt;
+-(void) setMovePanelVisibility:(bool) v;
 -(void) newGame;
 //-(void) continueGame;
 //-(void) runGameAction: (GameAction *) actionToRun;

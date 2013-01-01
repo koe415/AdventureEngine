@@ -10,17 +10,22 @@
 #import "cocos2d.h"
 #import "DebugFlags.h"
 #import "SharedTypes.h"
+#import "Logic.h"
 
 #define MAXPLAYERSPEED 3.0f
 
-@interface Player : CCSprite {
+@interface Player : CCSpriteBatchNode {
+    CCSprite * playerAvatar;
     Direction playerDirection;
     float playerVelocity;
+    
+    CCAnimation *walkAnimation;
 }
 
 -(id) initAtPosition:(CGPoint) pos facing:(Direction) d;
 -(void) attemptMoveInDirection:(Direction) d;
 -(void) attemptNoMove;
+-(CGPoint) getPosition;
 -(void) setPosition:(CGPoint)position;
 -(void) setFacing:(Direction) d;
 

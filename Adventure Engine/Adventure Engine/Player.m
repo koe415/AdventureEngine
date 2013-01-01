@@ -13,15 +13,33 @@ const int DefaultPlayerDirection = RIGHT;
 @implementation Player
 
 -(id) initAtPosition:(CGPoint) pos facing:(Direction) d {
-    self = [super initWithFile:@"player.png"];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:
+     [NSString stringWithFormat:@"player.plist"]];
+    
+    //self = [CCSpriteBatchNode batchNodeWithFile:@"player.png"];
+    self = [super initWithFile:@"player.png" capacity:3];
     if (!self) return nil;
     
-    [super setPosition:pos];
-    [self setScale:2.0f];
-    [[self texture] setAliasTexParameters];
+    playerAvatar = [[CCSprite alloc] initWithSpriteFrameName:@"player_01.png"];
+    [playerAvatar setPosition:pos];
+    [playerAvatar setScale:2.0f];
+    [[playerAvatar texture] setAliasTexParameters];
     
     playerDirection = RIGHT;
     [self setFacing:d];
+    
+    [self addChild:playerAvatar];
+    
+    
+    NSMutableArray * walkFrames = [[NSMutableArray alloc] init];
+    
+    for (int i = 2; i <= 3; i++) {
+        CCSpriteFrame * frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"player_0%d.png",i]];
+        [walkFrames addObject:frame];
+    }
+    
+    walkAnimation = [[CCAnimation alloc] initWithSpriteFrames:walkFrames delay:0.2f];
+    walkAnimation.restoreOriginalFrame = true;
     
     return self;
 }
@@ -50,7 +68,7 @@ const int DefaultPlayerDirection = RIGHT;
         }
     }
     
-    [self setPosition:CGPointMake(self.position.x+playerVelocity, self.position.y)];
+    [self setPosition:CGPointMake(playerAvatar.position.x+playerVelocity, playerAvatar.position.y)];
 }
 
 -(void) attemptNoMove {
@@ -64,28 +82,33 @@ const int DefaultPlayerDirection = RIGHT;
         if (playerVelocity > 0.0f) playerVelocity = 0.0f;
     }
     
-    [self setPosition:CGPointMake(self.position.x+playerVelocity, self.position.y)];
+    [self setPosition:CGPointMake(playerAvatar.position.x+playerVelocity, playerAvatar.position.y)];
+}
+
+-(CGPoint) getPosition {
+    return playerAvatar.position;
 }
 
 // Handles hitting barriers, world boundaries
 -(void) setPosition:(CGPoint)position {
-    if (position.x > self.position.x) {
+    if (position.x > playerAvatar.position.x) {
         [self setFacing:RIGHT];
-    } else if (position.x < self.position.x) {
+    } else if (position.x < playerAvatar.position.x) {
         [self setFacing:LEFT];
     }
     
+    
     // Determine Valid Move
-    //if (position.x - 20 < 0) {
-    if (position.x - 20 < (60*2)) {
-        playerVelocity = 0;
+    if ([Logic checkValidPosition:position]) {
+        if ([playerAvatar numberOfRunningActions]==0)
+            [playerAvatar runAction:[CCRepeat actionWithAction:[CCAnimate actionWithAnimation:walkAnimation] times:1]];
+        [playerAvatar setPosition:position];
         return;
-    } else if (position.x + 20 > (260*2)) {
+    } else {
+        // Not valid position
         playerVelocity = 0;
         return;
     }
-    
-    [super setPosition:position];
 }
 
 -(void) setFacing:(Direction) d {
@@ -93,9 +116,9 @@ const int DefaultPlayerDirection = RIGHT;
     if (playerDirection==d) return;
     
     if (d == LEFT)
-        self.scaleX = -2.0f;
+        [playerAvatar setScaleX: -2.0f];
     else if (d == RIGHT)
-        self.scaleX = 2.0f;
+        [playerAvatar setScaleX: 2.0f];
     
     playerDirection = d;
 }

@@ -8,14 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "GameData.h"
-//#import "GameActionArray.h"
-//#import "TriggerableGameActionArray.h"
 #import "DebugFlags.h"
+#import "cocos2d.h"
+#import "Dialogue.h"
 
 @interface Logic : NSObject;
 
-//+(bool) attemptPlayerMoveLeft;
-//+(bool) attemptPlayerMoveRight;
++(bool) checkValidPosition:(CGPoint) newPosition;
++(CGPoint) worldPositionFromTap:(CGPoint) tapPt;
+//+(void) handleTapAt:(CGPoint) tilePt;
+
 //+(GameActionArray *) checkPlayerTriggeringGameActionArray;
 //+(GameActionArray *) checkDialogueGameActionArray:(NSString *) arrayName;
 //+(bool) doesPlayerHave:(NSString *) item;

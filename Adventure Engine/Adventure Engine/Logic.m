@@ -12,26 +12,16 @@
 
 #pragma mark Player Movement
 
-//+(bool) attemptMoveTo:(CGPoint) pt {
-//}
-/*
-+(bool) attemptPlayerMoveLeft {
-    if ([GameData instance]._playerPosition - 1.5f > [GameData instance]._mapLeftBoundary) {
-        [GameData instance]._playerPosition -= 1.5f;
-        return true;
++(bool) checkValidPosition:(CGPoint) newPosition {
+    if (newPosition.x - 20 < (60*2)) {
+        return false;
+    } else if (newPosition.x + 20 > (260*2)) {
+        return false;
     }
     
-    return false;
+    return true;
 }
 
-+(bool) attemptPlayerMoveRight {
-    if ([GameData instance]._playerPosition + 1.5f < [GameData instance]._mapRightBoundary) {
-        [GameData instance]._playerPosition += 1.5f;
-        return true;
-    }
-    
-    return false;
-}*/
 /*
 +(GameActionArray *) checkPlayerTriggeringGameActionArray {
     CGPoint pt = CGPointMake([GameData instance]._playerPosition, 30);
@@ -121,21 +111,13 @@
     [[GameData instance]._playerInventory removeAllObjects];
 }
 */
-#pragma mark World
-/*
-+(CGPoint) worldPositionFromTap: (CGPoint) tapPt {
-    return ccp(
-               0 - [GameData instance]._cameraPosition.x + tapPt.x,
-               320 - [GameData instance]._cameraPosition.y - tapPt.y);
-}
 
-+(NSString *) getItemPickupText:(NSString *) itemName {
-    NSString *path = [[NSBundle mainBundle] bundlePath];
-    NSString * inputPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"playerItems.plist"]];
-    
-    NSDictionary * plistData = [[NSDictionary dictionaryWithContentsOfFile:inputPath] retain];
-    
-    return [plistData objectForKey:itemName];
-}*/
+#pragma mark World
+
++(CGPoint) worldPositionFromTap:(CGPoint) tapPt {
+    return CGPointMake(
+               (0 - [GameData instance]._cameraPosition.x + tapPt.x),
+               (320 - [GameData instance]._cameraPosition.y - tapPt.y));
+}
 
 @end

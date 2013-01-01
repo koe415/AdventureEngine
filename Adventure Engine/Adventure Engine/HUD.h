@@ -24,4 +24,6 @@
     int move_panel_opacity;
 }
 
+-(void) setMovePanelVisibility:(bool) v;
+
 @end

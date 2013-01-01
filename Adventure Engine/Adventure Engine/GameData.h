@@ -21,7 +21,6 @@
 
 @property(nonatomic) bool _playerHoldingLeft,_playerHoldingRight;
 
-
 +(GameData *) instance;
 -(id) init;
 
