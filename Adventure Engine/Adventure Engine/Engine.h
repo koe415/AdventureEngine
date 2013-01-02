@@ -10,39 +10,23 @@
 #import "AppDelegate.h"
 
 // Import.....EVERYTHING!
-//#import "PauseMenu.h"
-//#import "GameAction.h"
-
 //#import "Cutscene.h"
 //#import "Readable.h"
-//#import "GameActionArray.h"
-
 #import "GameData.h"
 #import "Logic.h"
 #import "DebugFlags.h"
 #import "HUD.h"
 #import "World.h"
 #import "Dialogue.h"
+//#import "WorldObject.h"
+#import "Tappable.h"
+#import "GameAction.h"
 
-// Engine Layer
 @interface Engine : CCLayer
 {
-    //DialogueLayer *_dialogueLayer;
-    //WorldLayer *_worldLayer;
-    //HUDLayer *_hudLayer;
-    //HUD * _hud;
-    //World * world;
-    id risky;
-    
-    // Player moving main character
-    //bool movingLeft, movingRight;
-    
-    // Player in pause button tap
-    //bool pauseButtonTap;
-    
-    //int gameActionDelay;
-    
-    //GameActionArray * runningActions;
+    id hud;
+    int actionDelay;
+    NSMutableArray * actionsToRun;
     
     //bool firstTimeRunningWorld;
 }
@@ -50,16 +34,10 @@
 // returns a CCScene that contains the all the Core Engine Layers as the only child
 +(CCScene *) continueGameScene;
 +(CCScene *) newGameScene;
-//-(void) runNextAction;
 -(void) handleTileTapAt:(CGPoint) tilePt;
+-(void) run:(GameAction *) ga;
 -(void) setMoveVisibility:(bool) v;
 -(void) newGame;
-//-(void) continueGame;
-//-(void) runGameAction: (GameAction *) actionToRun;
 //-(void) loadMap:(NSString *) map;
-
-//@property (nonatomic, retain) DialogueLayer * dialogueLayer;
-//@property (nonatomic, retain) WorldLayer * worldLayer;
-//@property (nonatomic, retain) HUDLayer * hudLayer;
 
 @end

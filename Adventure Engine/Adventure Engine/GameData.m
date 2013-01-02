@@ -30,13 +30,20 @@ static GameData *_instance = nil;
     if (self = [super init]) {
         self._worldTappables = [[NSMutableArray alloc] init];
         self._worldTriggerables = [[NSMutableArray alloc] init];
+        self._barriers = [[NSMutableArray alloc] init];
+        //self._worldObjects = [[NSMutableArray alloc] init];
     }
     
     return self;
 }
 
-@synthesize _playerPosition, _worldTappables, _mapLeftBoundary, _mapRightBoundary, _cameraPosition;
+@synthesize _playerPosition, _cameraPosition;
 @synthesize _worldTriggerables;
 //@synthesize _playerInventory;
 @synthesize _playerHoldingLeft, _playerHoldingRight;
+@synthesize _barriers;
+//@synthesize _worldObjects;
+@synthesize _worldTappables;
+@synthesize _actionDelay;
+
 @end

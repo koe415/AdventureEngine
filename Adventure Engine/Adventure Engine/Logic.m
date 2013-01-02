@@ -13,11 +13,29 @@
 #pragma mark Player Movement
 
 +(bool) checkValidPosition:(CGPoint) newPosition {
+    NSArray * barriers = [NSArray arrayWithArray:[GameData instance]._barriers];
+    
+    float currentPlayerPos = [GameData instance]._playerPosition;
+    
+    for (NSNumber * barrier in barriers) {
+        float floatBarrier = [barrier floatValue];
+        
+        if (currentPlayerPos > floatBarrier) {
+            if (newPosition.x - 20.0f < floatBarrier) {
+                return false;
+            }
+        } else {
+            if (newPosition.x + 20.0f > floatBarrier) {
+                return false;
+            }
+        }
+    }
+    /*
     if (newPosition.x - 20 < (60*2)) {
         return false;
     } else if (newPosition.x + 20 > (260*2)) {
         return false;
-    }
+    }*/
     
     return true;
 }

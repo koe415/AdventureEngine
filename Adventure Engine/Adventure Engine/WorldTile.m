@@ -15,7 +15,6 @@
     if (!self) return nil;
     
     sprites = [[NSMutableArray alloc] init];
-    animatedSprites = [[NSMutableArray alloc] init];
     visible = true;
     
     return self;
@@ -25,19 +24,12 @@
     [sprites addObject:s];
 }
 
--(void) addAnimatedSprite:(CCAnimatedSprite *) s {
-    [animatedSprites addObject:s];
-}
-
 -(void) removeAllSprites {
     [sprites removeAllObjects];
-    [animatedSprites removeAllObjects];
 }
 
 -(void) update {
-    for (CCAnimatedSprite * animation in animatedSprites) {
-        [animation update];
-    }
+    // May be depreciated due to lack of need to update animated sprites manually
 }
 
 -(void) setVisible:(bool) v {
@@ -46,18 +38,10 @@
     for (CCSprite * sprite in sprites) {
         [sprite setVisible:v];
     }
-    
-    for (CCAnimatedSprite * animation in animatedSprites) {
-        [animation setVisible:v];
-    }
 }
 
 -(bool) isVisible {
     return visible;
-}
-
--(bool) hasAnimatedSprites {
-    return ([animatedSprites count] == 0)? false: true;
 }
 
 

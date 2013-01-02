@@ -65,5 +65,17 @@ Game Overview
  - Puzzles\
  - Particle effects\
  - Interactive environment (buttons, doors, item pickups, terminals)\
- - \
+ - Triggers\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\b \cf0 Persistent World
+\b0 \
+ - Every interaction that should have a lasting impact on the world is remembered. (ie. picking up an item removes it permanently from the world while doors can be opened and closed as the player chooses)\
+Triggers have names. When a world is loaded, a trigger is loaded with the default values. The loader then uses a lookup table to see if the trigger needs to be manipulated at all. The trigger may be disabled due to being already used or it may be enabled due to the player's actions elsewhere in the world. If it is enabled and triggered, it may carry an action to enable another trigger. \
+\
+Bath\
+ - ID pickup -> Added to inventory. Only able to be picked up if shower door is open. (if barrier is set up, and player is beyond barrier, cannot pickup)\
+- Shower door -> Opened or closed. Changes barrier set up\
 }

@@ -85,6 +85,9 @@ static int MovePanelOpacity = 30;
         Log(@"Touch began on pause");
         
         return YES;
+    } else if ([GameData instance]._actionDelay) {
+        Log(@"Touch ignored due to action delay");
+        return YES;
     } else if (location.x < 60) {
         gd._playerHoldingLeft = true;
         Log(@"Touch began on move left");

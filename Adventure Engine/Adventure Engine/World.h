@@ -13,9 +13,12 @@
 #import "Player.h"
 #import "WorldTile.h"
 //#import "Engine.h"
+//#import "WorldObject.h"
+#import "Tappable.h"
 
 #define WORLDTILES_X 72
 #define WORLDTILES_Y 8
+#define DEFAULTANIMATIONDELAY 0.2f
 
 @interface World : CCLayer {
     GameData * gd;
@@ -31,6 +34,7 @@
 -(void) setupWorld:(NSString *) worldToLoad;
 -(void) addAnimatedSprite:(NSArray *) stringArray atTileCoords:(CGPoint) pt inFrontOfPlayer:(bool) ifop;
 -(void) addSprite:(NSString *) s atTileCoords:(CGPoint) pt inFrontOfPlayer:(bool) ifop;
+-(void) addAnimatedSprite:(NSArray *) spriteFrames atTileCoords:(CGPoint) pt inFrontOfPlayer:(bool) ifop delay:(float) d;
 -(void) tick:(ccTime) dt;
 -(void) updateCamera;
 -(void) updateTileVisibility;

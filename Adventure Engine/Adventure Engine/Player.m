@@ -22,6 +22,7 @@ const int DefaultPlayerDirection = RIGHT;
     
     playerAvatar = [[CCSprite alloc] initWithSpriteFrameName:@"player_01.png"];
     [playerAvatar setPosition:pos];
+    [GameData instance]._playerPosition = pos.x;
     [playerAvatar setScale:2.0f];
     [[playerAvatar texture] setAliasTexParameters];
     
@@ -102,6 +103,7 @@ const int DefaultPlayerDirection = RIGHT;
     if ([Logic checkValidPosition:position]) {
         if ([playerAvatar numberOfRunningActions]==0)
             [playerAvatar runAction:[CCRepeat actionWithAction:[CCAnimate actionWithAnimation:walkAnimation] times:1]];
+        [GameData instance]._playerPosition = position.x;
         [playerAvatar setPosition:position];
         return;
     } else {

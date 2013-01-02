@@ -50,38 +50,64 @@
 {
 	if( (self=[super init]) ) {
         //self.isTouchEnabled = true;
-        //[self schedule:@selector(tick:)];
+        [self schedule:@selector(tick:)];
         
-        risky = [HUD node];
+        hud = [HUD node];
         [self addChild:[World node]];
-        [self addChild:risky];
+        [self addChild:hud];
+        
+        actionsToRun = [NSMutableArray array];
 	}
 	return self;
 }
 
 -(void) handleTileTapAt:(CGPoint) tilePt {
-    // 8,4 or 9,4
     Log(@"Tapped at tile location:(%.0f,%.0f)",tilePt.x,tilePt.y);
-    // Check for actions to run
-    if ((tilePt.x == 8) && (tilePt.y == 4)) {
-        //Log(@"found action!");
-        [self addChild:[Dialogue nodeWithDialogue:@"dsda"]];
-        [self setMoveVisibility:false];
+    //[self addChild:[Dialogue nodeWithDialogue:@"dsda"]];    // 8,4 or 9,4
+    //[self setMoveVisibility:false];
+    
+    for (Tappable * t in [GameData instance]._worldTappables) {
+        if ([t compareTilePosition:tilePt]) {
+            //[self queueGameActions:[t getActions]];
+            [actionsToRun addObjectsFromArray:[t getActions]];
+        }
     }
 }
 
 -(void) setMoveVisibility:(bool) v {
     //Log(@"engine received move panel call!");
-    [(HUD *)risky setMovePanelVisibility:v];
+    [(HUD *)hud setMovePanelVisibility:v];
 }
-/*
--(void) runNextAction {
-    GameAction * action = [runningActions pop];
-    [self runGameAction:action];
-    gameActionDelay = [action getDelay];
-}*/
 
-//-(void) tick:(ccTime) dt {
+// Used for running game actions
+-(void) tick:(ccTime) dt {
+    if (actionDelay>0) {
+        actionDelay--;
+        
+        if (actionDelay==0) {
+            Log(@"Action delay done.");
+            [GameData instance]._actionDelay = false;
+            [self setMoveVisibility:true];
+            
+        }
+        return;
+    }
+    
+    if ([actionsToRun count]!=0) {
+        GameAction * action = [actionsToRun objectAtIndex:0];
+        [actionsToRun removeObjectAtIndex:0];
+        
+        [self run:action];
+    }
+}
+
+-(void) run:(GameAction *) ga {
+    //Log(@"Added delay!");
+    //actionDelay+=300;
+    //[GameData instance]._actionDelay = true;
+    //[self setMoveVisibility:false];
+}
+
     // Check for triggers at spawn
     // todo: move to loadMap method
     // issue as is, can't run pushscene during class initiation which causes map load flicker
