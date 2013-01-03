@@ -167,6 +167,10 @@
 		5183A886167FC5A3009B6DFB /* Act I.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5183A885167FC5A3009B6DFB /* Act I.rtf */; };
 		5183A888167FC5C3009B6DFB /* Story.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5183A887167FC5C3009B6DFB /* Story.rtf */; };
 		5183A88A167FC64D009B6DFB /* Overview.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5183A889167FC64D009B6DFB /* Overview.rtf */; };
+		5193F9361695286B0023A3E4 /* SpawnPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 5193F9351695286B0023A3E4 /* SpawnPosition.m */; };
+		5193F93A169542330023A3E4 /* MemoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5193F939169542330023A3E4 /* MemoryTest.m */; };
+		51E2C3EA1693DCE200ABD1C2 /* small_glow.png in Resources */ = {isa = PBXBuildFile; fileRef = 51E2C3E91693DCE200ABD1C2 /* small_glow.png */; };
+		51E2C3F21693E1C500ABD1C2 /* Triggerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 51E2C3F11693E1C500ABD1C2 /* Triggerable.m */; };
 		51F08C4B1687FC5A0007AAB3 /* size_comparisonHD.png in Resources */ = {isa = PBXBuildFile; fileRef = 51F08C4A1687FC5A0007AAB3 /* size_comparisonHD.png */; };
 		51F08C80168831AD0007AAB3 /* WorldTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F08C7F168831AD0007AAB3 /* WorldTile.m */; };
 /* End PBXBuildFile section */
@@ -480,6 +484,13 @@
 		5183A885167FC5A3009B6DFB /* Act I.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "Act I.rtf"; sourceTree = "<group>"; };
 		5183A887167FC5C3009B6DFB /* Story.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Story.rtf; sourceTree = "<group>"; };
 		5183A889167FC64D009B6DFB /* Overview.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Overview.rtf; sourceTree = "<group>"; };
+		5193F9341695286B0023A3E4 /* SpawnPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpawnPosition.h; sourceTree = "<group>"; };
+		5193F9351695286B0023A3E4 /* SpawnPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpawnPosition.m; sourceTree = "<group>"; };
+		5193F938169542330023A3E4 /* MemoryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryTest.h; sourceTree = "<group>"; };
+		5193F939169542330023A3E4 /* MemoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoryTest.m; sourceTree = "<group>"; };
+		51E2C3E91693DCE200ABD1C2 /* small_glow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = small_glow.png; sourceTree = "<group>"; };
+		51E2C3F01693E1C500ABD1C2 /* Triggerable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Triggerable.h; sourceTree = "<group>"; };
+		51E2C3F11693E1C500ABD1C2 /* Triggerable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Triggerable.m; sourceTree = "<group>"; };
 		51F08C4A1687FC5A0007AAB3 /* size_comparisonHD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = size_comparisonHD.png; sourceTree = "<group>"; };
 		51F08C7E168831AD0007AAB3 /* WorldTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldTile.h; sourceTree = "<group>"; };
 		51F08C7F168831AD0007AAB3 /* WorldTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldTile.m; sourceTree = "<group>"; };
@@ -527,6 +538,8 @@
 				515322AD167D339A00863C43 /* World.m */,
 				515322B2167D339A00863C43 /* Engine.h */,
 				515322B0167D339A00863C43 /* Engine.m */,
+				5193F938169542330023A3E4 /* MemoryTest.h */,
+				5193F939169542330023A3E4 /* MemoryTest.m */,
 			);
 			name = "Ingame Layers";
 			sourceTree = "<group>";
@@ -540,10 +553,14 @@
 				514D48931693B1FA008813F4 /* GameAction.m */,
 				51240FA21693A23D00985E7C /* Tappable.h */,
 				51240FA31693A23D00985E7C /* Tappable.m */,
+				51E2C3F01693E1C500ABD1C2 /* Triggerable.h */,
+				51E2C3F11693E1C500ABD1C2 /* Triggerable.m */,
 				5152E25E168FC51A00D2B85B /* WorldObject.h */,
 				5152E25F168FC51A00D2B85B /* WorldObject.m */,
 				51F08C7E168831AD0007AAB3 /* WorldTile.h */,
 				51F08C7F168831AD0007AAB3 /* WorldTile.m */,
+				5193F9341695286B0023A3E4 /* SpawnPosition.h */,
+				5193F9351695286B0023A3E4 /* SpawnPosition.m */,
 			);
 			name = "World Support";
 			sourceTree = "<group>";
@@ -592,8 +609,8 @@
 				515322AF167D339A00863C43 /* GameData.m */,
 				515322B3167D339A00863C43 /* Logic.h */,
 				515322B4167D339A00863C43 /* Logic.m */,
-				5152E25D168FC4C500D2B85B /* World Support */,
 				514D48991693C0BB008813F4 /* Ingame Layers */,
+				5152E25D168FC4C500D2B85B /* World Support */,
 				51532290167D32AB00863C43 /* Supporting Files */,
 			);
 			name = "Core Engine";
@@ -607,6 +624,7 @@
 				515322CC167D3C4500863C43 /* World Assets */,
 				51225EA916927DBA001732FF /* HUD */,
 				51F08C4A1687FC5A0007AAB3 /* size_comparisonHD.png */,
+				51E2C3E91693DCE200ABD1C2 /* small_glow.png */,
 				51240F97169376F300985E7C /* bath_13.png */,
 				51225E9D16926D8D001732FF /* player.plist */,
 				51225E9E16926D8D001732FF /* player.png */,
@@ -1139,6 +1157,7 @@
 				51240F98169376F300985E7C /* bath_13.png in Resources */,
 				51240FA01693976700985E7C /* bath.plist in Resources */,
 				51240FA11693976700985E7C /* bath.png in Resources */,
+				51E2C3EA1693DCE200ABD1C2 /* small_glow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1263,6 +1282,9 @@
 				51225EB01692959B001732FF /* Dialogue.m in Sources */,
 				51240FA41693A23D00985E7C /* Tappable.m in Sources */,
 				514D48941693B1FA008813F4 /* GameAction.m in Sources */,
+				51E2C3F21693E1C500ABD1C2 /* Triggerable.m in Sources */,
+				5193F9361695286B0023A3E4 /* SpawnPosition.m in Sources */,
+				5193F93A169542330023A3E4 /* MemoryTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  Tappable.h
+//  Triggerable.h
 //  Adventure Engine
 //
 //  Created by Galen Koehne on 1/1/13.
@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "DebugFlags.h"
 
-@interface Tappable : NSObject {
+@interface Triggerable : NSObject {
     int identity;
     CGPoint tilePosition;
     bool isEnabled;
-    NSArray * gameActionsToRun; // Tappable cares not what is in the array
+    NSArray * gameActionsToRun;
     
     CCSprite * glow;
 }

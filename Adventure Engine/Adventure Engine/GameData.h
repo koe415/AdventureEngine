@@ -11,7 +11,6 @@
 @interface GameData : NSObject
 
 @property(nonatomic) float _playerPosition;
-@property(nonatomic, retain) NSMutableArray * _worldTriggerables;
 //@property(nonatomic, retain) NSMutableArray * _playerInventory;
 //@property(nonatomic, retain) NSMutableArray * _worldObjects;
 @property(nonatomic) CGPoint _cameraPosition;
@@ -19,7 +18,9 @@
 @property(nonatomic) bool _playerHoldingLeft,_playerHoldingRight;
 @property(nonatomic, retain) NSMutableArray * _barriers;
 @property(nonatomic, retain) NSMutableArray * _worldTappables;
+@property(nonatomic, retain) NSMutableArray * _worldTriggerables;
 @property(nonatomic) bool _actionDelay;
+@property(nonatomic) bool _actionRunning;
 
 +(GameData *) instance;
 -(id) init;

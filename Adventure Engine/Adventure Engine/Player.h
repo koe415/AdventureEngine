@@ -19,14 +19,18 @@
     Direction playerDirection;
     float playerVelocity;
     
+    int xTilePosition;
+    
     CCAnimation *walkAnimation;
 }
 
+-(id) init;
 -(id) initAtPosition:(CGPoint) pos facing:(Direction) d;
 -(void) attemptMoveInDirection:(Direction) d;
 -(void) attemptNoMove;
 -(CGPoint) getPosition;
--(void) setPosition:(CGPoint)position;
+-(void) moveToPosition:(CGPoint)position;
+-(void) setPositionManually:(CGPoint)position; // Overrides any barrier
 -(void) setFacing:(Direction) d;
 
 @end

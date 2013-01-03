@@ -56,19 +56,27 @@
         [self addChild:[World node]];
         [self addChild:hud];
         
-        actionsToRun = [NSMutableArray array];
+        actionsToRun = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
 
 -(void) handleTileTapAt:(CGPoint) tilePt {
     Log(@"Tapped at tile location:(%.0f,%.0f)",tilePt.x,tilePt.y);
-    //[self addChild:[Dialogue nodeWithDialogue:@"dsda"]];    // 8,4 or 9,4
-    //[self setMoveVisibility:false];
     
     for (Tappable * t in [GameData instance]._worldTappables) {
         if ([t compareTilePosition:tilePt]) {
-            //[self queueGameActions:[t getActions]];
+            [actionsToRun addObjectsFromArray:[t getActions]];
+        }
+    }
+}
+
+-(void) handleTriggerAt:(CGPoint) tilePt {
+    Log(@"Checking for trigger at tile location:(%.0f,%.0f)",tilePt.x,tilePt.y);
+    
+    for (Triggerable * t in [GameData instance]._worldTriggerables) {
+        //Log(@"Checking trig with ID %d!",[t getIdentity]);
+        if ([t compareTilePosition:tilePt]) {
             [actionsToRun addObjectsFromArray:[t getActions]];
         }
     }
@@ -93,6 +101,10 @@
         return;
     }
     
+    if ([GameData instance]._actionRunning) {
+        return;
+    }
+    
     if ([actionsToRun count]!=0) {
         GameAction * action = [actionsToRun objectAtIndex:0];
         [actionsToRun removeObjectAtIndex:0];
@@ -102,10 +114,57 @@
 }
 
 -(void) run:(GameAction *) ga {
-    //Log(@"Added delay!");
-    //actionDelay+=300;
-    //[GameData instance]._actionDelay = true;
-    //[self setMoveVisibility:false];
+    [(HUD *) hud endUserInteraction];
+    
+    int actionType = [ga getActionType];
+    
+    switch (actionType) {
+        case ACTIONDELAY:
+            Log(@"Added delay!");
+            actionDelay+=[(ActionDelay *) ga getDelay];
+            [GameData instance]._actionDelay = true;
+            [self setMoveVisibility:false];
+            break;
+        case ACTIONDIALOGUE:
+            [self addChild:[Dialogue nodeWithDialogue:[(ActionDialogue *) ga getDialogue]]];
+            [self setMoveVisibility:false];
+            break;
+        case ACTIONCUTSCENE:
+            Log(@"Running Cutscene: %@", [(ActionCutscene *) ga getCutscene]);
+            break;
+        case ACTIONLOADWORLD:
+            Log(@"Loading World: %@", [(ActionLoadWorld *) ga getWorld]);
+            break;
+        case ACTIONPICKUPITEM:
+            Log(@"Picking Up Item: %@", [(ActionPickupItem *) ga getItem]);
+            break;
+        case ACTIONREMOVEITEM:
+            Log(@"Removing Item: %@", [(ActionRemoveItem *) ga getItem]);
+            break;
+        case ACTIONREADABLE:
+            Log(@"Loading Readable: %@", [(ActionReadable *) ga getReadable]);
+            break;
+        case ACTIONENDGAME:
+            Log(@"Ending Game");
+            break;
+        case ACTIONTAP:
+            for (Tappable * t in [GameData instance]._worldTappables) {
+                if ([t getIdentity] == [((ActionTap *) ga) getID]) {
+                    [t setEnabled:[((ActionTap *) ga) getStatus]];
+                }
+            }
+            break;
+        case ACTIONTRIG:
+            for (Triggerable * t in [GameData instance]._worldTriggerables) {
+                if ([t getIdentity] == [((ActionTrig *) ga) getID]) {
+                    [t setEnabled:[((ActionTrig *) ga) getStatus]];
+                }
+            }
+            break;
+        default:
+            Log(@"Tried to run invalid game action type (%d)",actionType);
+            break;
+    }
 }
 
     // Check for triggers at spawn
@@ -179,46 +238,7 @@
     [_hudLayer setItemPickup:item];
     [Logic addPlayerItem:item];
 }
-
--(void) runGameAction: (GameAction *) actionToRun {
-    movingLeft = movingRight = false;
-    
-    switch ([actionToRun getType]) {
-        case 1:
-            if (Display_Debug_Text) Log(@"Engine: Cutscene to run:%@",[actionToRun getValue]);
-            [[CCDirector sharedDirector] pushScene:[Cutscene sceneWithCutscene:[actionToRun getValue]]];
-            break;
-        case 2:
-            if (Display_Debug_Text) Log(@"Engine: Dialogue to run:%@",[actionToRun getValue]);
-            [_dialogueLayer startDialogue:[actionToRun getValue]];
-            [_hudLayer setMovePanelVisibility: false];
-            break;
-        case 3:
-            if (Display_Debug_Text) Log(@"Engine: World to load:%@",[actionToRun getValue]);
-            [self loadMap:[actionToRun getValue]];
-            break;
-        case 4:
-            if (Display_Debug_Text) Log(@"Engine: Item to pick up:%@",[actionToRun getValue]);
-            [self pickupItem:[actionToRun getValue]];
-            [_hudLayer setMovePanelVisibility:false];
-            break;
-        case 5:
-            if (Display_Debug_Text) Log(@"Engine: Item to remove:%@",[actionToRun getValue]);
-            [Logic removePlayerItem:[actionToRun getValue]];
-            break;
-        case 6:
-            if (Display_Debug_Text) Log(@"Engine: Text to show:%@",[actionToRun getValue]);
-            [[CCDirector sharedDirector] pushScene:[Readable sceneWithText:[actionToRun getValue]]];
-            break;
-        case 7:
-            if (Display_Debug_Text) Log(@"Engine: Game ending!");
-            [[CCDirector sharedDirector] replaceScene:[MainMenu scene]];
-            break;
-        default:
-            if (Display_Debug_Text) Log(@"Engine: ERROR - Given improper game action (%d) with text:%@",[actionToRun getType],[actionToRun getValue]);
-            break;
-    }
-}*/
+*/
 
 -(void) newGame {
     //[GameData instance]._playerInventory = [[NSMutableArray alloc] init];
@@ -392,6 +412,7 @@
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc
 {
+    Log(@"dealloc called");
 	[super dealloc];
 }
 

@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "DebugFlags.h"
 #import "Engine.h"
+#import "MemoryTest.h"
 
 @interface MainMenu : CCLayer {
     CCLabelTTF * mainTitle;

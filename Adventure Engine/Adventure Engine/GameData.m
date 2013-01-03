@@ -38,12 +38,13 @@ static GameData *_instance = nil;
 }
 
 @synthesize _playerPosition, _cameraPosition;
-@synthesize _worldTriggerables;
 //@synthesize _playerInventory;
 @synthesize _playerHoldingLeft, _playerHoldingRight;
 @synthesize _barriers;
 //@synthesize _worldObjects;
 @synthesize _worldTappables;
+@synthesize _worldTriggerables;
 @synthesize _actionDelay;
+@synthesize _actionRunning;
 
 @end

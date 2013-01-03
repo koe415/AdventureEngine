@@ -15,7 +15,7 @@
     CCLabelTTF * mainTitle;
     
     CCMenu * mainMenuListing;
-    CCMenuItem * cancelItem, * exitItem; //* saveItem, * loadItem, * exitItem, * cancelItem;
+    CCMenuItem * cancelItem, * exitItem;
 }
 
 +(CCScene *) scene;

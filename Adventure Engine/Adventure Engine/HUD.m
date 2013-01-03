@@ -75,6 +75,11 @@ static int MovePanelOpacity = 30;
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
 
+-(void) endUserInteraction {
+    gd._playerHoldingLeft = false;
+    gd._playerHoldingRight = false;
+}
+
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
     CGPoint location = [touch locationInView:[touch view]];
     
@@ -87,6 +92,9 @@ static int MovePanelOpacity = 30;
         return YES;
     } else if ([GameData instance]._actionDelay) {
         Log(@"Touch ignored due to action delay");
+        return YES;
+    } else if ([GameData instance]._actionRunning) {
+        Log(@"Touch ignored due to action running");
         return YES;
     } else if (location.x < 60) {
         gd._playerHoldingLeft = true;
@@ -133,6 +141,11 @@ static int MovePanelOpacity = 30;
         gd._playerHoldingRight = false;
         Log(@"Touch ended on move right");
     }
+}
+
+-(void) dealloc {
+    Log(@"dealloc");
+    [super dealloc];
 }
 
 @end

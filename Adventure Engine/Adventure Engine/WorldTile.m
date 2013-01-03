@@ -44,5 +44,15 @@
     return visible;
 }
 
+-(void) dealloc {
+    Log(@"dealloc called");
+    for (CCSprite * s in sprites) {
+        [s removeFromParentAndCleanup:true];
+    }
+    [sprites removeAllObjects];
+    [sprites release];
+    [super dealloc];
+}
+
 
 @end

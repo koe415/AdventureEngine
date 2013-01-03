@@ -7,10 +7,15 @@
 //
 
 #import "Player.h"
+#import "Engine.h"
 
 const int DefaultPlayerDirection = RIGHT;
 
 @implementation Player
+
+-(id) init {
+    return [self initAtPosition:CGPointMake(0, 0) facing:RIGHT];
+}
 
 -(id) initAtPosition:(CGPoint) pos facing:(Direction) d {
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:
@@ -21,10 +26,10 @@ const int DefaultPlayerDirection = RIGHT;
     if (!self) return nil;
     
     playerAvatar = [[CCSprite alloc] initWithSpriteFrameName:@"player_01.png"];
-    [playerAvatar setPosition:pos];
-    [GameData instance]._playerPosition = pos.x;
     [playerAvatar setScale:2.0f];
     [[playerAvatar texture] setAliasTexParameters];
+    
+    [self setPositionManually:pos];
     
     playerDirection = RIGHT;
     [self setFacing:d];
@@ -69,7 +74,7 @@ const int DefaultPlayerDirection = RIGHT;
         }
     }
     
-    [self setPosition:CGPointMake(playerAvatar.position.x+playerVelocity, playerAvatar.position.y)];
+    [self moveToPosition:CGPointMake(playerAvatar.position.x+playerVelocity, playerAvatar.position.y)];
 }
 
 -(void) attemptNoMove {
@@ -83,7 +88,7 @@ const int DefaultPlayerDirection = RIGHT;
         if (playerVelocity > 0.0f) playerVelocity = 0.0f;
     }
     
-    [self setPosition:CGPointMake(playerAvatar.position.x+playerVelocity, playerAvatar.position.y)];
+    [self moveToPosition:CGPointMake(playerAvatar.position.x+playerVelocity, playerAvatar.position.y)];
 }
 
 -(CGPoint) getPosition {
@@ -91,7 +96,7 @@ const int DefaultPlayerDirection = RIGHT;
 }
 
 // Handles hitting barriers, world boundaries
--(void) setPosition:(CGPoint)position {
+-(void) moveToPosition:(CGPoint)position {
     if (position.x > playerAvatar.position.x) {
         [self setFacing:RIGHT];
     } else if (position.x < playerAvatar.position.x) {
@@ -103,14 +108,27 @@ const int DefaultPlayerDirection = RIGHT;
     if ([Logic checkValidPosition:position]) {
         if ([playerAvatar numberOfRunningActions]==0)
             [playerAvatar runAction:[CCRepeat actionWithAction:[CCAnimate actionWithAnimation:walkAnimation] times:1]];
+        
         [GameData instance]._playerPosition = position.x;
         [playerAvatar setPosition:position];
+        if ((int)(position.x/40) != xTilePosition) {
+            //Log(@"calc new tile position");
+            [((Engine *) (self.parent.parent)) handleTriggerAt:CGPointMake((int)(position.x/40 + 1),2)];
+            xTilePosition = position.x/40;
+        }
         return;
     } else {
         // Not valid position
         playerVelocity = 0;
         return;
     }
+}
+
+-(void) setPositionManually:(CGPoint)position {
+    playerVelocity = 0.0f;
+    [GameData instance]._playerPosition = position.x;
+    [playerAvatar setPosition:position];
+    xTilePosition = position.x/40;
 }
 
 -(void) setFacing:(Direction) d {

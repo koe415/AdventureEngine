@@ -20,6 +20,7 @@
 #import "Dialogue.h"
 //#import "WorldObject.h"
 #import "Tappable.h"
+#import "Triggerable.h"
 #import "GameAction.h"
 
 @interface Engine : CCLayer
@@ -35,9 +36,11 @@
 +(CCScene *) continueGameScene;
 +(CCScene *) newGameScene;
 -(void) handleTileTapAt:(CGPoint) tilePt;
+-(void) handleTriggerAt:(CGPoint) tilePt;
 -(void) run:(GameAction *) ga;
 -(void) setMoveVisibility:(bool) v;
 -(void) newGame;
+-(void) dealloc;
 //-(void) loadMap:(NSString *) map;
 
 @end

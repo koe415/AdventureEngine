@@ -10,10 +10,29 @@
 #define Adventure_Engine_SharedTypes_h
 
 enum Direction {
-    LEFT, // 0
-    RIGHT // 1
+    LEFT,
+    RIGHT
 };
 typedef enum Direction Direction;
-
+/*
+struct Spawn {
+    Direction d;
+    int x;
+    int y;
+};
+typedef struct Spawn Spawn;
+*/
+enum GameActionTypes {
+    ACTIONDELAY,
+    ACTIONDIALOGUE,
+    ACTIONCUTSCENE,
+    ACTIONLOADWORLD,
+    ACTIONPICKUPITEM,
+    ACTIONREMOVEITEM,
+    ACTIONREADABLE,
+    ACTIONENDGAME,
+    ACTIONTAP,
+    ACTIONTRIG
+};
 
 #endif

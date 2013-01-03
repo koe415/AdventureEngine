@@ -1,14 +1,14 @@
 //
-//  Tappable.m
+//  Triggerable.m
 //  Adventure Engine
 //
 //  Created by Galen Koehne on 1/1/13.
 //  Copyright (c) 2013 __MyCompanyName__. All rights reserved.
 //
 
-#import "Tappable.h"
+#import "Triggerable.h"
 
-@implementation Tappable
+@implementation Triggerable
 
 -(id) initWithPosition:(CGPoint) inputPt withActions:(NSArray *) actions withIdentity:(int) inputIdent isEnabled:(bool) enabled {
     self = [super init];
@@ -35,10 +35,21 @@
     return [self initWithPosition:inputPt withActions:actions withIdentity:inputIdent isEnabled:true];
 }
 -(bool) compareTilePosition:(CGPoint) tilePt {
-    if (!isEnabled) return false;
-    if (tilePt.x != tilePosition.x) return false;
-    if (tilePt.y != tilePosition.y) return false;
+    //Log(@"Comparing input(%f,%f) with trig pos(%f,%f)",tilePt.x,tilePt.y,tilePosition.x,tilePosition.y);
     
+    if (!isEnabled) {
+        //Log(@"trig is not enabled");
+        return false;
+    }
+    if (tilePt.x != tilePosition.x) {
+        //Log(@"trig has a different X");
+        return false;
+    }
+    if (tilePt.y != tilePosition.y) {
+        //Log(@"trig has a different Y");
+        return false;
+    }
+
     return true;
 }
 

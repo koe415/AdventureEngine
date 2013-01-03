@@ -24,5 +24,6 @@
 }
 
 -(void) setMovePanelVisibility:(bool) v;
+-(void) endUserInteraction;
 
 @end

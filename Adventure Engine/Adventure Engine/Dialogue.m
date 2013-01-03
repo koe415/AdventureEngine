@@ -41,7 +41,8 @@
     
     
     
-    contentLabel = [CCLabelTTF labelWithString:[noteContent objectAtIndex:0]
+//    contentLabel = [CCLabelTTF labelWithString:[noteContent objectAtIndex:0]
+    contentLabel = [CCLabelTTF labelWithString:dial
                                     dimensions:CGSizeMake(300, 50)
                                     hAlignment:kCCTextAlignmentCenter
                                     vAlignment:kCCVerticalTextAlignmentCenter
@@ -58,6 +59,8 @@
     
     // Won't register if run from init
     // [(Engine *) self.parent setMoveVisibility:false];
+    
+    [GameData instance]._actionRunning = true;
     
     return self;
 }
@@ -83,6 +86,7 @@
     
 
     [(Engine *) self.parent setMoveVisibility:true];
+    [GameData instance]._actionRunning = false;
 }
 
 -(void) endScene {

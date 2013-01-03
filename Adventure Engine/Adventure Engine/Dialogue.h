@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "DebugFlags.h"
-//#import "Engine.h"
+#import "GameData.h"
 
 @interface Dialogue : CCLayer {
     NSString * speaker;
