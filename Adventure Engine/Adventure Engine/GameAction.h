@@ -22,6 +22,7 @@
     int delayLength;
 }
 
++(id) actionWithDelay:(int) inputDelay;
 -(id) initWithDelay:(int) inputDelay;
 -(int) getDelay;
 
@@ -32,6 +33,7 @@
     NSString * dialogue;
 }
 
++(id) actionWithDialogue:(NSString *) inputDialogue;
 -(id) initWithDialogue:(NSString *) inputDialogue;
 -(NSString *) getDialogue;
 
@@ -42,6 +44,7 @@
     NSString * cutscene;
 }
 
++(id) actionWithCutscene:(NSString *) inputCutscene;
 -(id) initWithCutscene:(NSString *) inputCutscene;
 -(NSString *) getCutscene;
 
@@ -50,10 +53,13 @@
 
 @interface ActionLoadWorld : GameAction {
     NSString * worldToLoad;
+    int spawnPt;
 }
 
--(id) initWithWorldToLoad:(NSString *) inputWorld;
++(id) actionWithWorldToLoad:(NSString *) inputWorld atSpawnPoint:(int) inputSpawn;
+-(id) initWithWorldToLoad:(NSString *) inputWorld atSpawnPoint:(int) inputSpawn;
 -(NSString *) getWorld;
+-(int) getSpawn;
 
 @end
 
@@ -62,6 +68,7 @@
     NSString * itemToPickup;
 }
 
++(id) actionWithItem:(NSString *) inputItem;
 -(id) initWithItem:(NSString *) inputItem;
 -(NSString *) getItem;
 
@@ -72,6 +79,7 @@
     NSString * itemToRemove;
 }
 
++(id) actionWithItem:(NSString *) inputItem;
 -(id) initWithItem:(NSString *) inputItem;
 -(NSString *) getItem;
 
@@ -82,6 +90,7 @@
     NSString * readable;
 }
 
++(id) actionWithReadable:(NSString *) inputReadable;
 -(id) initWithReadable:(NSString *) inputReadable;
 -(NSString *) getReadable;
 
@@ -90,6 +99,7 @@
 
 @interface ActionEndGame : GameAction
 
++(id) action;
 -(id) init;
 
 @end
@@ -99,6 +109,7 @@
     bool status;
 }
 
++(id) actionWithID:(int) inputID active:(bool) inputStatus;
 -(id) initWithID:(int) inputID active:(bool) inputStatus;
 -(int) getID;
 -(bool) getStatus;
@@ -109,7 +120,30 @@
     bool status;
 }
 
++(id) actionWithID:(int) inputID active:(bool) inputStatus;
 -(id) initWithID:(int) inputID active:(bool) inputStatus;
 -(int) getID;
+-(bool) getStatus;
+@end
+
+@interface ActionShake : GameAction {
+    int intensity;
+    int duration;
+}
+
++(id) actionWithIntensity:(int) inputIntensity withDuration:(int) inputDuration;
+-(id) initWithIntensity:(int) inputIntensity withDuration:(int) inputDuration;
+-(int) getIntensity;
+-(int) getDuration;
+@end
+
+@interface ActionBarrier : GameAction {
+    NSString * idOfBarrier;
+    bool status;
+}
+
++(id) actionWithID:(NSString *) inputID active:(bool) inputStatus;
+-(id) initWithID:(NSString *) inputID active:(bool) inputStatus;
+-(NSString *) getID;
 -(bool) getStatus;
 @end

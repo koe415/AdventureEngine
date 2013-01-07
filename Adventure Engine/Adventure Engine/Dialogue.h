@@ -11,15 +11,26 @@
 #import "DebugFlags.h"
 #import "GameData.h"
 
+#define FRAMES_PER_LETTER 1
+// 0 - Instant
+// 1 - Fast
+// 2 - Slow
+
 @interface Dialogue : CCLayer {
     NSString * speaker;
     CCLabelTTF * contentLabel;
+    NSString * contentString;
     CCSprite * contentBackground;
     NSArray * noteContent;
     
     int currentDialogue;
     
     bool endingScene;
+    
+    int drawingLetter;
+    int currentFPL;
+    
+    bool dialogueInstant;
     
 }
 

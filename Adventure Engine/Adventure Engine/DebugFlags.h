@@ -10,9 +10,10 @@
 #ifndef Certainty_DebugFlags_h
 #define Certainty_DebugFlags_h
 
-#define Display_FPS 1
-#define Display_Debug_Text 1
-#define Display_Dev_Objects 0
+#define Display_FPS true
+#define Display_Debug_Text true
+//#define Display_Dev_Objects true
+#define Display_Barriers true
 
 // Format: ClassName(LineNumber)| Debug Text
 #if Display_Debug_Text

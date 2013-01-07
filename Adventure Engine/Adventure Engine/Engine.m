@@ -53,7 +53,8 @@
         [self schedule:@selector(tick:)];
         
         hud = [HUD node];
-        [self addChild:[World node]];
+        world = [World node];
+        [self addChild:world];
         [self addChild:hud];
         
         actionsToRun = [[NSMutableArray alloc] init];
@@ -62,17 +63,20 @@
 }
 
 -(void) handleTileTapAt:(CGPoint) tilePt {
-    Log(@"Tapped at tile location:(%.0f,%.0f)",tilePt.x,tilePt.y);
+    //Log(@"Tapped at tile location:(%.0f,%.0f)",tilePt.x,tilePt.y);
     
     for (Tappable * t in [GameData instance]._worldTappables) {
         if ([t compareTilePosition:tilePt]) {
+            // If any barrier is in between player and tappable
+            if ([t isTileBlockedByBarrier]) continue;
+            
             [actionsToRun addObjectsFromArray:[t getActions]];
         }
     }
 }
 
 -(void) handleTriggerAt:(CGPoint) tilePt {
-    Log(@"Checking for trigger at tile location:(%.0f,%.0f)",tilePt.x,tilePt.y);
+    //Log(@"Checking for trigger at tile location:(%.0f,%.0f)",tilePt.x,tilePt.y);
     
     for (Triggerable * t in [GameData instance]._worldTriggerables) {
         //Log(@"Checking trig with ID %d!",[t getIdentity]);
@@ -133,7 +137,8 @@
             Log(@"Running Cutscene: %@", [(ActionCutscene *) ga getCutscene]);
             break;
         case ACTIONLOADWORLD:
-            Log(@"Loading World: %@", [(ActionLoadWorld *) ga getWorld]);
+            Log(@"Loading World: %@ At Spawn:%d", [(ActionLoadWorld *) ga getWorld],[(ActionLoadWorld *) ga getSpawn]);
+            [(World *) world loadWorld:[(ActionLoadWorld *) ga getWorld] withSpawn:[(ActionLoadWorld *) ga getSpawn]];
             break;
         case ACTIONPICKUPITEM:
             Log(@"Picking Up Item: %@", [(ActionPickupItem *) ga getItem]);
@@ -161,11 +166,47 @@
                 }
             }
             break;
+        case ACTIONSHAKE:
+            [GameData instance]._actionRunning = true;
+            [(World *) world setScreenShakeIntensity:[(ActionShake *) ga getIntensity] withDuration:[(ActionShake *) ga getDuration]];
+            break;
+        case  ACTIONBARRIER:
+            for (Barrier * b in [GameData instance]._barriers) {
+                if ([b compareWith:[(ActionBarrier *) ga getID]]) {
+                    [b setEnabled:[(ActionBarrier *) ga getStatus]];
+                }
+            }
+            
+            break;
         default:
             Log(@"Tried to run invalid game action type (%d)",actionType);
             break;
     }
 }
+
+-(void) onEnter {
+    [super onEnter];
+    if ([GameData instance]._endingGame) [self endGame];
+}
+
+-(void) endGame {
+    [GameData instance]._endingGame = false;
+    [[GameData instance] clear];
+    [[CCDirector sharedDirector] replaceScene:[MainMenu node]];
+}
+
+
+-(void) newGame {
+    // Set all game data to default!
+    
+    [(World *) world loadWorld:@"bath" withSpawn:1];
+}
+
+-(void) continueGame {
+    // file system load player map and prior gamedata
+    //[self loadMap:@"mtns"];
+}
+
 
     // Check for triggers at spawn
     // todo: move to loadMap method
@@ -239,21 +280,7 @@
     [Logic addPlayerItem:item];
 }
 */
-
--(void) newGame {
-    //[GameData instance]._playerInventory = [[NSMutableArray alloc] init];
-    
-    //GameData * gd = [GameData instance];
-    
-    //[Logic removeAllPlayerItems];
-    //[self loadMap:@"bunk1"];
-}
 /*
--(void) continueGame {
-    // file system load player map and prior gamedata
-    [self loadMap:@"mtns"];
-}
-
 -(void) loadMap:(NSString *) map {
     World worldLoaded = [Worlds access:map];
     
@@ -410,9 +437,9 @@
 }*/
 
 // on "dealloc" you need to release all your retained objects
-- (void) dealloc
+-(void) dealloc
 {
-    Log(@"dealloc called");
+    [actionsToRun release];
 	[super dealloc];
 }
 

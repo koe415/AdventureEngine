@@ -38,27 +38,39 @@
     player = [[Player alloc] init];
     [self addChild:player z:Z_PLAYER];
     
-    [self loadWorld:@"bath"];
-    
     return self;
 }
 
--(void) onExit {
-    Log(@"EXITED WORLD");
-}
-
+// Called when loading a world or when scene is switched
 -(void) clearWorld {
+    //Log(@"clearing world");
+    for (int i = 0; i < WORLDTILES_X; i++) {
+        for (int j = 0; j < WORLDTILES_Y; j++) {
+            [(WorldTile *)worldTiles[i][j] removeAllSprites];
+            [(WorldTile *)worldTiles[i][j] setVisible:true];
+        }
+    }
+    
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrames];
+    [backgroundBatchNode removeFromParentAndCleanup:true];
+    
+    [spawnPositions removeAllObjects];
+    [[GameData instance]._worldTappables removeAllObjects];
+    [[GameData instance]._worldTriggerables removeAllObjects];
+    [[GameData instance]._barriers removeAllObjects];
     
 }
 
 // Defaults to the first spawn available
 -(void) loadWorld:(NSString *) worldToLoad {
-    [self loadWorld:worldToLoad withSpawn:2];
+    [self loadWorld:worldToLoad withSpawn:1];
 }
 
 // Spawn Points increment from 1 and up
 -(void) loadWorld:(NSString *) worldToLoad withSpawn:(int) spawnPt {
     [self clearWorld];
+    
+    //Log(@"loading new world:'%@'",worldToLoad);
     
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:
      [NSString stringWithFormat:@"%@.plist",worldToLoad]];
@@ -92,30 +104,32 @@
             
             spawnPtID++;
             
-            SpawnPosition * currentSpawn = [[SpawnPosition alloc] initWithPos:CGPointMake(spawnX, spawnY) withDir:d withID:spawnPtID];
+            SpawnPosition * currentSpawn = [[[SpawnPosition alloc] initWithPos:CGPointMake(spawnX, spawnY) withDir:d withID:spawnPtID] autorelease];
             [spawnPositions addObject:currentSpawn];
             
             if (spawnPtID==spawnPt) {
                 [player setPositionManually:CGPointMake(spawnX, spawnY)];
                 [player setFacing:d];
+                
+                cameraCenter = CGPointMake(240 - player.position.x, player.position.y);
+                
             }
         } else if ([s hasPrefix:@"info"]) {
-            NSMutableArray * barriers = [NSMutableArray array];
-            
             NSArray * inputBarriers = [s componentsSeparatedByString:@","];
             
-            
             NSString * leftBarrierString = [inputBarriers objectAtIndex:1];
-            int leftB = [leftBarrierString floatValue];
-            [barriers addObject:[NSNumber numberWithFloat:leftB]];
-            
-            NSString * RightBarrierString = [inputBarriers objectAtIndex:2];
-            int RightB = [RightBarrierString floatValue];
-            [barriers addObject:[NSNumber numberWithFloat:RightB]];
+            Barrier * leftWorldBoundary = [Barrier barrierWithPosition:[leftBarrierString floatValue] withID:@"left_boundary"];
+            [leftWorldBoundary setEnabled:true];
+            if (Display_Barriers) [self addChild:[leftWorldBoundary getVisual] z:Z_BELOW_PLAYER];
             
             
-            [[GameData instance]._barriers addObjectsFromArray:barriers];
+            NSString * rightBarrierString = [inputBarriers objectAtIndex:2];
+            Barrier * rightWorldBoundary = [Barrier barrierWithPosition:[rightBarrierString floatValue] withID:@"left_boundary"];
+            [rightWorldBoundary setEnabled:true];
+            if (Display_Barriers) [self addChild:[rightWorldBoundary getVisual] z:Z_BELOW_PLAYER];
             
+        } else if ([s hasPrefix:@"//"]) {
+            // Disregard notes!
         } else {
             bool isAnimated = false;
             NSArray * tileArray = [s componentsSeparatedByString:@","];
@@ -181,51 +195,94 @@
         }
     }
     
-    //WorldObject * temp = [[WorldObject alloc] initWithTile:@"bath_13.png" atTilePosition:CGPointMake(3, 3)];
-    //[[GameData instance]._worldObjects addObject: temp];
-    //[self addChild:temp z:Z_BELOW_PLAYER];
+    if (spawnPtID==0) Log(@"Spawn point not provided in map load");
+    
+    if ([worldToLoad isEqualToString:@"bath"]) {
+        // Load barrier from map files
+        Barrier * bathDoorBarrier = [Barrier barrierWithPosition:110.0f withWidth:20.0f withID:@"shower_door_barrier"];
+        // Load barrier's status from persistent data
+        bool bathDoorBarrierStatus = true;
+        [bathDoorBarrier setEnabled:bathDoorBarrierStatus];
+        if (Display_Barriers) [self addChild:[bathDoorBarrier getVisual] z:Z_BELOW_PLAYER];
+        
+        
+        GameAction * doorUnlocked = [ActionDialogue actionWithDialogue:@"door now unlocked!"];
+        GameAction * unlockShowerDoor = [ActionBarrier actionWithID:@"shower_door_barrier" active:false];
+        Tappable * unlockShowerDoorTap = [Tappable tappableWithPosition:ccp(8,4) withActions:[NSArray arrayWithObjects:doorUnlocked, unlockShowerDoor, nil] withIdentity:4];
+        [self addChild:[unlockShowerDoorTap getGlow] z:Z_BELOW_PLAYER];
+        
+        
+        GameAction * doorToCat = [ActionLoadWorld actionWithWorldToLoad:@"catherine_bed" atSpawnPoint:1];
+        Tappable * doorToCatTap = [Tappable tappableWithPosition:ccp(11,2) withActions:[NSArray arrayWithObjects: doorToCat, nil] withSize:CGSizeMake(2,4) withIdentity:1 isEnabled:true];
+        [self addChild:[doorToCatTap getGlow] z:Z_BELOW_PLAYER];
+        
+        
+        GameAction * firstAction2 = [ActionDialogue actionWithDialogue:@"Enabled Mirror"];
+        Tappable * coatTap = [Tappable tappableWithPosition:ccp(2,2) withActions:[NSArray arrayWithObjects: firstAction2, nil] withSize:CGSizeMake(1,1) withIdentity:2 isEnabled:true];
+        [self addChild:[coatTap getGlow] z:Z_BELOW_PLAYER];
+        
+    } else {
+        Barrier * bathDoorBarrier = [Barrier barrierWithPosition:200.0f withWidth:60.0f withID:@"catherine_bed_door"];
+        // Load barrier's status from persistent data
+        bool bathDoorBarrierStatus = true;
+        [bathDoorBarrier setEnabled:bathDoorBarrierStatus];
+        if (Display_Barriers) [self addChild:[bathDoorBarrier getVisual] z:Z_BELOW_PLAYER];
+        
+        
+        
+        GameAction * doorToBath = [ActionLoadWorld actionWithWorldToLoad:@"bath" atSpawnPoint:2];
+        NSArray * doorToBathArray = [NSArray arrayWithObjects: doorToBath, nil];
+        Tappable * doorToBathTap = [Tappable tappableWithPosition:ccp(2,3) withActions:doorToBathArray withSize:CGSizeMake(1,1) withIdentity:3 isEnabled:true];
+        [self addChild:[doorToBathTap  getGlow] z:Z_BELOW_PLAYER];
+        
+        
+        
+        Tappable * mirrorTap = [Tappable tappableWithPosition:ccp(8,4) withActions: [NSArray arrayWithObjects:
+                                                                                     [ActionDialogue actionWithDialogue:@"Enabled Coat"], nil]
+                                                 withIdentity:1];
+        [self addChild:[mirrorTap getGlow] z:Z_BELOW_PLAYER];
+    }
+    
+    //GameAction * firstAction = [ActionShake actionWithIntensity:3 withDuration:180];
+    //[[ActionShake alloc] initWithIntensity:6 withDuration:180];
+    //GameAction * secondAction = [[ActionDialogue alloc] initWithDialogue:@"Enabled Coat"];
+    //GameAction * thirdAction = [[ActionTap alloc] initWithID:1 active:false];
+    //GameAction * fourthAction = [[ActionTap alloc] initWithID:2 active:true];
+    
+    //NSArray * mirrorActions = [NSArray arrayWithObjects: [ActionShake actionWithIntensity:3 withDuration:180], nil];//thirdAction, firstAction, secondAction, fourthAction,nil];
     
     
-    GameAction * firstAction = [[ActionDelay alloc] initWithDelay:60];
-    GameAction * secondAction = [[ActionDialogue alloc] initWithDialogue:@"Enabled Coat"];
-    GameAction * thirdAction = [[ActionTap alloc] initWithID:1 active:false];
-    GameAction * fourthAction = [[ActionTap alloc] initWithID:2 active:true];
-    
-    NSArray * mirrorActions = [NSArray arrayWithObjects: thirdAction, firstAction, secondAction, fourthAction,nil];
-    
-    
-    Tappable * mirrorTap = [[Tappable alloc] initWithPosition:ccp(8,4) withActions:mirrorActions withIdentity:1];
+    /*
+    Tappable * mirrorTap = [Tappable tappableWithPosition:ccp(8,4) withActions: [NSArray arrayWithObjects:
+                                              [ActionDialogue actionWithDialogue:@"Enabled Coat"],
+                                              [ActionTap actionWithID:1 active:false],
+                                              [ActionTap actionWithID:2 active:true], nil]
+                                             withIdentity:1];
     [self addChild:[mirrorTap getGlow] z:Z_BELOW_PLAYER];
-    [[GameData instance]._worldTappables addObject: mirrorTap];
     
     
+
     
     
-    GameAction * firstAction2 = [[ActionDialogue alloc] initWithDialogue:@"Enabled Mirror"];
-    GameAction * secondAction2 = [[ActionTap alloc] initWithID:2 active:false];
-    GameAction * thirdAction2 = [[ActionTap alloc] initWithID:1 active:true];
-    GameAction * fourthAction2 = [[ActionTrig alloc] initWithID:9 active:true];
+    GameAction * trigAct1 = [ActionTrig actionWithID:9 active:false];
+    GameAction * trigAct2 = [ActionDelay actionWithDelay:120];
+    GameAction * trigAct3 = [ActionDialogue actionWithDialogue:@"Triggered!"];
     
-    NSArray * coatActions = [NSArray arrayWithObjects: secondAction2, firstAction2, thirdAction2, fourthAction2, nil];
+    NSArray * bloodActions = [NSArray arrayWithObjects: trigAct1, trigAct2, trigAct3, nil];
     
-    Tappable * coatTap = [[Tappable alloc] initWithPosition:ccp(2,2) withActions:coatActions withIdentity:2 isEnabled:false];
-    [self addChild:[coatTap getGlow] z:Z_BELOW_PLAYER];
-    [[GameData instance]._worldTappables addObject:coatTap];
-    
-    
-    
-    GameAction * trigAct1 = [[ActionTrig alloc] initWithID:9 active:false];    
-    GameAction * trigAct2 = [[ActionDialogue alloc] initWithDialogue:@"Triggered!"];
-    
-    NSArray * bloodActions = [NSArray arrayWithObjects: trigAct1, trigAct2, nil];
-    
-    Triggerable * bloodTrig = [[Triggerable alloc] initWithPosition:ccp(5,2) withActions:bloodActions withIdentity:9];
+    Triggerable * bloodTrig = [Triggerable triggerableWithPosition:ccp(5,2) withActions:bloodActions withIdentity:9 isEnabled:false];
     [self addChild:[bloodTrig getGlow] z:Z_BELOW_PLAYER];
-    [[GameData instance]._worldTriggerables addObject:bloodTrig];
     
-    //Load each world object in
-    // For each world object, check for prior history
     
+    
+    GameAction * doorTrigAct = [ActionShake actionWithIntensity:5 withDuration:300];
+    
+    NSArray * doorActions = [NSArray arrayWithObjects: doorTrigAct, nil];
+    
+    Triggerable * doorTrig = [Triggerable triggerableWithPosition:ccp(10,2) withActions:doorActions withIdentity:10 isEnabled:false];
+    [self addChild:[doorTrig getGlow] z:Z_BELOW_PLAYER];
+    */
+
 }
 
 -(void) addAnimatedSprite:(NSArray *) animatedSpriteFrames atTileCoords:(CGPoint) pt inFrontOfPlayer:(bool) ifop {
@@ -287,11 +344,29 @@
 }
 
 -(void) tick:(ccTime) dt {
+    bool playerChangedPos;
     if (gd._playerHoldingLeft) {
-        [player attemptMoveInDirection:LEFT];
+        playerChangedPos = [player attemptMoveInDirection:LEFT];
     } else if (gd._playerHoldingRight) {
-        [player attemptMoveInDirection:RIGHT];
-    } else [player attemptNoMove];
+        playerChangedPos = [player attemptMoveInDirection:RIGHT];
+    } else {
+        playerChangedPos = [player attemptNoMove];
+    }
+    if(playerChangedPos) {
+        for (Tappable * t in [GameData instance]._worldTappables) {
+            float dist = [t getGlowPosition].x - [player getPosition].x;
+            if (dist < 0.0f) dist *= -1.0f;
+            
+            //Log(@"dist=%f",dist);
+            
+            if (dist > 200.0f) [t setOpacity:0];
+            else if (dist > 80.0f) {
+                dist -= 80.0f;
+                float newOpac = 200.0f - (200.0f * (dist/120.0f));
+                [t setOpacity:newOpac];
+            } else [t setOpacity:200];
+        }
+    }
     
     [self updateCamera];
 }
@@ -300,9 +375,29 @@
     CGPoint centerOfView = ccp(480.0/2,320.0/2);
     CGPoint viewPoint = ccpSub(centerOfView, self.position);
     
-    [GameData instance]._cameraPosition = self.position
-    = CGPointMake(240 - [player getPosition].x,self.position.y);
+    cameraCenter.x = 240 - [player getPosition].x;
     
+    if (shakeDuration) {
+        shakeDuration--;
+        
+        //self.scaleY = shakeDuration;
+        //self.skewX = shakeDuration;
+        //self.rotation = shakeDuration;
+        
+        CGPoint shakeVariance = CGPointMake(arc4random() % shakeIntensity * (shakeDuration/shakeTotalDuration),
+                                            arc4random() % shakeIntensity * (shakeDuration/shakeTotalDuration));
+        
+        //Log(@"Shake = (%f,%f)",shakeVariance.x,shakeVariance.y);
+        
+        [GameData instance]._cameraPosition = self.position
+        = ccpAdd(cameraCenter, shakeVariance);
+        
+        if (shakeDuration==0) {
+            [GameData instance]._actionRunning = false;
+        }
+    } else {
+        [GameData instance]._cameraPosition = self.position = cameraCenter;
+    }
     // Determine what tile the camera is at
     // If that is different than old camera tile pos, make one col visible and one not
     if (cameraFocusedOnTile != ((int)(viewPoint.x/40))) {
@@ -341,7 +436,14 @@
     //Log(@"camera position = %d",cameraTilePos);
 }
 
-- (void)registerWithTouchDispatcher {
+-(void) setScreenShakeIntensity:(int) inputIntensity withDuration:(int) inputDuration {
+    
+    Log(@"shake intensity: %d and duration: %d", inputIntensity, inputDuration);
+    shakeIntensity = inputIntensity;
+    shakeTotalDuration = shakeDuration = inputDuration;
+}
+
+-(void) registerWithTouchDispatcher {
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
 
@@ -358,7 +460,7 @@
 }
 
 -(void) dealloc {
-    Log(@"dealloc called");
+    //Log(@"dealloc called");
     for (int i = 0; i < WORLDTILES_X; i++) {
         for (int j = 0; j < WORLDTILES_Y; j++) {
             [(WorldTile *)worldTiles[i][j] release];
@@ -367,6 +469,7 @@
     
     [player release];
     [spawnPositions release];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrames];
     [super dealloc];
 }
 

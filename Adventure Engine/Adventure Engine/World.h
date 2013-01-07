@@ -18,6 +18,7 @@
 #import "Triggerable.h"
 #import "GameAction.h"
 #import "SpawnPosition.h"
+#import "Barrier.h"
 
 #define WORLDTILES_X 72
 #define WORLDTILES_Y 8
@@ -29,9 +30,14 @@
     int cameraFocusedOnTile;
     id worldTiles[WORLDTILES_X][WORLDTILES_Y];
     NSMutableArray * spawnPositions;
+    CGPoint cameraCenter;
     
-    CCSpriteBatchNode * foregroundBatchNode;
+    //CCSpriteBatchNode * foregroundBatchNode;
     CCSpriteBatchNode * backgroundBatchNode;
+    
+    int shakeIntensity;
+    int shakeDuration;
+    float shakeTotalDuration;
 }
 
 -(void) clearWorld;
@@ -44,5 +50,6 @@
 -(void) tick:(ccTime) dt;
 -(void) updateCamera;
 -(void) updateTileVisibility;
+-(void) setScreenShakeIntensity:(int) inputIntensity withDuration:(int) inputDuration;
 -(void) dealloc;
 @end

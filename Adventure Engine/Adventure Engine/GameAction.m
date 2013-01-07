@@ -19,6 +19,10 @@
 
 @implementation ActionDelay
 
++(id) actionWithDelay:(int)inputDelay {
+    return [[[ActionDelay alloc] initWithDelay:inputDelay] autorelease];
+}
+
 -(id) initWithDelay:(int) inputDelay {
     self = [super init];
     if(!self) return nil;
@@ -37,6 +41,10 @@
 
 
 @implementation ActionDialogue
+
++(id) actionWithDialogue:(NSString *)inputDialogue {
+    return [[[ActionDialogue alloc] initWithDialogue:inputDialogue] autorelease];
+}
 
 -(id) initWithDialogue:(NSString *) inputDialogue {
     self = [super init];
@@ -57,6 +65,10 @@
 
 @implementation ActionCutscene
 
++(id) actionWithCutscene:(NSString *)inputCutscene {
+    return [[[ActionCutscene alloc] initWithCutscene:inputCutscene] autorelease];
+}
+
 -(id) initWithCutscene:(NSString *) inputCutscene {
     self = [super init];
     if(!self) return nil;
@@ -75,11 +87,16 @@
 
 @implementation ActionLoadWorld
 
--(id) initWithWorldToLoad:(NSString *) inputWorld {
++(id) actionWithWorldToLoad:(NSString *) inputWorld atSpawnPoint:(int) inputSpawn {
+    return [[[ActionLoadWorld alloc] initWithWorldToLoad:inputWorld atSpawnPoint:inputSpawn] autorelease];
+}
+
+-(id) initWithWorldToLoad:(NSString *) inputWorld atSpawnPoint:(int) inputSpawn {
     self = [super init];
     if(!self) return nil;
     
     worldToLoad = inputWorld;
+    spawnPt = inputSpawn;
     type = ACTIONLOADWORLD;
     
     return self;
@@ -89,9 +106,17 @@
     return worldToLoad;
 }
 
+-(int) getSpawn {
+    return spawnPt;
+}
+
 @end
 
 @implementation ActionPickupItem
+
++(id) actionWithItem:(NSString *)inputItem {
+    return [[[ActionPickupItem alloc] initWithItem:inputItem] autorelease];
+}
 
 -(id) initWithItem:(NSString *) inputItem {
     self = [super init];
@@ -110,6 +135,10 @@
 @end
 
 @implementation ActionRemoveItem
+
++(id) actionWithItem:(NSString *)inputItem {
+    return [[[ActionRemoveItem alloc] initWithItem:inputItem] autorelease];
+}
 
 -(id) initWithItem:(NSString *) inputItem {
     self = [super init];
@@ -130,6 +159,10 @@
 
 @implementation ActionReadable
 
++(id) actionWithReadable:(NSString *)inputReadable {
+    return [[[ActionReadable alloc] initWithReadable:inputReadable] autorelease];
+}
+
 -(id) initWithReadable:(NSString *) inputReadable {
     self = [super init];
     if(!self) return nil;
@@ -149,6 +182,10 @@
 
 @implementation ActionEndGame
 
++(id) action {
+    return [[[ActionEndGame alloc] init] autorelease];
+}
+
 -(id) init {
     self = [super init];
     if(!self) return nil;
@@ -161,6 +198,10 @@
 @end
 
 @implementation ActionTap
+
++(id) actionWithID:(int)inputID active:(_Bool)inputStatus {
+    return [[[ActionTap alloc] initWithID:inputID active:inputStatus] autorelease];
+}
 
 -(id) initWithID:(int)inputID active:(bool)inputStatus {
     self = [super init];
@@ -185,6 +226,10 @@
 
 @implementation ActionTrig
 
++(id) actionWithID:(int)inputID active:(_Bool)inputStatus {
+    return [[[ActionTrig alloc] initWithID:inputID active:inputStatus] autorelease];
+}
+
 -(id) initWithID:(int)inputID active:(bool)inputStatus {
     self = [super init];
     if(!self) return nil;
@@ -198,6 +243,60 @@
 
 -(int) getID {
     return idOfTap;
+}
+
+-(bool) getStatus {
+    return status;
+}
+
+@end
+
+@implementation ActionShake
+
++(id) actionWithIntensity:(int) inputIntensity withDuration:(int) inputDuration {
+    return [[[ActionShake alloc] initWithIntensity:inputIntensity withDuration:inputDuration] autorelease];
+}
+
+-(id) initWithIntensity:(int) inputIntensity withDuration:(int) inputDuration {
+    self = [super init];
+    if (!self) return nil;
+    
+    intensity = inputIntensity;
+    duration = inputDuration;
+    type = ACTIONSHAKE;
+    
+    return self;
+}
+
+-(int) getIntensity {
+    return intensity;
+}
+
+-(int) getDuration {
+    return duration;
+}
+
+@end
+
+@implementation ActionBarrier
+
++(id) actionWithID:(NSString *) inputID active:(bool) inputStatus {
+    return [[[ActionBarrier alloc] initWithID:inputID active:inputStatus] autorelease];
+}
+
+-(id) initWithID:(NSString *) inputID active:(bool) inputStatus {
+    self = [super init];
+    if(!self) return nil;
+    
+    idOfBarrier = inputID;
+    status = inputStatus;
+    type = ACTIONBARRIER;
+    
+    return self;
+}
+
+-(NSString *) getID {
+    return idOfBarrier;
 }
 
 -(bool) getStatus {

@@ -10,7 +10,8 @@
 #import "GameData.h"
 #import "DebugFlags.h"
 #import "cocos2d.h"
-#import "Dialogue.h"
+//#import "Dialogue.h"
+#import "Barrier.h"
 
 @interface Logic : NSObject;
 

@@ -26,6 +26,7 @@
 @interface Engine : CCLayer
 {
     id hud;
+    id world;
     int actionDelay;
     NSMutableArray * actionsToRun;
     
@@ -40,6 +41,7 @@
 -(void) run:(GameAction *) ga;
 -(void) setMoveVisibility:(bool) v;
 -(void) newGame;
+-(void) endGame;
 -(void) dealloc;
 //-(void) loadMap:(NSString *) map;
 

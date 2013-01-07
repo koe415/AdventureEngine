@@ -10,6 +10,18 @@
 
 @implementation Triggerable
 
++(id) triggerableWithPosition:(CGPoint) inputPt withActions:(NSArray *) actions withIdentity:(int) inputIdent isEnabled:(bool) enabled {
+    id t = [[[Triggerable alloc] initWithPosition:inputPt withActions:actions withIdentity:inputIdent isEnabled:enabled] autorelease];
+    [[GameData instance]._worldTriggerables addObject:t];
+    return t;
+}
+
++(id) triggerableWithPosition:(CGPoint) inputPt withActions:(NSArray *) actions withIdentity:(int) inputIdent {
+    id t = [[[Triggerable alloc] initWithPosition:inputPt withActions:actions withIdentity:inputIdent isEnabled:true] autorelease];
+    [[GameData instance]._worldTriggerables addObject:t];
+    return t;
+}
+
 -(id) initWithPosition:(CGPoint) inputPt withActions:(NSArray *) actions withIdentity:(int) inputIdent isEnabled:(bool) enabled {
     self = [super init];
     if (!self) return nil;
@@ -19,7 +31,7 @@
     identity = inputIdent;
     isEnabled = enabled;
     
-    glow = [[CCSprite alloc] initWithFile:@"small_glow.png"];
+    glow = [[CCSprite alloc] initWithFile:@"small_glow_red.png"];
     [glow setPosition:ccp((inputPt.x-1) * 20 * 2 + 20, (inputPt.y-1) * 20 * 2 + 20)];
     glow.opacity = 150;
     glow.visible = isEnabled;
@@ -31,9 +43,6 @@
     return self;
 }
 
--(id) initWithPosition:(CGPoint) inputPt withActions:(NSArray *) actions withIdentity:(int) inputIdent {
-    return [self initWithPosition:inputPt withActions:actions withIdentity:inputIdent isEnabled:true];
-}
 -(bool) compareTilePosition:(CGPoint) tilePt {
     //Log(@"Comparing input(%f,%f) with trig pos(%f,%f)",tilePt.x,tilePt.y,tilePosition.x,tilePosition.y);
     
@@ -68,6 +77,13 @@
 
 -(CCSprite *) getGlow {
     return glow;
+}
+
+-(void) dealloc {
+    [gameActionsToRun release];
+    [glow removeFromParentAndCleanup:true];
+    [glow release];
+    [super dealloc];
 }
 
 @end

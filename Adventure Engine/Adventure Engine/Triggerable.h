@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "DebugFlags.h"
+#import "GameData.h"
 
 @interface Triggerable : NSObject {
     int identity;
@@ -19,8 +20,10 @@
     CCSprite * glow;
 }
 
++(id) triggerableWithPosition:(CGPoint) inputPt withActions:(NSArray *) actions withIdentity:(int) inputIdent isEnabled:(bool) enabled;
++(id) triggerableWithPosition:(CGPoint) inputPt withActions:(NSArray *) actions withIdentity:(int) inputIdent;
+
 -(id) initWithPosition:(CGPoint) pt withActions:(NSArray *) actions withIdentity:(int) inputIdent isEnabled:(bool) enabled;
--(id) initWithPosition:(CGPoint) pt withActions:(NSArray *) actions withIdentity:(int) inputIdent;
 -(bool) compareTilePosition:(CGPoint) tilePt;
 -(NSArray *) getActions;
 -(int) getIdentity;

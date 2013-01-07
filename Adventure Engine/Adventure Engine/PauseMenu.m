@@ -7,7 +7,7 @@
 //
 
 #import "PauseMenu.h"
-
+#import "Engine.h"
 
 @implementation PauseMenu
 
@@ -25,7 +25,7 @@
 -(id) init
 {
     if( (self=[super init]) ) {
-        mainTitle = [[CCLabelTTF alloc] initWithString:@"Paused" fontName:@"Helvetica-Bold" fontSize:20];
+        mainTitle = [CCLabelTTF labelWithString:@"Paused" fontName:@"Helvetica-Bold" fontSize:20];
         [mainTitle setHorizontalAlignment:kCCTextAlignmentCenter];
         [mainTitle setColor:ccc3(255, 255, 255)];
         mainTitle.position = CGPointMake(240, 300);
@@ -45,14 +45,16 @@
 }
 
 // Potential issue : if there is more than just pause and engine scenes running
-- (void)onExit:(id)sender
+-(void)onExit:(id)sender
 {
     Log(@"Exit Clicked");
+    [GameData instance]._endingGame = true;
     [[CCDirector sharedDirector] popScene];
-    [[CCDirector sharedDirector] replaceScene:[MainMenu scene]];
+    //[[CCDirector sharedDirector] replaceScene:[MainMenu scene]];
+    //[(Engine *) [[CCDirector sharedDirector] runningScene] endGame];
 }
 
-- (void)onCancel:(id)sender
+-(void)onCancel:(id)sender
 {
     Log(@"Cancel Clicked");
     [[CCDirector sharedDirector] popScene];

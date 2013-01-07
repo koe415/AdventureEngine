@@ -14,14 +14,7 @@ enum Direction {
     RIGHT
 };
 typedef enum Direction Direction;
-/*
-struct Spawn {
-    Direction d;
-    int x;
-    int y;
-};
-typedef struct Spawn Spawn;
-*/
+
 enum GameActionTypes {
     ACTIONDELAY,
     ACTIONDIALOGUE,
@@ -32,7 +25,9 @@ enum GameActionTypes {
     ACTIONREADABLE,
     ACTIONENDGAME,
     ACTIONTAP,
-    ACTIONTRIG
+    ACTIONTRIG,
+    ACTIONSHAKE,
+    ACTIONBARRIER
 };
 
 #endif

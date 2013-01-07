@@ -144,7 +144,9 @@ static int MovePanelOpacity = 30;
 }
 
 -(void) dealloc {
-    Log(@"dealloc");
+    [pauseButton release];
+    [move_panel_left release];
+    [move_panel_right release];
     [super dealloc];
 }
 

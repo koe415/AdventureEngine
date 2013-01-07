@@ -26,11 +26,11 @@
 
 -(id) init;
 -(id) initAtPosition:(CGPoint) pos facing:(Direction) d;
--(void) attemptMoveInDirection:(Direction) d;
--(void) attemptNoMove;
--(CGPoint) getPosition;
--(void) moveToPosition:(CGPoint)position;
+-(bool) attemptMoveInDirection:(Direction) d;
+-(bool) attemptNoMove;
+-(bool) moveToPosition:(CGPoint)position;
 -(void) setPositionManually:(CGPoint)position; // Overrides any barrier
+-(CGPoint) getPosition;
 -(void) setFacing:(Direction) d;
 
 @end

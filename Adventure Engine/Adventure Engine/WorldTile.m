@@ -28,10 +28,6 @@
     [sprites removeAllObjects];
 }
 
--(void) update {
-    // May be depreciated due to lack of need to update animated sprites manually
-}
-
 -(void) setVisible:(bool) v {
     visible = v;
     
@@ -45,7 +41,6 @@
 }
 
 -(void) dealloc {
-    Log(@"dealloc called");
     for (CCSprite * s in sprites) {
         [s removeFromParentAndCleanup:true];
     }

@@ -11,15 +11,13 @@
 #import "DebugFlags.h"
 
 @interface WorldObject : CCSprite {
-    bool enabled;
-    CGPoint tileCoord;
+    NSString * identy;
+    bool loopsToFirst;
+    NSArray * animations;
 }
 
--(id) initWithTile:(NSString *) tileName atTilePosition:(CGPoint) tilePt isEnabled:(bool) inputEnabled;
--(id) initWithTile:(NSString *) tileName atTilePosition:(CGPoint) tilePt;
--(bool) isEnabled;
--(CGPoint) getTileCoord;
--(bool) compareTilePosition:(CGPoint) inputPt;
--(void) isTapped;
+-(id) initWithID:(NSString *) inputIdentity loopsFromStart:(bool) inputLoops;
+-(void) addAnimation:(NSArray *) inputAnimation;
+-(void) playAnimation:(int) animNum stayOut:(bool) inputStayOut;
 
 @end

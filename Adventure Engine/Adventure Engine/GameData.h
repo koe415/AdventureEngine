@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "cocos2d.h"
+#import "DebugFlags.h"
 
 @interface GameData : NSObject
 
@@ -21,8 +23,12 @@
 @property(nonatomic, retain) NSMutableArray * _worldTriggerables;
 @property(nonatomic) bool _actionDelay;
 @property(nonatomic) bool _actionRunning;
+@property(nonatomic) bool _endingGame;
+
+@property(nonatomic) bool _dialogueInstant;
 
 +(GameData *) instance;
 -(id) init;
+-(void) clear;
 
 @end

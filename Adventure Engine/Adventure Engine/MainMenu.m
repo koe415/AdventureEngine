@@ -56,7 +56,6 @@
     if (Display_Debug_Text) Log(@"New Game Clicked");
     
     [[CCDirector sharedDirector] replaceScene:[Engine newGameScene]];
-    //[[CCDirector sharedDirector] replaceScene:[MemoryTest node]];
 }
 
 @end

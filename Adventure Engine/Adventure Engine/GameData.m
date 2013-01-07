@@ -15,15 +15,11 @@ static GameData *_instance = nil;
 +(GameData *) instance {
     if (_instance) return _instance;
     
-    @synchronized([GameData class]) {
         if(!_instance) {
             _instance = [[self alloc] init];
         }
         
         return _instance;
-    }
-    
-    return nil;
 }
 
 -(id) init {
@@ -32,9 +28,22 @@ static GameData *_instance = nil;
         self._worldTriggerables = [[NSMutableArray alloc] init];
         self._barriers = [[NSMutableArray alloc] init];
         //self._worldObjects = [[NSMutableArray alloc] init];
+        self._dialogueInstant = true;
     }
     
     return self;
+}
+
+-(void) clear {
+    //Log(@"Cleared");
+    self._playerHoldingLeft = false;
+    self._playerHoldingRight = false;
+    self._actionDelay = false;
+    self._actionRunning = false;
+    
+    [self._worldTappables removeAllObjects];
+    [self._worldTriggerables removeAllObjects];
+    [self._barriers removeAllObjects];
 }
 
 @synthesize _playerPosition, _cameraPosition;
@@ -46,5 +55,7 @@ static GameData *_instance = nil;
 @synthesize _worldTriggerables;
 @synthesize _actionDelay;
 @synthesize _actionRunning;
+@synthesize _endingGame;
+@synthesize _dialogueInstant;
 
 @end

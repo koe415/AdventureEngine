@@ -19,7 +19,6 @@
 -(void) removeAllSprites;
 -(void) setVisible:(bool) v;
 -(bool) isVisible;
--(void) update;
 -(void) dealloc;
 
 @end
