@@ -13,7 +13,7 @@
 #define Display_FPS true
 #define Display_Debug_Text true
 //#define Display_Dev_Objects true
-#define Display_Barriers true
+#define Display_Barriers false
 
 // Format: ClassName(LineNumber)| Debug Text
 #if Display_Debug_Text

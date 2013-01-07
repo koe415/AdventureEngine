@@ -18,7 +18,7 @@
 #import "HUD.h"
 #import "World.h"
 #import "Dialogue.h"
-//#import "WorldObject.h"
+#import "WorldObject.h"
 #import "Tappable.h"
 #import "Triggerable.h"
 #import "GameAction.h"

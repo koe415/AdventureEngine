@@ -178,6 +178,22 @@
             }
             
             break;
+        case ACTIONOBJECTVISIBILITY:
+            for (WorldObject * wo in [GameData instance]._worldObjects) {
+                if ([wo compareWith:[(ActionObjectVisibility *) ga getID]]) {
+                    [wo setVisible:[(ActionObjectVisibility *) ga getStatus]];
+                }
+            }
+            
+            break;
+        case ACTIONOBJECTANIMATION:
+            for (WorldObject * wo in [GameData instance]._worldObjects) {
+                if ([wo compareWith:[(ActionObjectAnimation *) ga getID]]) {
+                    [wo playAnimation:[(ActionObjectAnimation *) ga getAnimation]];
+                }
+            }
+            
+            break;
         default:
             Log(@"Tried to run invalid game action type (%d)",actionType);
             break;

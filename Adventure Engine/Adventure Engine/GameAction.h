@@ -147,3 +147,25 @@
 -(NSString *) getID;
 -(bool) getStatus;
 @end
+
+@interface ActionObjectVisibility : GameAction {
+    NSString * idOfObject;
+    bool status;
+}
+
++(id) actionWithID:(NSString *) inputID active:(bool) inputStatus;
+-(id) initWithID:(NSString *) inputID active:(bool) inputStatus;
+-(NSString *) getID;
+-(bool) getStatus;
+@end
+
+@interface ActionObjectAnimation : GameAction {
+    NSString * idOfObject;
+    int animationToRun;
+}
+
++(id) actionWithID:(NSString *) inputID running:(int) inputAnim;
+-(id) initWithID:(NSString *) inputID running:(int) inputAnim;
+-(NSString *) getID;
+-(int) getAnimation;
+@end

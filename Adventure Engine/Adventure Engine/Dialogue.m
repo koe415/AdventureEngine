@@ -24,10 +24,7 @@
     self.isTouchEnabled = true;
     
     noteContent = [[NSArray alloc] initWithObjects:@"I've seen better days.",
-                   @"Wait..",
-                   @"Where'd that gash on my forehead come from?",
-                   @"This is a really long string. I wonder how well my dialogue layer will handle under this much freaking pressure.",
-                   @"Some more nonsense.", nil];
+                   @"Wait..", nil];
     currentDialogue = 0;
     
     

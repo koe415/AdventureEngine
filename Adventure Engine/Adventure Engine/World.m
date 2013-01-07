@@ -53,8 +53,10 @@
     
     [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrames];
     [backgroundBatchNode removeFromParentAndCleanup:true];
+    [worldObjectsBatchNode removeFromParentAndCleanup:true];
     
     [spawnPositions removeAllObjects];
+    [[GameData instance]._worldObjects removeAllObjects];
     [[GameData instance]._worldTappables removeAllObjects];
     [[GameData instance]._worldTriggerables removeAllObjects];
     [[GameData instance]._barriers removeAllObjects];
@@ -69,9 +71,74 @@
 // Spawn Points increment from 1 and up
 -(void) loadWorld:(NSString *) worldToLoad withSpawn:(int) spawnPt {
     [self clearWorld];
+    [self loadTiles: worldToLoad withSpawn: spawnPt];
     
-    //Log(@"loading new world:'%@'",worldToLoad);
+    [self loadWorldObjects: worldToLoad];
+    // load barriers
+    // load tappables/triggerables
     
+    if ([worldToLoad isEqualToString:@"bath"]) {
+        // Load barrier from map files
+        Barrier * bathDoorBarrier = [Barrier barrierWithPosition:110.0f withWidth:20.0f withID:@"shower_door_barrier"];
+        // Load barrier's status from persistent data
+        bool bathDoorBarrierStatus = true;
+        [bathDoorBarrier setEnabled:bathDoorBarrierStatus];
+        if (Display_Barriers) [self addChild:[bathDoorBarrier getVisual] z:Z_BELOW_PLAYER];
+        
+        
+        GameAction * doorUnlocked = [ActionDialogue actionWithDialogue:@"door now unlocked!"];
+        GameAction * unlockShowerDoor = [ActionBarrier actionWithID:@"shower_door_barrier" active:false];
+        GameAction * unlockShowerDoorAnimation = [ActionObjectAnimation actionWithID:@"shower_door" running:2];
+        GameAction * lockTap1 = [ActionTap actionWithID:4 active:false];
+        GameAction * unlockOtherTap1 = [ActionTap actionWithID:5 active:true];
+        Tappable * unlockShowerDoorTap = [Tappable tappableWithPosition:ccp(8,4) withActions:[NSArray arrayWithObjects:doorUnlocked, unlockShowerDoor,unlockShowerDoorAnimation,lockTap1,unlockOtherTap1, nil] withIdentity:4];
+        [self addChild:[unlockShowerDoorTap getGlow] z:Z_BELOW_PLAYER];
+        
+        GameAction * doorLocked = [ActionDialogue actionWithDialogue:@"door now locked!"];
+        GameAction * lockShowerDoor = [ActionBarrier actionWithID:@"shower_door_barrier" active:true];
+        GameAction * lockShowerDoorAnimation = [ActionObjectAnimation actionWithID:@"shower_door" running:3];
+        GameAction * lockTap2 = [ActionTap actionWithID:5 active:false];
+        GameAction * unlockOtherTap2 = [ActionTap actionWithID:4 active:true];
+        Tappable * lockShowerDoorTap = [Tappable tappableWithPosition:ccp(8,4) withActions:[NSArray arrayWithObjects:doorLocked, lockShowerDoor,lockShowerDoorAnimation,lockTap2,unlockOtherTap2, nil]  withSize:CGSizeMake(1,1) withIdentity:5 isEnabled:false];
+        [self addChild:[lockShowerDoorTap getGlow] z:Z_BELOW_PLAYER];
+        
+        
+        GameAction * doorToCat = [ActionLoadWorld actionWithWorldToLoad:@"catherine_bed" atSpawnPoint:1];
+        Tappable * doorToCatTap = [Tappable tappableWithPosition:ccp(11,2) withActions:[NSArray arrayWithObjects: doorToCat, nil] withSize:CGSizeMake(2,4) withIdentity:1 isEnabled:true];
+        [self addChild:[doorToCatTap getGlow] z:Z_BELOW_PLAYER];
+        
+        
+        GameAction * firstAction2 = [ActionDialogue actionWithDialogue:@"Enabled Mirror"];
+        Tappable * coatTap = [Tappable tappableWithPosition:ccp(2,2) withActions:[NSArray arrayWithObjects: firstAction2, nil] withSize:CGSizeMake(1,1) withIdentity:2 isEnabled:true];
+        [self addChild:[coatTap getGlow] z:Z_BELOW_PLAYER];
+        
+        
+        
+    } else {
+        Barrier * bathDoorBarrier = [Barrier barrierWithPosition:200.0f withWidth:60.0f withID:@"catherine_bed_door"];
+        // Load barrier's status from persistent data
+        bool bathDoorBarrierStatus = true;
+        [bathDoorBarrier setEnabled:bathDoorBarrierStatus];
+        if (Display_Barriers) [self addChild:[bathDoorBarrier getVisual] z:Z_BELOW_PLAYER];
+        
+        
+        
+        GameAction * doorToBath = [ActionLoadWorld actionWithWorldToLoad:@"bath" atSpawnPoint:2];
+        NSArray * doorToBathArray = [NSArray arrayWithObjects: doorToBath, nil];
+        Tappable * doorToBathTap = [Tappable tappableWithPosition:ccp(2,3) withActions:doorToBathArray withSize:CGSizeMake(1,1) withIdentity:3 isEnabled:true];
+        [self addChild:[doorToBathTap  getGlow] z:Z_BELOW_PLAYER];
+        
+        
+        
+        Tappable * mirrorTap = [Tappable tappableWithPosition:ccp(8,4) withActions: [NSArray arrayWithObjects:
+                                                                                     [ActionDialogue actionWithDialogue:@"Enabled Coat"], nil]
+                                                 withIdentity:1];
+        [self addChild:[mirrorTap getGlow] z:Z_BELOW_PLAYER];
+    }
+}
+
+// Sets up both animated and static tiles (not worlds objects)
+-(void) loadTiles:(NSString *) worldToLoad withSpawn:(int) spawnPt {
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:
      [NSString stringWithFormat:@"%@.plist",worldToLoad]];
     
@@ -80,7 +147,6 @@
                            [NSString stringWithFormat:@"%@.png",worldToLoad]];
     
     [self addChild:backgroundBatchNode z:Z_BELOW_PLAYER];
-    
     
     NSError * error;
     
@@ -197,92 +263,61 @@
     
     if (spawnPtID==0) Log(@"Spawn point not provided in map load");
     
-    if ([worldToLoad isEqualToString:@"bath"]) {
-        // Load barrier from map files
-        Barrier * bathDoorBarrier = [Barrier barrierWithPosition:110.0f withWidth:20.0f withID:@"shower_door_barrier"];
-        // Load barrier's status from persistent data
-        bool bathDoorBarrierStatus = true;
-        [bathDoorBarrier setEnabled:bathDoorBarrierStatus];
-        if (Display_Barriers) [self addChild:[bathDoorBarrier getVisual] z:Z_BELOW_PLAYER];
-        
-        
-        GameAction * doorUnlocked = [ActionDialogue actionWithDialogue:@"door now unlocked!"];
-        GameAction * unlockShowerDoor = [ActionBarrier actionWithID:@"shower_door_barrier" active:false];
-        Tappable * unlockShowerDoorTap = [Tappable tappableWithPosition:ccp(8,4) withActions:[NSArray arrayWithObjects:doorUnlocked, unlockShowerDoor, nil] withIdentity:4];
-        [self addChild:[unlockShowerDoorTap getGlow] z:Z_BELOW_PLAYER];
-        
-        
-        GameAction * doorToCat = [ActionLoadWorld actionWithWorldToLoad:@"catherine_bed" atSpawnPoint:1];
-        Tappable * doorToCatTap = [Tappable tappableWithPosition:ccp(11,2) withActions:[NSArray arrayWithObjects: doorToCat, nil] withSize:CGSizeMake(2,4) withIdentity:1 isEnabled:true];
-        [self addChild:[doorToCatTap getGlow] z:Z_BELOW_PLAYER];
-        
-        
-        GameAction * firstAction2 = [ActionDialogue actionWithDialogue:@"Enabled Mirror"];
-        Tappable * coatTap = [Tappable tappableWithPosition:ccp(2,2) withActions:[NSArray arrayWithObjects: firstAction2, nil] withSize:CGSizeMake(1,1) withIdentity:2 isEnabled:true];
-        [self addChild:[coatTap getGlow] z:Z_BELOW_PLAYER];
-        
-    } else {
-        Barrier * bathDoorBarrier = [Barrier barrierWithPosition:200.0f withWidth:60.0f withID:@"catherine_bed_door"];
-        // Load barrier's status from persistent data
-        bool bathDoorBarrierStatus = true;
-        [bathDoorBarrier setEnabled:bathDoorBarrierStatus];
-        if (Display_Barriers) [self addChild:[bathDoorBarrier getVisual] z:Z_BELOW_PLAYER];
-        
-        
-        
-        GameAction * doorToBath = [ActionLoadWorld actionWithWorldToLoad:@"bath" atSpawnPoint:2];
-        NSArray * doorToBathArray = [NSArray arrayWithObjects: doorToBath, nil];
-        Tappable * doorToBathTap = [Tappable tappableWithPosition:ccp(2,3) withActions:doorToBathArray withSize:CGSizeMake(1,1) withIdentity:3 isEnabled:true];
-        [self addChild:[doorToBathTap  getGlow] z:Z_BELOW_PLAYER];
-        
-        
-        
-        Tappable * mirrorTap = [Tappable tappableWithPosition:ccp(8,4) withActions: [NSArray arrayWithObjects:
-                                                                                     [ActionDialogue actionWithDialogue:@"Enabled Coat"], nil]
-                                                 withIdentity:1];
-        [self addChild:[mirrorTap getGlow] z:Z_BELOW_PLAYER];
-    }
-    
-    //GameAction * firstAction = [ActionShake actionWithIntensity:3 withDuration:180];
-    //[[ActionShake alloc] initWithIntensity:6 withDuration:180];
-    //GameAction * secondAction = [[ActionDialogue alloc] initWithDialogue:@"Enabled Coat"];
-    //GameAction * thirdAction = [[ActionTap alloc] initWithID:1 active:false];
-    //GameAction * fourthAction = [[ActionTap alloc] initWithID:2 active:true];
-    
-    //NSArray * mirrorActions = [NSArray arrayWithObjects: [ActionShake actionWithIntensity:3 withDuration:180], nil];//thirdAction, firstAction, secondAction, fourthAction,nil];
-    
-    
-    /*
-    Tappable * mirrorTap = [Tappable tappableWithPosition:ccp(8,4) withActions: [NSArray arrayWithObjects:
-                                              [ActionDialogue actionWithDialogue:@"Enabled Coat"],
-                                              [ActionTap actionWithID:1 active:false],
-                                              [ActionTap actionWithID:2 active:true], nil]
-                                             withIdentity:1];
-    [self addChild:[mirrorTap getGlow] z:Z_BELOW_PLAYER];
-    
-    
+}
 
+-(void) loadWorldObjects:(NSString *) worldToLoad {
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:
+     [NSString stringWithFormat:@"%@_objects.plist",worldToLoad]];
     
+    worldObjectsBatchNode = [CCSpriteBatchNode 
+                             batchNodeWithFile:
+                             [NSString stringWithFormat:@"%@_objects.png",worldToLoad]];
     
-    GameAction * trigAct1 = [ActionTrig actionWithID:9 active:false];
-    GameAction * trigAct2 = [ActionDelay actionWithDelay:120];
-    GameAction * trigAct3 = [ActionDialogue actionWithDialogue:@"Triggered!"];
+    [self addChild:worldObjectsBatchNode z:Z_BELOW_PLAYER];
     
-    NSArray * bloodActions = [NSArray arrayWithObjects: trigAct1, trigAct2, trigAct3, nil];
+    NSError * error;
     
-    Triggerable * bloodTrig = [Triggerable triggerableWithPosition:ccp(5,2) withActions:bloodActions withIdentity:9 isEnabled:false];
-    [self addChild:[bloodTrig getGlow] z:Z_BELOW_PLAYER];
+    NSString * objectsTextFile = [NSString stringWithFormat:@"%@_objects",worldToLoad];
     
+    NSString * contents = [NSString stringWithContentsOfFile:
+                           [[NSBundle mainBundle] pathForResource:objectsTextFile ofType:@"txt"]
+                                                    encoding:NSUTF8StringEncoding
+                                                       error:&error];
     
+    NSArray * contentsArray = [contents componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     
-    GameAction * doorTrigAct = [ActionShake actionWithIntensity:5 withDuration:300];
-    
-    NSArray * doorActions = [NSArray arrayWithObjects: doorTrigAct, nil];
-    
-    Triggerable * doorTrig = [Triggerable triggerableWithPosition:ccp(10,2) withActions:doorActions withIdentity:10 isEnabled:false];
-    [self addChild:[doorTrig getGlow] z:Z_BELOW_PLAYER];
-    */
-
+    for (NSString * s in contentsArray) {
+        if ([s hasPrefix:@"object"]) {
+            Log(@"here");
+            NSArray * objectComponents = [s componentsSeparatedByString:@","];
+            
+            NSString * objectName = [objectComponents objectAtIndex:1];
+            int objectX = [[objectComponents objectAtIndex:2] intValue];
+            int objectY = [[objectComponents objectAtIndex:3] intValue];
+            
+            WorldObject * object = [WorldObject objectWithPos:ccp(objectX,objectY) withID:objectName];
+            
+            for (int i = 4; i < [objectComponents count]; i++) {
+                NSArray * framesInAnimation = [[objectComponents objectAtIndex:i] componentsSeparatedByString:@"-"];
+                
+                NSMutableArray * animFrames = [[NSMutableArray alloc] init];
+                
+                for (NSString * animatedFrame in framesInAnimation) {
+                    NSString * currentFrameName = [NSString stringWithFormat:@"%@_objects_%@.png",worldToLoad,animatedFrame];
+                    CCSpriteFrame * frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:currentFrameName];
+                    [animFrames addObject:frame];
+                }
+                
+                CCAnimation *animation = [CCAnimation animationWithSpriteFrames:animFrames delay:DEFAULTANIMATIONDELAY];
+                animation.restoreOriginalFrame = false;
+                [object addAnimation:animation];
+                
+            }
+            
+            [worldObjectsBatchNode addChild:object z:Z_BELOW_PLAYER];
+            
+        }
+    }    
 }
 
 -(void) addAnimatedSprite:(NSArray *) animatedSpriteFrames atTileCoords:(CGPoint) pt inFrontOfPlayer:(bool) ifop {
@@ -306,6 +341,9 @@
     
     CCAnimation *animation = [CCAnimation animationWithSpriteFrames:animFrames delay:d];
     [sprite runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithAnimation:animation] ]];
+    
+    //animation.restoreOriginalFrame = true;
+    //[sprite runAction:[CCAnimate actionWithAnimation:animation]];
     
     
     [backgroundBatchNode addChild:sprite];

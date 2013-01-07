@@ -14,7 +14,7 @@
 
 @property(nonatomic) float _playerPosition;
 //@property(nonatomic, retain) NSMutableArray * _playerInventory;
-//@property(nonatomic, retain) NSMutableArray * _worldObjects;
+@property(nonatomic, retain) NSMutableArray * _worldObjects;
 @property(nonatomic) CGPoint _cameraPosition;
 
 @property(nonatomic) bool _playerHoldingLeft,_playerHoldingRight;

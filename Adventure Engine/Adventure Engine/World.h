@@ -12,8 +12,7 @@
 #import "DebugFlags.h"
 #import "Player.h"
 #import "WorldTile.h"
-//#import "Engine.h"
-//#import "WorldObject.h"
+#import "WorldObject.h"
 #import "Tappable.h"
 #import "Triggerable.h"
 #import "GameAction.h"
@@ -34,18 +33,19 @@
     
     //CCSpriteBatchNode * foregroundBatchNode;
     CCSpriteBatchNode * backgroundBatchNode;
-    
+    CCSpriteBatchNode * worldObjectsBatchNode;
     int shakeIntensity;
     int shakeDuration;
     float shakeTotalDuration;
 }
 
 -(void) clearWorld;
-//-(void) setupWorld:(NSString *) worldToLoad;
 -(void) loadWorld:(NSString *) worldToLoad;
 -(void) loadWorld:(NSString *) worldToLoad withSpawn:(int) spawnPt;
--(void) addAnimatedSprite:(NSArray *) stringArray atTileCoords:(CGPoint) pt inFrontOfPlayer:(bool) ifop;
+-(void) loadTiles:(NSString *) worldToLoad withSpawn:(int) spawnPt;
+-(void) loadWorldObjects:(NSString *) worldToLoad;
 -(void) addSprite:(NSString *) s atTileCoords:(CGPoint) pt inFrontOfPlayer:(bool) ifop;
+-(void) addAnimatedSprite:(NSArray *) stringArray atTileCoords:(CGPoint) pt inFrontOfPlayer:(bool) ifop;
 -(void) addAnimatedSprite:(NSArray *) spriteFrames atTileCoords:(CGPoint) pt inFrontOfPlayer:(bool) ifop delay:(float) d;
 -(void) tick:(ccTime) dt;
 -(void) updateCamera;

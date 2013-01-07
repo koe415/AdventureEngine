@@ -304,3 +304,59 @@
 }
 
 @end
+
+
+@implementation ActionObjectVisibility 
+
++(id) actionWithID:(NSString *) inputID active:(bool) inputStatus {
+    return [[[ActionObjectVisibility alloc] initWithID:inputID active:inputStatus] autorelease];
+}
+
+-(id) initWithID:(NSString *) inputID active:(bool) inputStatus {
+    self = [super init];
+    if (!self) return nil;
+    
+    idOfObject = inputID;
+    status = inputStatus;
+    type = ACTIONOBJECTVISIBILITY;
+    
+    return self;
+}
+
+-(NSString *) getID {
+    return idOfObject;
+}
+
+-(bool) getStatus {
+    return status;
+}
+
+@end
+
+
+@implementation ActionObjectAnimation
+
++(id) actionWithID:(NSString *) inputID running:(int) inputAnim {
+    return [[[ActionObjectAnimation alloc] initWithID:inputID running:inputAnim] autorelease];
+}
+
+-(id) initWithID:(NSString *) inputID running:(int) inputAnim {
+    self = [super init];
+    if (!self) return nil;
+    
+    idOfObject = inputID;
+    animationToRun = inputAnim;
+    type = ACTIONOBJECTANIMATION;
+    
+    return self;
+}
+
+-(NSString *) getID {
+    return idOfObject;
+}
+
+-(int) getAnimation {
+    return animationToRun;
+}
+
+@end

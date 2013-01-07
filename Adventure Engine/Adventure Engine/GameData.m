@@ -27,7 +27,7 @@ static GameData *_instance = nil;
         self._worldTappables = [[NSMutableArray alloc] init];
         self._worldTriggerables = [[NSMutableArray alloc] init];
         self._barriers = [[NSMutableArray alloc] init];
-        //self._worldObjects = [[NSMutableArray alloc] init];
+        self._worldObjects = [[NSMutableArray alloc] init];
         self._dialogueInstant = true;
     }
     
@@ -50,7 +50,7 @@ static GameData *_instance = nil;
 //@synthesize _playerInventory;
 @synthesize _playerHoldingLeft, _playerHoldingRight;
 @synthesize _barriers;
-//@synthesize _worldObjects;
+@synthesize _worldObjects;
 @synthesize _worldTappables;
 @synthesize _worldTriggerables;
 @synthesize _actionDelay;

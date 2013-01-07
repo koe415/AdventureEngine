@@ -8,16 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "GameData.h"
 #import "DebugFlags.h"
 
 @interface WorldObject : CCSprite {
-    NSString * identy;
-    bool loopsToFirst;
-    NSArray * animations;
+    NSString * identity;
+    NSMutableArray * animations; // CCanimations
 }
 
--(id) initWithID:(NSString *) inputIdentity loopsFromStart:(bool) inputLoops;
--(void) addAnimation:(NSArray *) inputAnimation;
--(void) playAnimation:(int) animNum stayOut:(bool) inputStayOut;
++(id) objectWithPos:(CGPoint) inputPos withID:(NSString *) inputIdentity;
+-(id) initWithPos:(CGPoint) inputPos withID:(NSString *) inputIdentity;
+-(void) addAnimation:(CCAnimation *) inputAnimation;
+-(void) playAnimation:(int) animNum;
+-(bool) compareWith:(NSString *) inputString;
 
 @end
