@@ -169,3 +169,14 @@
 -(NSString *) getID;
 -(int) getAnimation;
 @end
+
+@interface ActionHistory : GameAction {
+    NSString * idOfHistory;
+    bool newStatus;
+}
+
++(id) actionWithID:(NSString *) inputID newStatus:(bool) inputStatus;
+-(id) initWithID:(NSString *) inputID newStatus:(bool) inputStatus;
+-(NSString *) getID;
+-(bool) getNewStatus;
+@end

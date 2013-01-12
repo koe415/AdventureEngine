@@ -11,7 +11,6 @@
 
 // Import.....EVERYTHING!
 //#import "Cutscene.h"
-//#import "Readable.h"
 #import "GameData.h"
 #import "Logic.h"
 #import "DebugFlags.h"
@@ -22,6 +21,8 @@
 #import "Tappable.h"
 #import "Triggerable.h"
 #import "GameAction.h"
+#import "WorldHistory.h"
+#import "Readable.h"
 
 @interface Engine : CCLayer
 {

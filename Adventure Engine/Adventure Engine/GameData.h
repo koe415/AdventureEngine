@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "cocos2d.h"
+//#import "cocos2d.h"
 #import "DebugFlags.h"
+#import "WorldHistory.h"
 
 @interface GameData : NSObject
 
 @property(nonatomic) float _playerPosition;
-//@property(nonatomic, retain) NSMutableArray * _playerInventory;
 @property(nonatomic, retain) NSMutableArray * _worldObjects;
 @property(nonatomic) CGPoint _cameraPosition;
 
@@ -26,6 +26,7 @@
 @property(nonatomic) bool _endingGame;
 
 @property(nonatomic) bool _dialogueInstant;
+@property(nonatomic, retain) WorldHistory * _worldHistory;
 
 +(GameData *) instance;
 -(id) init;

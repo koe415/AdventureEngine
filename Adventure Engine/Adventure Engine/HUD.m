@@ -80,6 +80,7 @@ static int MovePanelOpacity = 30;
     gd._playerHoldingRight = false;
 }
 
+// Change to check only for move panel visibility
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
     CGPoint location = [touch locationInView:[touch view]];
     

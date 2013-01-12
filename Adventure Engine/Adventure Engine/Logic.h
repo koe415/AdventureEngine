@@ -10,22 +10,11 @@
 #import "GameData.h"
 #import "DebugFlags.h"
 #import "cocos2d.h"
-//#import "Dialogue.h"
 #import "Barrier.h"
 
 @interface Logic : NSObject;
 
 +(bool) checkValidPosition:(CGPoint) newPosition;
 +(CGPoint) worldPositionFromTap:(CGPoint) tapPt;
-//+(void) handleTapAt:(CGPoint) tilePt;
-
-//+(GameActionArray *) checkPlayerTriggeringGameActionArray;
-//+(GameActionArray *) checkDialogueGameActionArray:(NSString *) arrayName;
-//+(bool) doesPlayerHave:(NSString *) item;
-//+(void) addPlayerItem:(NSString *) item;
-//+(void) removePlayerItem:(NSString *) item;
-//+(void) removeAllPlayerItems;
-//+(CGPoint) worldPositionFromTap: (CGPoint) tapPt;
-//+(NSString *) getItemPickupText:(NSString *) itemName;
 
 @end

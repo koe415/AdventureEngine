@@ -360,3 +360,33 @@
 }
 
 @end
+
+
+
+
+@implementation ActionHistory
+
++(id) actionWithID:(NSString *) inputID newStatus:(bool) inputStatus {
+    return [[[ActionHistory alloc] initWithID:inputID newStatus:inputStatus] autorelease];
+}
+
+-(id) initWithID:(NSString *) inputID newStatus:(bool) inputStatus {
+    self = [super init];
+    if (!self) return nil;
+    
+    idOfHistory = inputID;
+    newStatus = inputStatus;
+    type = ACTIONHISTORY;
+    
+    return self;
+}
+
+-(NSString *) getID {
+    return idOfHistory;
+}
+
+-(bool) getNewStatus {
+    return newStatus;
+}
+
+@end

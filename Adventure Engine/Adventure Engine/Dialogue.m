@@ -23,8 +23,8 @@
     
     self.isTouchEnabled = true;
     
-    noteContent = [[NSArray alloc] initWithObjects:@"I've seen better days.",
-                   @"Wait..", nil];
+    noteContent = [[NSArray alloc] initWithObjects:dial, nil];//]@"I've seen better days.",
+//                   @"Wait..", nil];
     currentDialogue = 0;
     
     

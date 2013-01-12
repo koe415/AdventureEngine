@@ -38,6 +38,8 @@
     player = [[Player alloc] init];
     [self addChild:player z:Z_PLAYER];
     
+    [gd._worldHistory setStatus:false forID:@"has_bath_key"];
+    
     return self;
 }
 
@@ -60,6 +62,7 @@
     [[GameData instance]._worldTappables removeAllObjects];
     [[GameData instance]._worldTriggerables removeAllObjects];
     [[GameData instance]._barriers removeAllObjects];
+    //[[GameData instance]._worldHistory clear];
     
 }
 
@@ -85,6 +88,12 @@
         [bathDoorBarrier setEnabled:bathDoorBarrierStatus];
         if (Display_Barriers) [self addChild:[bathDoorBarrier getVisual] z:Z_BELOW_PLAYER];
         
+        //barrier:(110,20):shower_door_barrier
+        //type:(x,y):barrier_id
+        
+        //tappable:(x,y):4
+        //
+        
         
         GameAction * doorUnlocked = [ActionDialogue actionWithDialogue:@"door now unlocked!"];
         GameAction * unlockShowerDoor = [ActionBarrier actionWithID:@"shower_door_barrier" active:false];
@@ -92,6 +101,9 @@
         GameAction * lockTap1 = [ActionTap actionWithID:4 active:false];
         GameAction * unlockOtherTap1 = [ActionTap actionWithID:5 active:true];
         Tappable * unlockShowerDoorTap = [Tappable tappableWithPosition:ccp(8,4) withActions:[NSArray arrayWithObjects:doorUnlocked, unlockShowerDoor,unlockShowerDoorAnimation,lockTap1,unlockOtherTap1, nil] withIdentity:4];
+        [unlockShowerDoorTap addPrereq:@"has_bath_key"];
+        [unlockShowerDoorTap addGameActionsIfPrereqsNotMet:[NSArray arrayWithObject:[ActionDialogue actionWithDialogue:@"I need a key for that"]]];
+
         [self addChild:[unlockShowerDoorTap getGlow] z:Z_BELOW_PLAYER];
         
         GameAction * doorLocked = [ActionDialogue actionWithDialogue:@"door now locked!"];
@@ -108,32 +120,94 @@
         [self addChild:[doorToCatTap getGlow] z:Z_BELOW_PLAYER];
         
         
-        GameAction * firstAction2 = [ActionDialogue actionWithDialogue:@"Enabled Mirror"];
-        Tappable * coatTap = [Tappable tappableWithPosition:ccp(2,2) withActions:[NSArray arrayWithObjects: firstAction2, nil] withSize:CGSizeMake(1,1) withIdentity:2 isEnabled:true];
+        GameAction * makeDissappear = [ActionObjectVisibility actionWithID:@"disappearer" active:false];
+        GameAction * disableSelf = [ActionTap actionWithID:2 active:false];
+        Tappable * coatTap = [Tappable tappableWithPosition:ccp(1,2) withActions:[NSArray arrayWithObjects: makeDissappear, disableSelf, nil] withSize:CGSizeMake(2,1) withIdentity:2 isEnabled:true];
         [self addChild:[coatTap getGlow] z:Z_BELOW_PLAYER];
         
         
+        Tappable * firstComp = [Tappable tappableWithPosition:ccp(14,2) withActions:[NSArray arrayWithObject:[ActionReadable actionWithReadable:@"first_reading"]] withSize:CGSizeMake(1, 3) withIdentity:23 isEnabled:true];
+        [self addChild:[firstComp getGlow] z:Z_BELOW_PLAYER];
         
-    } else {
-        Barrier * bathDoorBarrier = [Barrier barrierWithPosition:200.0f withWidth:60.0f withID:@"catherine_bed_door"];
+        
+        
+    } else if([worldToLoad isEqualToString:@"catherine_bed"]) {
+        /*Barrier * bathDoorBarrier = [Barrier barrierWithPosition:200.0f withWidth:60.0f withID:@"catherine_bed_door"];
         // Load barrier's status from persistent data
         bool bathDoorBarrierStatus = true;
         [bathDoorBarrier setEnabled:bathDoorBarrierStatus];
         if (Display_Barriers) [self addChild:[bathDoorBarrier getVisual] z:Z_BELOW_PLAYER];
-        
+        */
         
         
         GameAction * doorToBath = [ActionLoadWorld actionWithWorldToLoad:@"bath" atSpawnPoint:2];
         NSArray * doorToBathArray = [NSArray arrayWithObjects: doorToBath, nil];
-        Tappable * doorToBathTap = [Tappable tappableWithPosition:ccp(2,3) withActions:doorToBathArray withSize:CGSizeMake(1,1) withIdentity:3 isEnabled:true];
-        [self addChild:[doorToBathTap  getGlow] z:Z_BELOW_PLAYER];
-        
+        Triggerable * doorToBathTrig = [Triggerable triggerableWithPosition:ccp(2,2) withActions:doorToBathArray withIdentity:3 isEnabled:true];
+        [self addChild:[doorToBathTrig  getGlow] z:Z_BELOW_PLAYER];
         
         
         Tappable * mirrorTap = [Tappable tappableWithPosition:ccp(8,4) withActions: [NSArray arrayWithObjects:
-                                                                                     [ActionDialogue actionWithDialogue:@"Enabled Coat"], nil]
+                                                                                     [ActionDialogue actionWithDialogue:@"Got Key"],
+                                                                                     [ActionHistory actionWithID:@"has_bath_key" newStatus:true], nil]
                                                  withIdentity:1];
         [self addChild:[mirrorTap getGlow] z:Z_BELOW_PLAYER];
+        
+        
+        Triggerable * doorToTestBed = [Triggerable triggerableWithPosition:ccp(18,2) withActions: [NSArray arrayWithObjects:
+                                                                                                              [ActionLoadWorld actionWithWorldToLoad:@"test_bed" atSpawnPoint:1], nil] withIdentity:5 isEnabled:true];
+        [self addChild:[doorToTestBed getGlow] z:Z_BELOW_PLAYER];
+        
+    } else if ([worldToLoad isEqualToString:@"test_bed"]) {
+        Triggerable * doorToCatBed = [Triggerable triggerableWithPosition:ccp(1,2) withActions: [NSArray arrayWithObjects:
+                                                                                                   [ActionLoadWorld actionWithWorldToLoad:@"catherine_bed" atSpawnPoint:2], nil] withIdentity:0 isEnabled:true];
+        [self addChild:[doorToCatBed getGlow] z:Z_BELOW_PLAYER];
+        
+        
+        NSArray * getFirstSwitch = [NSArray arrayWithObjects:[ActionDialogue actionWithDialogue:@"First switch now enabled"],
+                                    [ActionHistory actionWithID:@"switch1_enabled" newStatus:true], nil];
+        
+        Tappable * getFirstSwitchTap = [Tappable tappableWithPosition:ccp(2,3) withActions:getFirstSwitch withIdentity:1];
+        [self addChild:[getFirstSwitchTap getGlow] z:Z_BELOW_PLAYER];
+        
+        
+        NSArray * resetSwitches = [NSArray arrayWithObjects:[ActionDialogue actionWithDialogue:@"Switches reset!"],
+                                   [ActionHistory actionWithID:@"switch1_enabled" newStatus:false],
+                                   [ActionHistory actionWithID:@"switch2_enabled" newStatus:false],
+                                   [ActionHistory actionWithID:@"switch3_enabled" newStatus:false], nil];        
+        // switch 1 no reqs
+        NSArray * switch1GAs = [NSArray arrayWithObjects:
+                                [ActionDialogue actionWithDialogue:@"Switch 2 enabled!"],
+                                [ActionHistory actionWithID:@"switch1_enabled" newStatus:false],
+                                [ActionHistory actionWithID:@"switch2_enabled" newStatus:true],
+                                [ActionHistory actionWithID:@"switch3_enabled" newStatus:false], nil];
+        
+        Tappable * switch1 = [Tappable tappableWithPosition:ccp(4,3) withActions:switch1GAs withSize:CGSizeMake(1,1) withIdentity:1 isEnabled:true];
+        [switch1 addGameActionsIfPrereqsNotMet:resetSwitches];
+        [switch1 addPrereq:@"switch1_enabled"];
+        
+        // switch 2 needs 1 hit
+        NSArray * switch2GAs = [NSArray arrayWithObjects:
+                                [ActionDialogue actionWithDialogue:@"Switch 3 enabled!"],
+                                [ActionHistory actionWithID:@"switch1_enabled" newStatus:false],
+                                [ActionHistory actionWithID:@"switch2_enabled" newStatus:false],
+                                [ActionHistory actionWithID:@"switch3_enabled" newStatus:true], nil];
+        
+        Tappable * switch2 = [Tappable tappableWithPosition:ccp(6,3) withActions:switch2GAs withSize:CGSizeMake(1,1) withIdentity:1 isEnabled:true];
+        [switch2 addGameActionsIfPrereqsNotMet:resetSwitches];
+        [switch2 addPrereq:@"switch2_enabled"];
+        
+        // switch 3 needs 2 hit
+        NSArray * switch3GAs = [NSArray arrayWithObjects:
+                                [ActionDialogue actionWithDialogue:@"You got the right order!"],
+                                [ActionTap actionWithID:1 active:false], nil];
+        
+        Tappable * switch3 = [Tappable tappableWithPosition:ccp(8,3) withActions:switch3GAs withSize:CGSizeMake(1,1) withIdentity:1 isEnabled:true];
+        [switch3 addGameActionsIfPrereqsNotMet:resetSwitches];
+        [switch3 addPrereq:@"switch3_enabled"];
+        
+        [self addChild:[switch1 getGlow] z:Z_BELOW_PLAYER];
+        [self addChild:[switch2 getGlow] z:Z_BELOW_PLAYER];
+        [self addChild:[switch3 getGlow] z:Z_BELOW_PLAYER];
     }
 }
 
@@ -288,7 +362,6 @@
     
     for (NSString * s in contentsArray) {
         if ([s hasPrefix:@"object"]) {
-            Log(@"here");
             NSArray * objectComponents = [s componentsSeparatedByString:@","];
             
             NSString * objectName = [objectComponents objectAtIndex:1];
@@ -390,19 +463,10 @@
     } else {
         playerChangedPos = [player attemptNoMove];
     }
+    
     if(playerChangedPos) {
         for (Tappable * t in [GameData instance]._worldTappables) {
-            float dist = [t getGlowPosition].x - [player getPosition].x;
-            if (dist < 0.0f) dist *= -1.0f;
-            
-            //Log(@"dist=%f",dist);
-            
-            if (dist > 200.0f) [t setOpacity:0];
-            else if (dist > 80.0f) {
-                dist -= 80.0f;
-                float newOpac = 200.0f - (200.0f * (dist/120.0f));
-                [t setOpacity:newOpac];
-            } else [t setOpacity:200];
+            [t updateGlow];
         }
     }
     
@@ -475,7 +539,6 @@
 }
 
 -(void) setScreenShakeIntensity:(int) inputIntensity withDuration:(int) inputDuration {
-    
     Log(@"shake intensity: %d and duration: %d", inputIntensity, inputDuration);
     shakeIntensity = inputIntensity;
     shakeTotalDuration = shakeDuration = inputDuration;

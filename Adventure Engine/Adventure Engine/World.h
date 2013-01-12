@@ -18,6 +18,7 @@
 #import "GameAction.h"
 #import "SpawnPosition.h"
 #import "Barrier.h"
+#import "WorldHistory.h"
 
 #define WORLDTILES_X 72
 #define WORLDTILES_Y 8
@@ -34,6 +35,7 @@
     //CCSpriteBatchNode * foregroundBatchNode;
     CCSpriteBatchNode * backgroundBatchNode;
     CCSpriteBatchNode * worldObjectsBatchNode;
+    
     int shakeIntensity;
     int shakeDuration;
     float shakeTotalDuration;
@@ -52,4 +54,5 @@
 -(void) updateTileVisibility;
 -(void) setScreenShakeIntensity:(int) inputIntensity withDuration:(int) inputDuration;
 -(void) dealloc;
+
 @end

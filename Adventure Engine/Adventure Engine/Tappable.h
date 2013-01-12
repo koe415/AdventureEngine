@@ -17,6 +17,8 @@
     bool isEnabled;
     NSArray * gameActionsToRun; // Tappable cares not what is in the array
     CGSize size;
+    NSMutableArray * prereqs;
+    NSMutableArray * gameActionsIfPrereqsNotMet;
     
     CCSprite * glow;
 }
@@ -27,12 +29,17 @@
 
 -(id) initWithPosition:(CGPoint) inputPt withActions:(NSArray *) actions withSize:(CGSize) inputSize withIdentity:(int) inputIdent isEnabled:(bool) enabled;
 -(bool) isTileBlockedByBarrier;
+-(void) addPrereq:(NSString *) p;
+-(bool) arePrereqsMet;
+-(void) addGameActionsIfPrereqsNotMet:(NSArray *) inputGameActions;
+-(NSArray *) gameActionsIfPrereqsNotMet;
 -(bool) compareTilePosition:(CGPoint) tilePt;
 -(NSArray *) getActions;
 -(int) getIdentity;
 -(void) setEnabled:(bool) inputStatus;
+-(void) updateGlow;
 -(CCSprite *) getGlow;
--(void) setOpacity:(int) opac;
--(CGPoint) getGlowPosition;
+//-(void) setOpacity:(int) opac;
+//-(CGPoint) getGlowPosition;
 
 @end

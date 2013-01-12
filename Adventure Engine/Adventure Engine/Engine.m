@@ -70,6 +70,11 @@
             // If any barrier is in between player and tappable
             if ([t isTileBlockedByBarrier]) continue;
             
+            if (![t arePrereqsMet]) {
+                [actionsToRun addObjectsFromArray:[t gameActionsIfPrereqsNotMet]];
+                continue;
+            }
+            
             [actionsToRun addObjectsFromArray:[t getActions]];
         }
     }
@@ -148,6 +153,8 @@
             break;
         case ACTIONREADABLE:
             Log(@"Loading Readable: %@", [(ActionReadable *) ga getReadable]);
+            [self addChild:[Readable nodeWithTitle:[(ActionReadable *) ga getReadable]]];
+            [self setMoveVisibility:false];
             break;
         case ACTIONENDGAME:
             Log(@"Ending Game");
@@ -194,6 +201,10 @@
             }
             
             break;
+        case ACTIONHISTORY:
+            [[GameData instance]._worldHistory setStatus: [(ActionHistory *) ga getNewStatus] forID:[(ActionHistory *) ga getID]];
+            
+            break;
         default:
             Log(@"Tried to run invalid game action type (%d)",actionType);
             break;
@@ -219,8 +230,8 @@
 }
 
 -(void) continueGame {
-    // file system load player map and prior gamedata
-    //[self loadMap:@"mtns"];
+    // Read in saved string, parse it
+    // Saved data has to have current map, and spawn point
 }
 
 
@@ -296,161 +307,6 @@
     [Logic addPlayerItem:item];
 }
 */
-/*
--(void) loadMap:(NSString *) map {
-    World worldLoaded = [Worlds access:map];
-    
-    [GameData instance]._playerPosition = worldLoaded.playerSpawn;
-    [GameData instance]._mapLeftBoundary = worldLoaded.mapLeftBoundary;
-    [GameData instance]._mapRightBoundary = worldLoaded.mapRightBoundary;
-    [GameData instance]._worldTappables = worldLoaded.worldTappables;
-    [GameData instance]._worldTriggerables = worldLoaded.worldTriggerables;
-    
-    [_worldLayer setupWorld:worldLoaded.background];
-    
-    firstTimeRunningWorld = true;
-}
-
-
--(void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    NSArray *touchArr = [touches allObjects];
-    UITouch *aTouch = [touchArr objectAtIndex:0];
-    CGPoint location = [aTouch locationInView:[aTouch view]];
-    
-    // check pause button selection!
-    if (location.x < 60 && location.y < 60) { // Handled by hud
-        //Log(@"pause button pressed!");
-        [_hudLayer setPauseButtonPressed:true];
-        pauseButtonTap = true;
-    } else if ([_hudLayer isItemPickupShown]) { // Handled by hud
-        
-    } else if ([_dialogueLayer displayingDialogue]) { // Handled by dialogue
-        [_dialogueLayer touchBegan:true];
-        
-    } else if (gameActionDelay>0) { // Every touch handler has to verify that gameactiondelay is not active
-    } else if (![runningActions isEmpty]) { // Every touch handler has to verify this as well
-    } else if (location.x < 60) { // Handled by hud
-        //Log(@"move left!");
-        movingLeft = true;
-    } else if (location.x > 420) { // Handled by hud
-        //Log(@"move right?");
-        movingRight = true;
-    } 
-}
-
--(void) ccTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    NSArray *touchArr = [touches allObjects];
-    UITouch *aTouch = [touchArr objectAtIndex:0];
-    CGPoint location = [aTouch locationInView:[aTouch view]];
-    
-    if (pauseButtonTap) {
-        if ([_hudLayer isPauseButtonPressed]) {
-            // Check for player dragging outside pause button
-            if (location.x > 60 || location.y > 60) {
-                [_hudLayer setPauseButtonPressed:false];
-            }
-        } else {
-            // Check for player dragging back inside pause button
-            if (location.x < 60 && location.y < 60) {
-                [_hudLayer setPauseButtonPressed:true];
-            }
-        }
-    }
-}
-
--(void) ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    
-    NSArray *touchArr = [touches allObjects];
-    UITouch *aTouch = [touchArr objectAtIndex:0];
-    CGPoint location = [aTouch locationInView:[aTouch view]];
-    
-    if (movingLeft) {
-        //Log(@"Moving Left Released");
-        movingLeft = false;
-        return;
-    } else if (movingRight) {
-        //Log(@"Moving Right Released");
-        movingRight = false;
-        return;
-    } else if (pauseButtonTap) {
-        if ([_hudLayer isPauseButtonPressed]) {
-            //if (Display_Debug_Text) Log(@"paused bitch!");
-            [_hudLayer setPauseButtonPressed:false];
-            [[CCDirector sharedDirector] pushScene:[PauseMenu scene]];
-        }
-        pauseButtonTap = false;
-        
-    } else if ([_hudLayer isItemPickupShown]) { 
-        [_hudLayer setItemPickupVisibility:false];
-        [_hudLayer setMovePanelVisibility:true];
-    } else if ([_dialogueLayer displayingDialogue] && [_dialogueLayer touchOriginatedInDialogue]) {
-        [_dialogueLayer touchBegan:false];
-        if ([_dialogueLayer isMultiChoice]) {
-            if (location.y > 220) {
-                
-                NSString * potentialGA;
-                
-                // determine what players choice
-                if (location.x < 120) 
-                    potentialGA = [_dialogueLayer chooseNode:1];
-                else if (location.x < 240)
-                    potentialGA = [_dialogueLayer chooseNode:2];
-                else if (location.x < 360)
-                    potentialGA = [_dialogueLayer chooseNode:3];
-                else if (location.x < 480)
-                    potentialGA = [_dialogueLayer chooseNode:4];
-                
-                if (![potentialGA isEqualToString:@""]) {
-                    GameActionArray * potentialArray = [Logic checkDialogueGameActionArray:potentialGA];
-                    [runningActions addArray:potentialArray];
-                }
-            }
-            
-        } else {
-            NSString * potentialGA = [_dialogueLayer getAction];
-            
-            if (![potentialGA isEqualToString:@""]) {
-                GameActionArray * potentialArray = [Logic checkDialogueGameActionArray:potentialGA];
-                [runningActions addArray:potentialArray];
-            }
-            
-            if ([_dialogueLayer hasMoreDialogue]) {
-                [_dialogueLayer continueDialogue];
-            } else {
-                if (gameActionDelay==0)
-                    [_hudLayer setMovePanelVisibility: YES];
-            }
-        }
-    } else if (gameActionDelay>0) {
-        if (Display_Debug_Text) Log(@"Engine: Ignored tap. Is waiting!");
-    } else if (![runningActions isEmpty]) {
-        if (Display_Debug_Text) Log(@"Engine: Ignored tap. Is running an action still!");
-    } else {
-        //Log(@"tap coords:%f,%f",location.x,location.y);
-        //Log(@"camera coords:%f,%f",[GameData instance]._cameraPosition.x,[GameData instance]._cameraPosition.y);
-        
-        // determine tap location on map
-        CGPoint tapPositionInWorld = [Logic worldPositionFromTap:location];
-        // retrieve potential action on map from tap
-        GameActionArray * potentialArray = [_worldLayer handleWorldTapAt:tapPositionInWorld];
-        
-        // if array is valid
-        if (potentialArray) {
-            //if (Display_Debug_Text) Log(@"Engine: Found array. Is valid!");
-            // if array has actions
-            if (![potentialArray isEmpty]) {
-                //if (Display_Debug_Text) Log(@"Engine: Found array has items!");
-                
-                // add array to running actions
-                [runningActions addArray:potentialArray];
-                
-                // run first action
-                [self runNextAction];
-            }
-        }
-    }
-}*/
 
 // on "dealloc" you need to release all your retained objects
 -(void) dealloc

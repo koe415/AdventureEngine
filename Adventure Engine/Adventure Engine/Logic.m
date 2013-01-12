@@ -37,37 +37,6 @@
     return true;
 }
 
-#pragma mark Inventory Management
-/*
-+(bool) doesPlayerHave:(NSString *) item {
-    for (NSString * obj in [GameData instance]._playerInventory) {
-        Log(@"Checking if (%@) is equal to (%@)",item,obj);
-        if ([obj isEqualToString:item]) {
-            Log(@"Player has %@!",item);
-            return true;
-        }
-    }
-    
-    Log(@"Player does NOT have %@...",item);
-    return false;
-}
-
-+(void) addPlayerItem:(NSString *) item {
-    Log(@"Item added (%@)",item);
-    [[GameData instance]._playerInventory addObject:item];
-}
-
-+(void) removePlayerItem:(NSString *) item {
-    Log(@"Item removed (%@)",item);
-    [[GameData instance]._playerInventory removeObject:item];
-}
-
-+(void) removeAllPlayerItems {
-    Log(@"Inventory cleared out!");
-    [[GameData instance]._playerInventory removeAllObjects];
-}
-*/
-
 #pragma mark World
 
 +(CGPoint) worldPositionFromTap:(CGPoint) tapPt {

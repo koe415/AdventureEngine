@@ -11,7 +11,7 @@
 #import "DebugFlags.h"
 #import "Engine.h"
 
-@interface MainMenu : CCLayer {
+@interface MainMenu : CCLayerColor {
     CCLabelTTF * mainTitle;
     
     CCMenu * mainMenuListing;
