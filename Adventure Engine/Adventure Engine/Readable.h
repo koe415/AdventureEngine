@@ -13,11 +13,12 @@
 
 @interface Readable : CCLayer {
     //int type; // computer terminal, diary, etc.
-    //CCSprite * comp_bk;
+    //CCSprite * blackbackground;
     bool endingScene;
     int currentEntry;
     NSMutableArray * textContent;
     CCLabelTTF * text;
+    CCLabelTTF * pageMark;
 }
 
 +(id) nodeWithTitle:(NSString *) inputTitle;

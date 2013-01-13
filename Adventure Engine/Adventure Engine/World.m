@@ -126,7 +126,7 @@
         [self addChild:[coatTap getGlow] z:Z_BELOW_PLAYER];
         
         
-        Tappable * firstComp = [Tappable tappableWithPosition:ccp(14,2) withActions:[NSArray arrayWithObject:[ActionReadable actionWithReadable:@"first_reading"]] withSize:CGSizeMake(1, 3) withIdentity:23 isEnabled:true];
+        Tappable * firstComp = [Tappable tappableWithPosition:ccp(14,2) withActions:[NSArray arrayWithObjects:[ActionDialogue actionWithDialogue:@"The terminal seems to still have power"], [ActionReadable actionWithReadable:@"first_reading"],nil] withSize:CGSizeMake(1, 3) withIdentity:23 isEnabled:true];
         [self addChild:[firstComp getGlow] z:Z_BELOW_PLAYER];
         
         
