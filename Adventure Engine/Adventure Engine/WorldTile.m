@@ -40,6 +40,12 @@
     return visible;
 }
 
+-(void) setBrightness:(int) b {
+    for (CCSprite * sprite in sprites) {
+        [sprite setColor:ccc3(b, b, b)];
+    }
+}
+
 -(void) dealloc {
     for (CCSprite * s in sprites) {
         [s removeFromParentAndCleanup:true];

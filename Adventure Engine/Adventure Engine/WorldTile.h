@@ -21,4 +21,6 @@
 -(bool) isVisible;
 -(void) dealloc;
 
+-(void) setBrightness:(int) b;
+
 @end

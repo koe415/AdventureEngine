@@ -39,6 +39,8 @@
     int shakeIntensity;
     int shakeDuration;
     float shakeTotalDuration;
+    
+    //NSMutableArray * lightSources;
 }
 
 -(void) clearWorld;

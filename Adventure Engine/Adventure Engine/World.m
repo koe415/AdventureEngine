@@ -40,6 +40,8 @@
     
     [gd._worldHistory setStatus:false forID:@"has_bath_key"];
     
+    //lightSources = [[NSMutableArray alloc] init];
+    
     return self;
 }
 
@@ -130,6 +132,17 @@
         [self addChild:[firstComp getGlow] z:Z_BELOW_PLAYER];
         
         
+        for (int i = 0; i < WORLDTILES_X; i++) {
+            for (int j = 0; j < WORLDTILES_Y; j++) {
+                float dist = ccpDistance(ccp(i+1,j+1),ccp(8,5));
+                int lightValue = 0;
+                if (dist > 10.0f) lightValue = 0;
+                else lightValue = 255 - (int)(255.0f * ((dist)/ 10.0f));
+                //else lightValue = 255;
+
+                [(WorldTile *)worldTiles[i][j] setBrightness:lightValue];
+            }
+        }
         
     } else if([worldToLoad isEqualToString:@"catherine_bed"]) {
         /*Barrier * bathDoorBarrier = [Barrier barrierWithPosition:200.0f withWidth:60.0f withID:@"catherine_bed_door"];
@@ -156,6 +169,17 @@
         Triggerable * doorToTestBed = [Triggerable triggerableWithPosition:ccp(18,2) withActions: [NSArray arrayWithObjects:
                                                                                                               [ActionLoadWorld actionWithWorldToLoad:@"test_bed" atSpawnPoint:1], nil] withIdentity:5 isEnabled:true];
         [self addChild:[doorToTestBed getGlow] z:Z_BELOW_PLAYER];
+        
+        for (int i = 0; i < WORLDTILES_X; i++) {
+            for (int j = 0; j < WORLDTILES_Y; j++) {
+                float dist = ccpDistance(ccp(i+1,j+1),ccp(8,5));
+                int lightValue = 0;
+                if (dist > 10.0f) lightValue = 0;
+                else lightValue = 255 - (int)(255.0f * ((dist)/ 10.0f));
+                
+                [(WorldTile *)worldTiles[i][j] setBrightness:lightValue];
+            }
+        }
         
     } else if ([worldToLoad isEqualToString:@"test_bed"]) {
         Triggerable * doorToCatBed = [Triggerable triggerableWithPosition:ccp(1,2) withActions: [NSArray arrayWithObjects:
@@ -568,6 +592,7 @@
         }
     }
     
+    //[lightSources release];
     [player release];
     [spawnPositions release];
     [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrames];
