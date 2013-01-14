@@ -86,8 +86,7 @@
         // Load barrier from map files
         Barrier * bathDoorBarrier = [Barrier barrierWithPosition:110.0f withWidth:20.0f withID:@"shower_door_barrier"];
         // Load barrier's status from persistent data
-        bool bathDoorBarrierStatus = true;
-        [bathDoorBarrier setEnabled:bathDoorBarrierStatus];
+        [bathDoorBarrier setEnabled:true];
         if (Display_Barriers) [self addChild:[bathDoorBarrier getVisual] z:Z_BELOW_PLAYER];
         
         //barrier:(110,20):shower_door_barrier
@@ -96,102 +95,138 @@
         //tappable:(x,y):4
         //
         
+        /*
+         GameAction * doorUnlocked = [ActionDialogue actionWithDialogue:@"door now unlocked!"];
+         GameAction * unlockShowerDoor = [ActionBarrier actionWithID:@"shower_door_barrier" active:false];
+         GameAction * unlockShowerDoorAnimation = [ActionObjectAnimation actionWithID:@"shower_door" running:2];
+         GameAction * lockTap1 = [ActionTap actionWithID:4 active:false];
+         GameAction * unlockOtherTap1 = [ActionTap actionWithID:5 active:true];
+         Tappable * unlockShowerDoorTap = [Tappable tappableWithPosition:ccp(8,4) withActions:[NSArray arrayWithObjects:doorUnlocked, unlockShowerDoor,unlockShowerDoorAnimation,lockTap1,unlockOtherTap1, nil] withIdentity:4];
+         [unlockShowerDoorTap addPrereq:@"has_bath_key"];
+         [unlockShowerDoorTap addGameActionsIfPrereqsNotMet:[NSArray arrayWithObject:[ActionDialogue actionWithDialogue:@"I need a key for that"]]];
+         
+         [self addChild:[unlockShowerDoorTap getGlow] z:Z_BELOW_PLAYER];
+         
+         GameAction * doorLocked = [ActionDialogue actionWithDialogue:@"door now locked!"];
+         GameAction * lockShowerDoor = [ActionBarrier actionWithID:@"shower_door_barrier" active:true];
+         GameAction * lockShowerDoorAnimation = [ActionObjectAnimation actionWithID:@"shower_door" running:3];
+         GameAction * lockTap2 = [ActionTap actionWithID:5 active:false];
+         GameAction * unlockOtherTap2 = [ActionTap actionWithID:4 active:true];
+         Tappable * lockShowerDoorTap = [Tappable tappableWithPosition:ccp(8,4) withActions:[NSArray arrayWithObjects:doorLocked, lockShowerDoor,lockShowerDoorAnimation,lockTap2,unlockOtherTap2, nil]  withSize:CGSizeMake(1,1) withIdentity:5 isEnabled:false];
+         [self addChild:[lockShowerDoorTap getGlow] z:Z_BELOW_PLAYER];
+         
+         
+         GameAction * openDoorToCat = [ActionObjectAnimation actionWithID:@"door_to_bedroom" running:2];
+         GameAction * enableWorldLoad = [ActionTap actionWithID:9 active:true];
+         GameAction * disableTap = [ActionTap actionWithID:10 active:false];
+         
+         Tappable * openDoorToCatTap = [Tappable tappableWithPosition:ccp(11,2) withActions:[NSArray arrayWithObjects:openDoorToCat,enableWorldLoad, disableTap, nil] withSize:CGSizeMake(2, 4) withIdentity:10 isEnabled:true];
+         [self addChild:[openDoorToCatTap getGlow] z:Z_BELOW_PLAYER];
+         
+         GameAction * doorToCat = [ActionLoadWorld actionWithWorldToLoad:@"catherine_bed" atSpawnPoint:1];
+         Tappable * doorToCatTap = [Tappable tappableWithPosition:ccp(11,2) withActions:[NSArray arrayWithObjects: doorToCat, nil] withSize:CGSizeMake(2,4) withIdentity:9 isEnabled:false];
+         [self addChild:[doorToCatTap getGlow] z:Z_BELOW_PLAYER];
+         
+         
+         
+         
+         GameAction * makeDissappear = [ActionObjectVisibility actionWithID:@"disappearer" active:false];
+         GameAction * disableSelf = [ActionTap actionWithID:2 active:false];
+         GameAction * noteMessage = [ActionDialogue actionWithDialogue:@"Someone's coat. Huh? There's a piece of paper in its pocket"];
+         Tappable * coatTap = [Tappable tappableWithPosition:ccp(1,2) withActions:[NSArray arrayWithObjects: noteMessage, makeDissappear, disableSelf, nil] withSize:CGSizeMake(2,1) withIdentity:2 isEnabled:true];
+         [self addChild:[coatTap getGlow] z:Z_BELOW_PLAYER];
+         
+         
+         Tappable * firstComp = [Tappable tappableWithPosition:ccp(14,2) withActions:[NSArray arrayWithObjects:[ActionDialogue actionWithDialogue:@"The terminal seems to still have power"], [ActionReadable actionWithReadable:@"first_reading"],nil] withSize:CGSizeMake(1, 3) withIdentity:23 isEnabled:true];
+         [self addChild:[firstComp getGlow] z:Z_BELOW_PLAYER];
+         */
         
-        GameAction * doorUnlocked = [ActionDialogue actionWithDialogue:@"door now unlocked!"];
+        
+        // Wake up Dialogue | NEEDS PERSISTANT TRIGS/TAPS BETWEEN WORLDS
+        
+        // Door to Cat Bed
+        GameAction * openDoorToCat = [ActionObjectAnimation actionWithID:@"door_to_bedroom" running:2];
+        GameAction * enableWorldLoad = [ActionTap actionWithID:3 active:true];
+        GameAction * disableTap = [ActionTap actionWithID:2 active:false];
+        
+        Tappable * openDoorToCatTap = [Tappable tappableWithPosition:ccp(11,2) withActions:[NSArray arrayWithObjects:openDoorToCat,enableWorldLoad, disableTap, nil] withSize:CGSizeMake(2, 4) withIdentity:2 isEnabled:true];
+        if (Display_Tappables) [self addChild:[openDoorToCatTap getGlow] z:Z_BELOW_PLAYER];
+        
+        
+        // Tap to Cat Bed
+        GameAction * doorToCat = [ActionLoadWorld actionWithWorldToLoad:@"catherine_bed" atSpawnPoint:1];
+        Tappable * doorToCatTap = [Tappable tappableWithPosition:ccp(11,2) withActions:[NSArray arrayWithObjects: doorToCat, nil] withSize:CGSizeMake(2,4) withIdentity:3 isEnabled:false];
+        if (Display_Tappables) [self addChild:[doorToCatTap getGlow] z:Z_BELOW_PLAYER];
+        
+        // Tap to Shower
         GameAction * unlockShowerDoor = [ActionBarrier actionWithID:@"shower_door_barrier" active:false];
         GameAction * unlockShowerDoorAnimation = [ActionObjectAnimation actionWithID:@"shower_door" running:2];
-        GameAction * lockTap1 = [ActionTap actionWithID:4 active:false];
-        GameAction * unlockOtherTap1 = [ActionTap actionWithID:5 active:true];
-        Tappable * unlockShowerDoorTap = [Tappable tappableWithPosition:ccp(8,4) withActions:[NSArray arrayWithObjects:doorUnlocked, unlockShowerDoor,unlockShowerDoorAnimation,lockTap1,unlockOtherTap1, nil] withIdentity:4];
-        [unlockShowerDoorTap addPrereq:@"has_bath_key"];
-        [unlockShowerDoorTap addGameActionsIfPrereqsNotMet:[NSArray arrayWithObject:[ActionDialogue actionWithDialogue:@"I need a key for that"]]];
-
-        [self addChild:[unlockShowerDoorTap getGlow] z:Z_BELOW_PLAYER];
+        GameAction * unlockShowerDoorDisable = [ActionTap actionWithID:4 active:false];
+        Tappable * unlockShowerDoorTap = [Tappable tappableWithPosition:ccp(4,2) withActions:[NSArray arrayWithObjects: unlockShowerDoor,unlockShowerDoorAnimation, unlockShowerDoorDisable, nil] withSize:CGSizeMake(1, 4) withIdentity:4 isEnabled:true];
+        if (Display_Tappables) [self addChild:[unlockShowerDoorTap getGlow] z:Z_BELOW_PLAYER];
         
-        GameAction * doorLocked = [ActionDialogue actionWithDialogue:@"door now locked!"];
-        GameAction * lockShowerDoor = [ActionBarrier actionWithID:@"shower_door_barrier" active:true];
-        GameAction * lockShowerDoorAnimation = [ActionObjectAnimation actionWithID:@"shower_door" running:3];
-        GameAction * lockTap2 = [ActionTap actionWithID:5 active:false];
-        GameAction * unlockOtherTap2 = [ActionTap actionWithID:4 active:true];
-        Tappable * lockShowerDoorTap = [Tappable tappableWithPosition:ccp(8,4) withActions:[NSArray arrayWithObjects:doorLocked, lockShowerDoor,lockShowerDoorAnimation,lockTap2,unlockOtherTap2, nil]  withSize:CGSizeMake(1,1) withIdentity:5 isEnabled:false];
-        [self addChild:[lockShowerDoorTap getGlow] z:Z_BELOW_PLAYER];
-        
-        
-        GameAction * doorToCat = [ActionLoadWorld actionWithWorldToLoad:@"catherine_bed" atSpawnPoint:1];
-        Tappable * doorToCatTap = [Tappable tappableWithPosition:ccp(11,2) withActions:[NSArray arrayWithObjects: doorToCat, nil] withSize:CGSizeMake(2,4) withIdentity:1 isEnabled:true];
-        [self addChild:[doorToCatTap getGlow] z:Z_BELOW_PLAYER];
-        
-        
+        // Cat ID Pickup
         GameAction * makeDissappear = [ActionObjectVisibility actionWithID:@"disappearer" active:false];
-        GameAction * disableSelf = [ActionTap actionWithID:2 active:false];
-        Tappable * coatTap = [Tappable tappableWithPosition:ccp(1,2) withActions:[NSArray arrayWithObjects: makeDissappear, disableSelf, nil] withSize:CGSizeMake(2,1) withIdentity:2 isEnabled:true];
-        [self addChild:[coatTap getGlow] z:Z_BELOW_PLAYER];
+        GameAction * disableSelf = [ActionTap actionWithID:5 active:false];
+        GameAction * noteMessage = [ActionDialogue actionWithDialogue:@"Someone's lab coat. Huh? There's something in the pocket."];
+        GameAction * addToHistory = [ActionHistory actionWithID:@"has_cat_key" newStatus:true];
+        GameAction * note2Message = [ActionDialogue actionWithDialogue:@"It's someone's ID. This can be useful."];
+        Tappable * coatTap = [Tappable tappableWithPosition:ccp(1,2) withActions:[NSArray arrayWithObjects: noteMessage, makeDissappear,addToHistory,note2Message, disableSelf, nil] withSize:CGSizeMake(2,1) withIdentity:5 isEnabled:true];
+        if (Display_Tappables) [self addChild:[coatTap getGlow] z:Z_BELOW_PLAYER];
         
-        
-        Tappable * firstComp = [Tappable tappableWithPosition:ccp(14,2) withActions:[NSArray arrayWithObjects:[ActionDialogue actionWithDialogue:@"The terminal seems to still have power"], [ActionReadable actionWithReadable:@"first_reading"],nil] withSize:CGSizeMake(1, 3) withIdentity:23 isEnabled:true];
-        [self addChild:[firstComp getGlow] z:Z_BELOW_PLAYER];
-        
-        
-        for (int i = 0; i < WORLDTILES_X; i++) {
-            for (int j = 0; j < WORLDTILES_Y; j++) {
-                float dist = ccpDistance(ccp(i+1,j+1),ccp(8,5));
-                int lightValue = 0;
-                if (dist > 10.0f) lightValue = 0;
-                else lightValue = 255 - (int)(255.0f * ((dist)/ 10.0f));
-                //else lightValue = 255;
-
-                [(WorldTile *)worldTiles[i][j] setBrightness:lightValue];
-            }
-        }
         
     } else if([worldToLoad isEqualToString:@"catherine_bed"]) {
-        /*Barrier * bathDoorBarrier = [Barrier barrierWithPosition:200.0f withWidth:60.0f withID:@"catherine_bed_door"];
-        // Load barrier's status from persistent data
-        bool bathDoorBarrierStatus = true;
-        [bathDoorBarrier setEnabled:bathDoorBarrierStatus];
+        Barrier * bathDoorBarrier = [Barrier barrierWithPosition:70.0f withWidth:20.0f withID:@"bath_door_barrier"];
+        [bathDoorBarrier setEnabled:true];
         if (Display_Barriers) [self addChild:[bathDoorBarrier getVisual] z:Z_BELOW_PLAYER];
-        */
         
+        Barrier * hallDoorBarrier = [Barrier barrierWithPosition:610.0f withWidth:20.0f withID:@"hall_door_barrier"];
+        [hallDoorBarrier setEnabled:true];
+        if (Display_Barriers) [self addChild:[hallDoorBarrier getVisual] z:Z_BELOW_PLAYER];
         
-        GameAction * doorToBath = [ActionLoadWorld actionWithWorldToLoad:@"bath" atSpawnPoint:2];
-        NSArray * doorToBathArray = [NSArray arrayWithObjects: doorToBath, nil];
-        Triggerable * doorToBathTrig = [Triggerable triggerableWithPosition:ccp(2,2) withActions:doorToBathArray withIdentity:3 isEnabled:true];
-        [self addChild:[doorToBathTrig  getGlow] z:Z_BELOW_PLAYER];
+        // Tap to Unlock bath door
+        Tappable * tapToUnlockBathDoor = [Tappable tappableWithPosition:ccp(3,2) withActions:[NSArray arrayWithObjects:[ActionObjectAnimation actionWithID:@"door_to_bath" running:2],[ActionTap actionWithID:1 active:false],[ActionBarrier actionWithID:@"bath_door_barrier" active:false], nil] withSize:CGSizeMake(1, 4) withIdentity:1 isEnabled:true];
+        if (Display_Tappables) [self addChild:[tapToUnlockBathDoor getGlow] z:Z_BELOW_PLAYER];
         
+        // Trig to Bath
+        Triggerable * trigToBath = [Triggerable triggerableWithPosition:ccp(1,2) withActions:[NSArray arrayWithObject:[ActionLoadWorld actionWithWorldToLoad:@"bath" atSpawnPoint:2]] withIdentity:2];
+        if (Display_Triggers) [self addChild:[trigToBath getGlow] z:Z_BELOW_PLAYER];
         
-        Tappable * mirrorTap = [Tappable tappableWithPosition:ccp(8,4) withActions: [NSArray arrayWithObjects:
-                                                                                     [ActionDialogue actionWithDialogue:@"Got Key"],
-                                                                                     [ActionHistory actionWithID:@"has_bath_key" newStatus:true], nil]
-                                                 withIdentity:1];
-        [self addChild:[mirrorTap getGlow] z:Z_BELOW_PLAYER];
+        // Tap to Unlock hall door
+        Tappable * tapToUnlockHallDoor = [Tappable tappableWithPosition:ccp(15,2) withActions:[NSArray arrayWithObjects:[ActionObjectAnimation actionWithID:@"door_to_hall" running:2],[ActionTap actionWithID:3 active:false],[ActionBarrier actionWithID:@"hall_door_barrier" active:false], nil] withSize:CGSizeMake(1, 4) withIdentity:3 isEnabled:true];
+        [tapToUnlockHallDoor addPrereq:@"has_cat_key"];
+        [tapToUnlockHallDoor addGameActionsIfPrereqsNotMet:[NSArray arrayWithObjects:[ActionDialogue actionWithDialogue:@"That's weird. The door isn't responding. There needs to be a way to unlock it. I should take a look around."], nil]];
+        if (Display_Tappables) [self addChild:[tapToUnlockHallDoor getGlow] z:Z_BELOW_PLAYER];
         
+        // Trig to Hall
+        Triggerable * trigToHall = [Triggerable triggerableWithPosition:ccp(17,2) withActions:[NSArray arrayWithObject:[ActionLoadWorld actionWithWorldToLoad:@"test_bed" atSpawnPoint:1]] withIdentity:4];
+        if (Display_Triggers) [self addChild:[trigToHall getGlow] z:Z_BELOW_PLAYER];
         
-        Triggerable * doorToTestBed = [Triggerable triggerableWithPosition:ccp(18,2) withActions: [NSArray arrayWithObjects:
-                                                                                                              [ActionLoadWorld actionWithWorldToLoad:@"test_bed" atSpawnPoint:1], nil] withIdentity:5 isEnabled:true];
-        [self addChild:[doorToTestBed getGlow] z:Z_BELOW_PLAYER];
+        // Desk Book
+        Tappable * deskBookTap = [Tappable tappableWithPosition:ccp(7,3) withActions:[NSArray arrayWithObjects:[ActionDialogue actionWithDialogue:@"There's a book on the desk."],[ActionReadable actionWithReadable:@"foreboding_story"], nil] withIdentity:5];
+        if (Display_Tappables) [self addChild:[deskBookTap getGlow] z:Z_BELOW_PLAYER];
         
-        for (int i = 0; i < WORLDTILES_X; i++) {
-            for (int j = 0; j < WORLDTILES_Y; j++) {
-                float dist = ccpDistance(ccp(i+1,j+1),ccp(8,5));
-                int lightValue = 0;
-                if (dist > 10.0f) lightValue = 0;
-                else lightValue = 255 - (int)(255.0f * ((dist)/ 10.0f));
-                
-                [(WorldTile *)worldTiles[i][j] setBrightness:lightValue];
-            }
-        }
+        // Pills on desk | ADD PILLS SOMEWHERE
+        
+        // Activity Log
+        Tappable * firstComp = [Tappable tappableWithPosition:ccp(9,4) withActions:[NSArray arrayWithObjects:[ActionDialogue actionWithDialogue:@"The terminal seems to still have power"], [ActionReadable actionWithReadable:@"first_comp"],[ActionDialogue actionWithDialogue:@"Was that me?"], nil] withSize:CGSizeMake(1, 1) withIdentity:7 isEnabled:true];
+        if (Display_Tappables) [self addChild:[firstComp getGlow] z:Z_BELOW_PLAYER];
+        
+        // I'm sorry Note on bed
+        Tappable * noteOnCatsBed = [Tappable tappableWithPosition:ccp(12,3) withActions:[NSArray arrayWithObject:[ActionDialogue actionWithDialogue:@"There's a torn note left on the bed.\nIt only reads: 'I'm sorry.'"]] withIdentity:8];
+        if (Display_Tappables) [self addChild:[noteOnCatsBed getGlow] z:Z_BELOW_PLAYER];
         
     } else if ([worldToLoad isEqualToString:@"test_bed"]) {
         Triggerable * doorToCatBed = [Triggerable triggerableWithPosition:ccp(1,2) withActions: [NSArray arrayWithObjects:
-                                                                                                   [ActionLoadWorld actionWithWorldToLoad:@"catherine_bed" atSpawnPoint:2], nil] withIdentity:0 isEnabled:true];
-        [self addChild:[doorToCatBed getGlow] z:Z_BELOW_PLAYER];
+                                                                                                 [ActionLoadWorld actionWithWorldToLoad:@"catherine_bed" atSpawnPoint:2], nil] withIdentity:0 isEnabled:true];
+        if (Display_Triggers) [self addChild:[doorToCatBed getGlow] z:Z_BELOW_PLAYER];
         
         
         NSArray * getFirstSwitch = [NSArray arrayWithObjects:[ActionDialogue actionWithDialogue:@"First switch now enabled"],
                                     [ActionHistory actionWithID:@"switch1_enabled" newStatus:true], nil];
         
         Tappable * getFirstSwitchTap = [Tappable tappableWithPosition:ccp(2,3) withActions:getFirstSwitch withIdentity:1];
-        [self addChild:[getFirstSwitchTap getGlow] z:Z_BELOW_PLAYER];
+        if (Display_Tappables) [self addChild:[getFirstSwitchTap getGlow] z:Z_BELOW_PLAYER];
         
         
         NSArray * resetSwitches = [NSArray arrayWithObjects:[ActionDialogue actionWithDialogue:@"Switches reset!"],
@@ -229,9 +264,9 @@
         [switch3 addGameActionsIfPrereqsNotMet:resetSwitches];
         [switch3 addPrereq:@"switch3_enabled"];
         
-        [self addChild:[switch1 getGlow] z:Z_BELOW_PLAYER];
-        [self addChild:[switch2 getGlow] z:Z_BELOW_PLAYER];
-        [self addChild:[switch3 getGlow] z:Z_BELOW_PLAYER];
+        if (Display_Tappables) [self addChild:[switch1 getGlow] z:Z_BELOW_PLAYER];
+        if (Display_Tappables) [self addChild:[switch2 getGlow] z:Z_BELOW_PLAYER];
+        if (Display_Tappables) [self addChild:[switch3 getGlow] z:Z_BELOW_PLAYER];
     }
 }
 
@@ -365,11 +400,11 @@
 
 -(void) loadWorldObjects:(NSString *) worldToLoad {
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:
-     [NSString stringWithFormat:@"%@_objects.plist",worldToLoad]];
+     [NSString stringWithFormat:@"objects.plist",worldToLoad]];
     
     worldObjectsBatchNode = [CCSpriteBatchNode 
                              batchNodeWithFile:
-                             [NSString stringWithFormat:@"%@_objects.png",worldToLoad]];
+                             [NSString stringWithFormat:@"objects.png"]];
     
     [self addChild:worldObjectsBatchNode z:Z_BELOW_PLAYER];
     
@@ -400,7 +435,7 @@
                 NSMutableArray * animFrames = [[NSMutableArray alloc] init];
                 
                 for (NSString * animatedFrame in framesInAnimation) {
-                    NSString * currentFrameName = [NSString stringWithFormat:@"%@_objects_%@.png",worldToLoad,animatedFrame];
+                    NSString * currentFrameName = [NSString stringWithFormat:@"objects_%@.png",animatedFrame];
                     CCSpriteFrame * frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:currentFrameName];
                     [animFrames addObject:frame];
                 }

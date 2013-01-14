@@ -17,7 +17,7 @@
 }
 
 -(id) initWithPos:(CGPoint) inputPos withID:(NSString *) inputIdentity {
-    self = [super initWithSpriteFrameName:@"bath_objects_11.png"];
+    self = [super initWithSpriteFrameName:@"objects_01.png"];
     if (!self) return nil;
     
     [self setPosition:CGPointMake(((inputPos.x-1) * 20 * 2) + 20, ((inputPos.y-1) * 20 * 2) + 20)];

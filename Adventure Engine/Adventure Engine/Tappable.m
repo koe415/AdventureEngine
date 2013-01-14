@@ -123,6 +123,7 @@
 -(void) setEnabled:(bool) inputStatus {
     isEnabled = inputStatus;
     glow.visible = isEnabled;
+    [self updateGlow];
 }
 
 -(void) updateGlow {

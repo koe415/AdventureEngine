@@ -99,13 +99,6 @@ const int DefaultPlayerDirection = RIGHT;
         [self setFacing:LEFT];
     }
     
-    float dist = ccpDistance(ccp([playerAvatar position].x/40,[playerAvatar position].y/40),ccp(8,5));
-    int lightValue = 0;
-    if (dist > 10.0f) lightValue = 0;
-    else lightValue = 255 - (int)(255.0f * ((dist)/ 10.0f));
-    [playerAvatar setColor:ccc3(lightValue, lightValue, lightValue)];
-    
-    
     // Determine Valid Move
     if ([Logic checkValidPosition:position]) {
         if ([playerAvatar numberOfRunningActions]==0)

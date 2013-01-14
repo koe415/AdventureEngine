@@ -22,11 +22,25 @@
     self.isTouchEnabled = true;
     
     textContent = [[NSMutableArray alloc] init];
-    [textContent addObject:@"Tap on highlighted objects to interact with the environment"
-     ". For example, doors can be opened and switches can be switched!\n\nAmazing stuff!\n\nNow I'm may just be reaching of any material to fill in space but I really can't be sure of that. Who knows, I may actually come up with something that legitimately looks like text.\n\nBut then again I don't think I would be able to pull that off. So fuck it, this is what you get.\n\nGood riddence."];
-    [textContent addObject:@"This is the second text entry! woot!"];
-    [textContent addObject:@"Now this is the last entry!\n\nIt's been a wild ride everyone!"];
     
+    if ([inputTitle isEqualToString:@"first_comp"]) {
+        [textContent addObject:@"Activity Log 1.3.35"];
+        [textContent addObject:
+         @"11:14 | Unidentified Male entered apartment\n"
+          "11:20 | Unidentified Male left apartment\n"
+          "17:23 | Unidentified Male entered apartment\n"
+          "17:29 | Front door locked\n"
+          "17:42 | Bathroom door accessed\n"
+          "17:42 | Medical Cabinet accessed\n"
+          "----------END OF DAYS LOG----------"];
+    } else if ([inputTitle isEqualToString:@"foreboding_story"]) {
+        [textContent addObject:@"Novel Excerpt"];
+        [textContent addObject:@"This was the end for the man. Having had no past, it now seemed likely he would have no future.\n\n"
+         "For a minute, the man considered the options available to him. Far away from home in any sense of the word, he was trapped in a world that he didn't belong in. Where had this all gone so wrong?\n\n"
+         "He looked up at the sky and said his goodbyes. He wished it had been different."];
+    } else {
+        [textContent addObject:@"This is the default entry. Something went horribly wrong mate."];
+    }
     currentEntry = 0;
     
     
@@ -76,12 +90,12 @@
 
 -(void) beginEndReadable {
     /*CCSequence * endSequence = [CCSequence actions:
-                                [CCFadeTo actionWithDuration:2 opacity:0],
-                                [CCCallFunc actionWithTarget:self selector:@selector(endReadable)],nil];
-    
-    [self runAction:endSequence];
-    [self runAction:[CCScaleTo actionWithDuration:2 scale:0.5f]];
-    */
+     [CCFadeTo actionWithDuration:2 opacity:0],
+     [CCCallFunc actionWithTarget:self selector:@selector(endReadable)],nil];
+     
+     [self runAction:endSequence];
+     [self runAction:[CCScaleTo actionWithDuration:2 scale:0.5f]];
+     */
     endingScene = true;
     
     [(Engine *) self.parent setMoveVisibility:true];
@@ -114,11 +128,11 @@
     if (endingScene) return;
     
     /*CGPoint location = [touch locationInView:[touch view]];
-    
-    if ((location.x < 40) || (location.x > 480 - 40)) {
-        [self beginEndReadable];
-        return;
-    }*/
+     
+     if ((location.x < 40) || (location.x > 480 - 40)) {
+     [self beginEndReadable];
+     return;
+     }*/
     
     
     [self loadNextEntry];
