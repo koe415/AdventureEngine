@@ -44,12 +44,18 @@
     currentEntry = 0;
     
     
-    CCSprite * comp_bk = [CCSprite spriteWithFile:@"blackPixel.png"];
-    comp_bk.position = CGPointMake(240, 160);
-    comp_bk.opacity = 180;
-    [comp_bk setTextureRect:CGRectMake(0, 0, 480, 320)];
+    CCSprite * comp_underpause_bk = [CCSprite spriteWithFile:@"blackPixel.png"];
+    comp_underpause_bk.position = CGPointMake(30, 130);
+    comp_underpause_bk.opacity = 180;
+    [comp_underpause_bk setTextureRect:CGRectMake(0, 0, 60, 260)];
     ccTexParams params = {GL_LINEAR,GL_LINEAR,GL_REPEAT,GL_REPEAT};
-    [comp_bk.texture setTexParameters:&params];
+    [comp_underpause_bk.texture setTexParameters:&params];
+    
+    CCSprite * comp_majority_bk = [CCSprite spriteWithFile:@"blackPixel.png"];
+    comp_majority_bk.position = CGPointMake(270, 160);
+    comp_majority_bk.opacity = 180;
+    [comp_majority_bk setTextureRect:CGRectMake(0, 0, 420, 320)];
+    [comp_majority_bk.texture setTexParameters:&params];
     
     text = [CCLabelTTF labelWithString:@"" fontName:@"Courier-Bold" fontSize:11];
     text.dimensions = CGSizeMake(320, 200);
@@ -64,10 +70,10 @@
     pageMark.color = ccWHITE;
     
     
-    [self addChild:comp_bk];
-    
-    [comp_bk addChild:text];
-    [comp_bk addChild:pageMark];
+    [self addChild:comp_majority_bk];
+    [self addChild:comp_underpause_bk];
+    [self addChild:text];
+    [self addChild:pageMark];
     
     [self loadNextEntry];
     
