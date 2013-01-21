@@ -46,7 +46,7 @@ static int MovePanelOpacity = 30;
     [self addChild:pauseButton];
     [self addChild:move_panel_left];
     [self addChild:move_panel_right];
-    
+
     return self;
 }
 
@@ -98,14 +98,14 @@ static int MovePanelOpacity = 30;
         Log(@"Touch ignored due to action running");
         return YES;
     } else if (location.x < 60) {
+        [move_panel_left setOpacity:MovePanelOpacity-10];
         gd._playerHoldingLeft = true;
         Log(@"Touch began on move left");
-        
         return YES;
     } else if (location.x > 420) {
+        [move_panel_right setOpacity:MovePanelOpacity-10];
         gd._playerHoldingRight = true;
         Log(@"Touch began on move right");
-        
         return YES;
     }
     
@@ -136,9 +136,11 @@ static int MovePanelOpacity = 30;
             [[CCDirector sharedDirector] pushScene:[PauseMenu node]];
         }
     } else if (gd._playerHoldingLeft) {
+        [move_panel_left setOpacity:MovePanelOpacity];
         gd._playerHoldingLeft = false;
         Log(@"Touch ended on move left");
     } else if (gd._playerHoldingRight) {
+        [move_panel_right setOpacity:MovePanelOpacity];
         gd._playerHoldingRight = false;
         Log(@"Touch ended on move right");
     }

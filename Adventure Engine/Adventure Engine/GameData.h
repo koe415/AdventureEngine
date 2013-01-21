@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "cocos2d.h"
+#import "cocos2d.h"
 #import "DebugFlags.h"
 #import "WorldHistory.h"
 
@@ -27,6 +27,9 @@
 
 @property(nonatomic) bool _dialogueInstant;
 @property(nonatomic, retain) WorldHistory * _worldHistory;
+
+@property(nonatomic) CGPoint _mmShadowsOffsets;
+@property(nonatomic) bool _mmShadowsVisible;
 
 +(GameData *) instance;
 -(id) init;

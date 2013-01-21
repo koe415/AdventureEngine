@@ -10,13 +10,17 @@
 #import "cocos2d.h"
 #import "DebugFlags.h"
 #import "Engine.h"
+#import "GameData.h"
 
-@interface MainMenu : CCLayerColor {
-    CCLabelTTF * mainTitle;
+@interface MainMenu : CCLayer {
+    CCNode * text_shadows;
+    CGPoint previousTouchPosition;
+    CGPoint currentShadowOffset;
     
-    CCMenu * mainMenuListing;
-    CCMenuItem * continueItem, * newGameItem;
+    UITapGestureRecognizer * _doubleTapRecognizer;
 }
+
+@property (retain) UITapGestureRecognizer * doubleTapRecognizer;
 
 +(CCScene *) scene;
 - (void)onContinue:(id)sender;

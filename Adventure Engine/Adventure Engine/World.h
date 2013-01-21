@@ -36,11 +36,10 @@
     CCSpriteBatchNode * backgroundBatchNode;
     CCSpriteBatchNode * worldObjectsBatchNode;
     
+    // todo: Remove from world class
     int shakeIntensity;
     int shakeDuration;
     float shakeTotalDuration;
-    
-    //NSMutableArray * lightSources;
 }
 
 -(void) clearWorld;

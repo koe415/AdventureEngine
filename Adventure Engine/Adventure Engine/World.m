@@ -82,6 +82,10 @@
     // load barriers
     // load tappables/triggerables
     
+    CCSprite * test = [CCSprite spriteWithFile:@""];
+    [test setTextureRect:CGRectMake(0, 0, 40, 320)];
+    //test.texture set
+    
     if ([worldToLoad isEqualToString:@"bath"]) {
         // Load barrier from map files
         Barrier * bathDoorBarrier = [Barrier barrierWithPosition:110.0f withWidth:20.0f withID:@"shower_door_barrier"];

@@ -7,7 +7,7 @@
             <key>catherine_bed_01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{24,90},{20,20}}</string>
+                <string>{{46,90},{20,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,7 +33,7 @@
             <key>catherine_bed_03.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{90,120},{10,10}}</string>
+                <string>{{2,122},{10,10}}</string>
                 <key>offset</key>
                 <string>{-5,5}</string>
                 <key>rotated</key>
@@ -46,7 +46,7 @@
             <key>catherine_bed_04.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{112,110},{10,10}}</string>
+                <string>{{112,132},{10,10}}</string>
                 <key>offset</key>
                 <string>{5,5}</string>
                 <key>rotated</key>
@@ -59,7 +59,7 @@
             <key>catherine_bed_05.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{24,112},{20,10}}</string>
+                <string>{{90,122},{20,10}}</string>
                 <key>offset</key>
                 <string>{0,5}</string>
                 <key>rotated</key>
@@ -72,7 +72,7 @@
             <key>catherine_bed_06.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,90},{20,20}}</string>
+                <string>{{24,90},{20,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,7 +85,7 @@
             <key>catherine_bed_07.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{90,68},{20,20}}</string>
+                <string>{{2,90},{20,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,7 +98,7 @@
             <key>catherine_bed_08.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -111,7 +111,7 @@
             <key>catherine_bed_09.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -124,7 +124,7 @@
             <key>catherine_bed_10.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -137,7 +137,7 @@
             <key>catherine_bed_100.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -150,7 +150,7 @@
             <key>catherine_bed_11.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{68,68},{20,20}}</string>
+                <string>{{90,68},{20,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -163,7 +163,7 @@
             <key>catherine_bed_12.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{46,68},{20,20}}</string>
+                <string>{{68,68},{20,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -189,7 +189,7 @@
             <key>catherine_bed_14.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{90,90},{20,18}}</string>
+                <string>{{68,110},{20,18}}</string>
                 <key>offset</key>
                 <string>{0,-1}</string>
                 <key>rotated</key>
@@ -215,7 +215,7 @@
             <key>catherine_bed_16.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{24,68},{20,20}}</string>
+                <string>{{46,68},{20,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -228,7 +228,7 @@
             <key>catherine_bed_17.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,68},{20,20}}</string>
+                <string>{{24,68},{20,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -241,7 +241,7 @@
             <key>catherine_bed_18.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -254,7 +254,7 @@
             <key>catherine_bed_19.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -267,7 +267,7 @@
             <key>catherine_bed_20.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -280,7 +280,7 @@
             <key>catherine_bed_21.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{90,46},{20,20}}</string>
+                <string>{{2,68},{20,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -293,7 +293,7 @@
             <key>catherine_bed_22.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{68,46},{20,20}}</string>
+                <string>{{90,46},{20,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -306,7 +306,7 @@
             <key>catherine_bed_23.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -319,7 +319,7 @@
             <key>catherine_bed_24.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{68,90},{20,18}}</string>
+                <string>{{90,90},{20,18}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -332,7 +332,7 @@
             <key>catherine_bed_25.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{46,90},{20,18}}</string>
+                <string>{{68,90},{20,18}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -345,7 +345,7 @@
             <key>catherine_bed_26.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{46,46},{20,20}}</string>
+                <string>{{68,46},{20,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -358,7 +358,7 @@
             <key>catherine_bed_27.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{24,46},{20,20}}</string>
+                <string>{{46,46},{20,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -371,7 +371,7 @@
             <key>catherine_bed_28.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -384,7 +384,7 @@
             <key>catherine_bed_29.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -397,7 +397,7 @@
             <key>catherine_bed_30.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -410,7 +410,7 @@
             <key>catherine_bed_31.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -423,7 +423,7 @@
             <key>catherine_bed_32.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -436,7 +436,7 @@
             <key>catherine_bed_33.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -449,7 +449,7 @@
             <key>catherine_bed_34.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -462,7 +462,7 @@
             <key>catherine_bed_35.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -475,7 +475,7 @@
             <key>catherine_bed_36.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -488,7 +488,7 @@
             <key>catherine_bed_37.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -501,7 +501,7 @@
             <key>catherine_bed_38.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -514,7 +514,7 @@
             <key>catherine_bed_39.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -527,7 +527,7 @@
             <key>catherine_bed_40.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -540,7 +540,7 @@
             <key>catherine_bed_41.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -553,7 +553,7 @@
             <key>catherine_bed_42.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -566,7 +566,7 @@
             <key>catherine_bed_43.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -579,7 +579,7 @@
             <key>catherine_bed_44.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -592,7 +592,7 @@
             <key>catherine_bed_45.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -605,7 +605,7 @@
             <key>catherine_bed_46.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -618,7 +618,7 @@
             <key>catherine_bed_47.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -631,7 +631,7 @@
             <key>catherine_bed_48.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -644,7 +644,7 @@
             <key>catherine_bed_49.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -657,7 +657,7 @@
             <key>catherine_bed_50.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -670,7 +670,7 @@
             <key>catherine_bed_51.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -683,7 +683,7 @@
             <key>catherine_bed_52.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -696,7 +696,7 @@
             <key>catherine_bed_53.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -709,7 +709,7 @@
             <key>catherine_bed_54.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -722,7 +722,7 @@
             <key>catherine_bed_55.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,46},{20,20}}</string>
+                <string>{{24,46},{20,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -735,7 +735,7 @@
             <key>catherine_bed_56.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -748,7 +748,7 @@
             <key>catherine_bed_57.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -761,7 +761,7 @@
             <key>catherine_bed_58.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -774,7 +774,7 @@
             <key>catherine_bed_59.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -787,7 +787,7 @@
             <key>catherine_bed_60.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -800,7 +800,7 @@
             <key>catherine_bed_61.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -839,7 +839,7 @@
             <key>catherine_bed_64.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -852,7 +852,7 @@
             <key>catherine_bed_65.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{90,24},{20,20}}</string>
+                <string>{{2,46},{20,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -865,7 +865,7 @@
             <key>catherine_bed_66.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -878,7 +878,7 @@
             <key>catherine_bed_67.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -891,7 +891,7 @@
             <key>catherine_bed_68.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -904,7 +904,7 @@
             <key>catherine_bed_69.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -917,7 +917,7 @@
             <key>catherine_bed_70.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -930,7 +930,7 @@
             <key>catherine_bed_71.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -943,7 +943,7 @@
             <key>catherine_bed_72.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{68,24},{20,20}}</string>
+                <string>{{90,24},{20,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -956,7 +956,7 @@
             <key>catherine_bed_73.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{46,24},{20,20}}</string>
+                <string>{{68,24},{20,20}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -969,13 +969,13 @@
             <key>catherine_bed_74.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{46,24},{20,20}}</string>
                 <key>offset</key>
-                <string>{-9.5,9.5}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{1,1}}</string>
+                <string>{{0,0},{20,20}}</string>
                 <key>sourceSize</key>
                 <string>{20,20}</string>
             </dict>
@@ -1008,7 +1008,7 @@
             <key>catherine_bed_77.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -1021,7 +1021,7 @@
             <key>catherine_bed_78.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -1034,7 +1034,7 @@
             <key>catherine_bed_79.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -1047,7 +1047,7 @@
             <key>catherine_bed_80.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -1060,7 +1060,7 @@
             <key>catherine_bed_81.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{46,122},{20,6}}</string>
+                <string>{{46,120},{20,6}}</string>
                 <key>offset</key>
                 <string>{0,-7}</string>
                 <key>rotated</key>
@@ -1073,7 +1073,7 @@
             <key>catherine_bed_82.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{90,110},{20,8}}</string>
+                <string>{{24,112},{20,8}}</string>
                 <key>offset</key>
                 <string>{0,-6}</string>
                 <key>rotated</key>
@@ -1086,11 +1086,11 @@
             <key>catherine_bed_83.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,112},{20,10}}</string>
+                <string>{{112,110},{20,10}}</string>
                 <key>offset</key>
                 <string>{0,-5}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,10},{20,10}}</string>
                 <key>sourceSize</key>
@@ -1099,7 +1099,7 @@
             <key>catherine_bed_84.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{68,120},{20,6}}</string>
+                <string>{{46,112},{20,6}}</string>
                 <key>offset</key>
                 <string>{0,-7}</string>
                 <key>rotated</key>
@@ -1125,7 +1125,7 @@
             <key>catherine_bed_86.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{68,110},{20,8}}</string>
+                <string>{{2,112},{20,8}}</string>
                 <key>offset</key>
                 <string>{0,-6}</string>
                 <key>rotated</key>
@@ -1138,7 +1138,7 @@
             <key>catherine_bed_87.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -1151,7 +1151,7 @@
             <key>catherine_bed_88.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -1164,7 +1164,7 @@
             <key>catherine_bed_89.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -1177,7 +1177,7 @@
             <key>catherine_bed_90.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -1242,7 +1242,7 @@
             <key>catherine_bed_95.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{46,110},{20,10}}</string>
+                <string>{{90,110},{20,10}}</string>
                 <key>offset</key>
                 <string>{0,5}</string>
                 <key>rotated</key>
@@ -1268,7 +1268,7 @@
             <key>catherine_bed_97.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -1281,7 +1281,7 @@
             <key>catherine_bed_98.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -1294,7 +1294,7 @@
             <key>catherine_bed_99.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{124,66},{1,1}}</string>
+                <string>{{124,69},{1,1}}</string>
                 <key>offset</key>
                 <string>{-9.5,9.5}</string>
                 <key>rotated</key>
@@ -1314,7 +1314,7 @@
             <key>size</key>
             <string>{128,256}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:3fd4db9c557f507d7c32b3862c3e964b$</string>
+            <string>$TexturePacker:SmartUpdate:27a4b7ba25d79303bbe9572b9a038047$</string>
             <key>textureFileName</key>
             <string>catherine_bed.png</string>
         </dict>

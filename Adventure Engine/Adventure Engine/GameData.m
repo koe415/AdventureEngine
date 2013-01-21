@@ -31,6 +31,9 @@ static GameData *_instance = nil;
         self._worldObjects = [[NSMutableArray alloc] init];
         self._dialogueInstant = true;
         self._worldHistory = [[WorldHistory alloc] init];
+        
+        self._mmShadowsOffsets = ccp(2,-2);
+        self._mmShadowsVisible = true;
     }
     
     return self;
@@ -71,5 +74,8 @@ static GameData *_instance = nil;
 @synthesize _endingGame;
 @synthesize _dialogueInstant;
 @synthesize _worldHistory;
+
+@synthesize _mmShadowsOffsets;
+@synthesize _mmShadowsVisible;
 
 @end
