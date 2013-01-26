@@ -58,7 +58,7 @@
     [mainTitle setHorizontalAlignment:kCCTextAlignmentCenter];
     [mainTitle setColor:ccWHITE];
     [mainTitle setOpacity:0];
-    [mainTitle setPosition: ccp(screenSize.width/2,screenSize.height/2 + 20)];
+    [mainTitle setPosition: ccp(screenSize.width/2,screenSize.height/2 + 40)];//20)];
     
     CCMenuItemFont * continueItem = [CCMenuItemFont itemWithString:@"Continue?" target:self selector:@selector(onContinue:)];
     [continueItem setAnchorPoint:ccp(0,0)];
@@ -106,7 +106,7 @@
     [mainTitle setHorizontalAlignment:kCCTextAlignmentCenter];
     [mainTitle setColor:ccBLACK];
     [mainTitle setOpacity:0];
-    [mainTitle setPosition: ccp(screenSize.width/2,screenSize.height/2 + 20)];
+    [mainTitle setPosition: ccp(screenSize.width/2,screenSize.height/2 + 40)];
     
     CCMenuItemFont * continueItem = [CCMenuItemFont itemWithString:@"Continue?"];
     [continueItem setAnchorPoint:ccp(0,0)];
@@ -167,7 +167,7 @@
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
 
--(void) handleDoubleTap {
+-(void) handleQuadTap {
     [GameData instance]._mmShadowsVisible = ![GameData instance]._mmShadowsVisible;
     text_shadows.visible = [GameData instance]._mmShadowsVisible;
 }
@@ -212,8 +212,8 @@
 }
 
 -(void) onEnter {
-    self.doubleTapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap)] autorelease];
-    _doubleTapRecognizer.numberOfTapsRequired = 3;
+    self.doubleTapRecognizer = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleQuadTap)] autorelease];
+    _doubleTapRecognizer.numberOfTapsRequired = 4;
     [[[CCDirector sharedDirector] view] addGestureRecognizer:_doubleTapRecognizer];
     [super onEnter];
 }

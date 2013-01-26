@@ -19,8 +19,8 @@
 		51240F98169376F300985E7C /* bath_13.png in Resources */ = {isa = PBXBuildFile; fileRef = 51240F97169376F300985E7C /* bath_13.png */; };
 		51240FA41693A23D00985E7C /* Tappable.m in Sources */ = {isa = PBXBuildFile; fileRef = 51240FA31693A23D00985E7C /* Tappable.m */; };
 		512B70FA16991B87000C5698 /* catherine_bed.txt in Resources */ = {isa = PBXBuildFile; fileRef = 512B70F916991B87000C5698 /* catherine_bed.txt */; };
-		51390B5D16ACD41B00889E55 /* main_menu_background_shadows.png in Resources */ = {isa = PBXBuildFile; fileRef = 51390B5B16ACD41B00889E55 /* main_menu_background_shadows.png */; };
-		51390B5E16ACD41B00889E55 /* main_menu_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 51390B5C16ACD41B00889E55 /* main_menu_background.png */; };
+		512FC94416B36939003D45F8 /* main_menu_background_shadows.png in Resources */ = {isa = PBXBuildFile; fileRef = 512FC94216B36939003D45F8 /* main_menu_background_shadows.png */; };
+		512FC94516B36939003D45F8 /* main_menu_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 512FC94316B36939003D45F8 /* main_menu_background.png */; };
 		51390B6916AD02F500889E55 /* falling_debris.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51390B6816AD02F500889E55 /* falling_debris.plist */; };
 		514D48941693B1FA008813F4 /* GameAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 514D48931693B1FA008813F4 /* GameAction.m */; };
 		5152E260168FC51A00D2B85B /* WorldObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5152E25F168FC51A00D2B85B /* WorldObject.m */; };
@@ -215,8 +215,8 @@
 		51240FA21693A23D00985E7C /* Tappable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tappable.h; sourceTree = "<group>"; };
 		51240FA31693A23D00985E7C /* Tappable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tappable.m; sourceTree = "<group>"; };
 		512B70F916991B87000C5698 /* catherine_bed.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = catherine_bed.txt; sourceTree = "<group>"; };
-		51390B5B16ACD41B00889E55 /* main_menu_background_shadows.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_menu_background_shadows.png; sourceTree = "<group>"; };
-		51390B5C16ACD41B00889E55 /* main_menu_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_menu_background.png; sourceTree = "<group>"; };
+		512FC94216B36939003D45F8 /* main_menu_background_shadows.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_menu_background_shadows.png; sourceTree = "<group>"; };
+		512FC94316B36939003D45F8 /* main_menu_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_menu_background.png; sourceTree = "<group>"; };
 		51390B6816AD02F500889E55 /* falling_debris.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = falling_debris.plist; sourceTree = "<group>"; };
 		514D48921693B1FA008813F4 /* GameAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAction.h; sourceTree = "<group>"; };
 		514D48931693B1FA008813F4 /* GameAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameAction.m; sourceTree = "<group>"; };
@@ -582,8 +582,8 @@
 		51390B5116ACBF7B00889E55 /* Main Menu */ = {
 			isa = PBXGroup;
 			children = (
-				51390B5B16ACD41B00889E55 /* main_menu_background_shadows.png */,
-				51390B5C16ACD41B00889E55 /* main_menu_background.png */,
+				512FC94216B36939003D45F8 /* main_menu_background_shadows.png */,
+				512FC94316B36939003D45F8 /* main_menu_background.png */,
 			);
 			name = "Main Menu";
 			sourceTree = "<group>";
@@ -1291,9 +1291,9 @@
 				51559DD616A7C8CD001EDA3A /* catherine_bed.png in Resources */,
 				51559DD716A7C8CD001EDA3A /* catherine_bed.plist in Resources */,
 				51559DD816A7C8CD001EDA3A /* light_glare.png in Resources */,
-				51390B5D16ACD41B00889E55 /* main_menu_background_shadows.png in Resources */,
-				51390B5E16ACD41B00889E55 /* main_menu_background.png in Resources */,
 				51390B6916AD02F500889E55 /* falling_debris.plist in Resources */,
+				512FC94416B36939003D45F8 /* main_menu_background_shadows.png in Resources */,
+				512FC94516B36939003D45F8 /* main_menu_background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

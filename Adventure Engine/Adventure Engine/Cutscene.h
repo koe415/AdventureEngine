@@ -13,4 +13,7 @@
     
 }
 
++(id) nodeWithCutscene:(NSString *) cutsceneToShow;
+-(id) initWithCutscene:(NSString *) cutsceneToShow;
+
 @end
