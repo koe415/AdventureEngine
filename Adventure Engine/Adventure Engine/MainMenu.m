@@ -32,8 +32,12 @@
 -(void) setupBackground {
     CGSize screenSize = [CCDirector sharedDirector].winSize;
     
-    CCSprite * background = [CCSprite spriteWithFile:@"main_menu_background.png"];
+    CCSprite * background = [CCSprite spriteWithFile:@"empty_space.png"];
     [background setPosition:ccp(screenSize.width/2,screenSize.height/2)];
+    [background setScale:1.5];
+    [[background texture] setAliasTexParameters];
+    
+    [background runAction:[CCRepeatForever actionWithAction:[CCRotateBy actionWithDuration:5 angle:10]]];
     
     CCSprite * background_shadows = [CCSprite spriteWithFile:@"main_menu_background_shadows.png"];
     [background_shadows setPosition:ccp(screenSize.width/2,screenSize.height/2)];
@@ -44,8 +48,8 @@
     [[particles texture] setAliasTexParameters];
     
     [self addChild:background z:Z_BACKGROUND];
-    [self addChild:particles z:Z_BACKGROUND];
     [self addChild:background_shadows z:Z_BACKGROUND];
+    [background addChild:particles];
 }
 
 -(void) setupText {
@@ -58,7 +62,7 @@
     [mainTitle setHorizontalAlignment:kCCTextAlignmentCenter];
     [mainTitle setColor:ccWHITE];
     [mainTitle setOpacity:0];
-    [mainTitle setPosition: ccp(screenSize.width/2,screenSize.height/2 + 40)];//20)];
+    [mainTitle setPosition: ccp(screenSize.width/2,screenSize.height/2 + 40)];
     
     CCMenuItemFont * continueItem = [CCMenuItemFont itemWithString:@"Continue?" target:self selector:@selector(onContinue:)];
     [continueItem setAnchorPoint:ccp(0,0)];

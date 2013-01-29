@@ -18,9 +18,14 @@
 		51225EB01692959B001732FF /* Dialogue.m in Sources */ = {isa = PBXBuildFile; fileRef = 51225EAF1692959A001732FF /* Dialogue.m */; };
 		51240F98169376F300985E7C /* bath_13.png in Resources */ = {isa = PBXBuildFile; fileRef = 51240F97169376F300985E7C /* bath_13.png */; };
 		51240FA41693A23D00985E7C /* Tappable.m in Sources */ = {isa = PBXBuildFile; fileRef = 51240FA31693A23D00985E7C /* Tappable.m */; };
+		5124294816B6726F00DD57FB /* AltMainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5124294716B6726F00DD57FB /* AltMainMenu.m */; };
+		5124294C16B6744600DD57FB /* menuTileSheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 5124294A16B6744600DD57FB /* menuTileSheet.png */; };
+		5124294D16B6744600DD57FB /* menuTileSheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5124294B16B6744600DD57FB /* menuTileSheet.plist */; };
 		512B70FA16991B87000C5698 /* catherine_bed.txt in Resources */ = {isa = PBXBuildFile; fileRef = 512B70F916991B87000C5698 /* catherine_bed.txt */; };
 		512FC94416B36939003D45F8 /* main_menu_background_shadows.png in Resources */ = {isa = PBXBuildFile; fileRef = 512FC94216B36939003D45F8 /* main_menu_background_shadows.png */; };
 		512FC94516B36939003D45F8 /* main_menu_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 512FC94316B36939003D45F8 /* main_menu_background.png */; };
+		512FC94916B46715003D45F8 /* empty_space.png in Resources */ = {isa = PBXBuildFile; fileRef = 512FC94816B46715003D45F8 /* empty_space.png */; };
+		512FC94B16B46FEA003D45F8 /* Act 1 Design Doc.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 512FC94A16B46FEA003D45F8 /* Act 1 Design Doc.rtf */; };
 		51390B6916AD02F500889E55 /* falling_debris.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51390B6816AD02F500889E55 /* falling_debris.plist */; };
 		514D48941693B1FA008813F4 /* GameAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 514D48931693B1FA008813F4 /* GameAction.m */; };
 		5152E260168FC51A00D2B85B /* WorldObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5152E25F168FC51A00D2B85B /* WorldObject.m */; };
@@ -214,9 +219,15 @@
 		51240F97169376F300985E7C /* bath_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bath_13.png; sourceTree = "<group>"; };
 		51240FA21693A23D00985E7C /* Tappable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tappable.h; sourceTree = "<group>"; };
 		51240FA31693A23D00985E7C /* Tappable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tappable.m; sourceTree = "<group>"; };
+		5124294616B6726F00DD57FB /* AltMainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AltMainMenu.h; sourceTree = "<group>"; };
+		5124294716B6726F00DD57FB /* AltMainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AltMainMenu.m; sourceTree = "<group>"; };
+		5124294A16B6744600DD57FB /* menuTileSheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuTileSheet.png; sourceTree = "<group>"; };
+		5124294B16B6744600DD57FB /* menuTileSheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = menuTileSheet.plist; sourceTree = "<group>"; };
 		512B70F916991B87000C5698 /* catherine_bed.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = catherine_bed.txt; sourceTree = "<group>"; };
 		512FC94216B36939003D45F8 /* main_menu_background_shadows.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_menu_background_shadows.png; sourceTree = "<group>"; };
 		512FC94316B36939003D45F8 /* main_menu_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = main_menu_background.png; sourceTree = "<group>"; };
+		512FC94816B46715003D45F8 /* empty_space.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empty_space.png; sourceTree = "<group>"; };
+		512FC94A16B46FEA003D45F8 /* Act 1 Design Doc.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "Act 1 Design Doc.rtf"; sourceTree = "<group>"; };
 		51390B6816AD02F500889E55 /* falling_debris.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = falling_debris.plist; sourceTree = "<group>"; };
 		514D48921693B1FA008813F4 /* GameAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAction.h; sourceTree = "<group>"; };
 		514D48931693B1FA008813F4 /* GameAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameAction.m; sourceTree = "<group>"; };
@@ -582,6 +593,7 @@
 		51390B5116ACBF7B00889E55 /* Main Menu */ = {
 			isa = PBXGroup;
 			children = (
+				512FC94816B46715003D45F8 /* empty_space.png */,
 				512FC94216B36939003D45F8 /* main_menu_background_shadows.png */,
 				512FC94316B36939003D45F8 /* main_menu_background.png */,
 			);
@@ -694,6 +706,8 @@
 				51F08C51168815FE0007AAB3 /* Tiles */,
 				515322CC167D3C4500863C43 /* World Assets */,
 				51225EA916927DBA001732FF /* HUD */,
+				5124294A16B6744600DD57FB /* menuTileSheet.png */,
+				5124294B16B6744600DD57FB /* menuTileSheet.plist */,
 				51F08C4A1687FC5A0007AAB3 /* size_comparisonHD.png */,
 				5189C1E816980192008381FC /* small_glow_red.png */,
 				518FBE24169FF29B00E5E057 /* compscreen_bk.png */,
@@ -1116,6 +1130,8 @@
 				5161BF55167E67AC00D1E557 /* MainMenu.m */,
 				515322CE167D3D6000863C43 /* PauseMenu.h */,
 				515322CF167D3D6000863C43 /* PauseMenu.m */,
+				5124294616B6726F00DD57FB /* AltMainMenu.h */,
+				5124294716B6726F00DD57FB /* AltMainMenu.m */,
 			);
 			name = Menus;
 			path = "Adventure Engine";
@@ -1130,6 +1146,7 @@
 				5183A889167FC64D009B6DFB /* Overview.rtf */,
 				510377A3168AF769007A4EA7 /* Dialogue.rtf */,
 				517F7E801696AC4D00F2E744 /* Todo.rtf */,
+				512FC94A16B46FEA003D45F8 /* Act 1 Design Doc.rtf */,
 				5188E9A416A6013A00D5C8C9 /* Misc.rtf */,
 			);
 			name = Documents;
@@ -1294,6 +1311,10 @@
 				51390B6916AD02F500889E55 /* falling_debris.plist in Resources */,
 				512FC94416B36939003D45F8 /* main_menu_background_shadows.png in Resources */,
 				512FC94516B36939003D45F8 /* main_menu_background.png in Resources */,
+				512FC94916B46715003D45F8 /* empty_space.png in Resources */,
+				512FC94B16B46FEA003D45F8 /* Act 1 Design Doc.rtf in Resources */,
+				5124294C16B6744600DD57FB /* menuTileSheet.png in Resources */,
+				5124294D16B6744600DD57FB /* menuTileSheet.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1425,6 +1446,7 @@
 				51874DE5169CC7DD003EA43C /* PersistentData.m in Sources */,
 				5183BBBD169E1B6800FF9223 /* Cutscene.m in Sources */,
 				5183BBC1169E1B7C00FF9223 /* Readable.m in Sources */,
+				5124294816B6726F00DD57FB /* AltMainMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
