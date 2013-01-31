@@ -18,7 +18,6 @@
 		51225EB01692959B001732FF /* Dialogue.m in Sources */ = {isa = PBXBuildFile; fileRef = 51225EAF1692959A001732FF /* Dialogue.m */; };
 		51240F98169376F300985E7C /* bath_13.png in Resources */ = {isa = PBXBuildFile; fileRef = 51240F97169376F300985E7C /* bath_13.png */; };
 		51240FA41693A23D00985E7C /* Tappable.m in Sources */ = {isa = PBXBuildFile; fileRef = 51240FA31693A23D00985E7C /* Tappable.m */; };
-		5124294816B6726F00DD57FB /* AltMainMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5124294716B6726F00DD57FB /* AltMainMenu.m */; };
 		5124294C16B6744600DD57FB /* menuTileSheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 5124294A16B6744600DD57FB /* menuTileSheet.png */; };
 		5124294D16B6744600DD57FB /* menuTileSheet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5124294B16B6744600DD57FB /* menuTileSheet.plist */; };
 		512B70FA16991B87000C5698 /* catherine_bed.txt in Resources */ = {isa = PBXBuildFile; fileRef = 512B70F916991B87000C5698 /* catherine_bed.txt */; };
@@ -219,8 +218,6 @@
 		51240F97169376F300985E7C /* bath_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bath_13.png; sourceTree = "<group>"; };
 		51240FA21693A23D00985E7C /* Tappable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tappable.h; sourceTree = "<group>"; };
 		51240FA31693A23D00985E7C /* Tappable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tappable.m; sourceTree = "<group>"; };
-		5124294616B6726F00DD57FB /* AltMainMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AltMainMenu.h; sourceTree = "<group>"; };
-		5124294716B6726F00DD57FB /* AltMainMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AltMainMenu.m; sourceTree = "<group>"; };
 		5124294A16B6744600DD57FB /* menuTileSheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuTileSheet.png; sourceTree = "<group>"; };
 		5124294B16B6744600DD57FB /* menuTileSheet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = menuTileSheet.plist; sourceTree = "<group>"; };
 		512B70F916991B87000C5698 /* catherine_bed.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = catherine_bed.txt; sourceTree = "<group>"; };
@@ -1130,8 +1127,6 @@
 				5161BF55167E67AC00D1E557 /* MainMenu.m */,
 				515322CE167D3D6000863C43 /* PauseMenu.h */,
 				515322CF167D3D6000863C43 /* PauseMenu.m */,
-				5124294616B6726F00DD57FB /* AltMainMenu.h */,
-				5124294716B6726F00DD57FB /* AltMainMenu.m */,
 			);
 			name = Menus;
 			path = "Adventure Engine";
@@ -1446,7 +1441,6 @@
 				51874DE5169CC7DD003EA43C /* PersistentData.m in Sources */,
 				5183BBBD169E1B6800FF9223 /* Cutscene.m in Sources */,
 				5183BBC1169E1B7C00FF9223 /* Readable.m in Sources */,
-				5124294816B6726F00DD57FB /* AltMainMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

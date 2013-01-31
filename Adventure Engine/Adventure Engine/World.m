@@ -34,7 +34,6 @@
         }
     }
     
-    spawnPositions = [[NSMutableArray alloc] init];
     player = [[Player alloc] init];
     [self addChild:player z:Z_PLAYER];
     
@@ -59,7 +58,6 @@
     [backgroundBatchNode removeFromParentAndCleanup:true];
     [worldObjectsBatchNode removeFromParentAndCleanup:true];
     
-    [spawnPositions removeAllObjects];
     [[GameData instance]._worldObjects removeAllObjects];
     [[GameData instance]._worldTappables removeAllObjects];
     [[GameData instance]._worldTriggerables removeAllObjects];
@@ -274,8 +272,8 @@
     }
 }
 
-// Sets up both animated and static tiles (not worlds objects)
--(void) loadTiles:(NSString *) worldToLoad withSpawn:(int) spawnPt {
+// loadInWorld
+-(void) redoneloadTiles:(NSString *) worldToLoad withSpawn:(int) spawnPt {
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:
      [NSString stringWithFormat:@"%@.plist",worldToLoad]];
     
@@ -297,27 +295,78 @@
     int spawnPtID = 0;
     
     for (NSString * s in contentsArray) {
-        if ([s hasPrefix:@"spawn"]) {
-            NSArray * spawnInfo = [s componentsSeparatedByString:@","];
-            int spawnX = [[spawnInfo objectAtIndex:1] intValue];
-            int spawnY = [[spawnInfo objectAtIndex:2] intValue];
-            Direction d;
-            if ([[spawnInfo objectAtIndex:3] isEqualToString:@"R"]) d = RIGHT;
-            else d = LEFT;
-            
+        
+        s = [s stringByReplacingOccurrencesOfString:@" " withString:@""];
+        
+        if ([s length] == 0) {
+            // Disregard white space!
+        } else if ([s hasPrefix:@"//"]) {
+            // Disregard notes!
+        } else if ([s hasPrefix:@"spawn"]) {
+            // [self parseSpawnPoint:s];
+            spawnPt++;
+        } else if ([s hasPrefix:@"info"]) {
+            // [self parseInfo:s];
+        } else {
+            // [self parseTile];
+        }
+    }
+    
+    if (spawnPtID==0) Log(@"Spawn point not provided in map load");
+}
+
+// Sets up both animated and static tiles (not worlds objects)
+-(void) loadTiles:(NSString *) worldToLoad withSpawn:(int) playerSpawnPt {
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:
+     [NSString stringWithFormat:@"%@.plist",worldToLoad]];
+    
+    backgroundBatchNode = [CCSpriteBatchNode 
+                           batchNodeWithFile:
+                           [NSString stringWithFormat:@"%@.png",worldToLoad]];
+    
+    [self addChild:backgroundBatchNode z:Z_BELOW_PLAYER];
+    
+    NSError * error;
+    
+    NSString * contents = [NSString stringWithContentsOfFile:
+                           [[NSBundle mainBundle] pathForResource:worldToLoad ofType:@"txt"]
+                                                    encoding:NSUTF8StringEncoding
+                                                       error:&error];
+    
+    NSArray * contentsArray = [contents componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    
+    int spawnPtID = 0;
+    
+    for (NSString * s in contentsArray) {
+        
+        s = [s stringByReplacingOccurrencesOfString:@" " withString:@""];
+        
+        if ([s length] == 0) {
+            // Disregard white space!
+        } else if ([s hasPrefix:@"//"]) {
+            // Disregard notes!
+        } else if ([s hasPrefix:@"spawn"]) {
+            // [self parseSpawnPoint:s];
             spawnPtID++;
             
-            SpawnPosition * currentSpawn = [[[SpawnPosition alloc] initWithPos:CGPointMake(spawnX, spawnY) withDir:d withID:spawnPtID] autorelease];
-            [spawnPositions addObject:currentSpawn];
+            // Only parse if player spawn, no reason to store points
+            if (spawnPtID==playerSpawnPt) {
             
-            if (spawnPtID==spawnPt) {
+                NSArray * spawnInfo = [s componentsSeparatedByString:@","];
+                int spawnX = [[spawnInfo objectAtIndex:1] intValue];
+                int spawnY = [[spawnInfo objectAtIndex:2] intValue];
+                Direction d;
+                if ([[spawnInfo objectAtIndex:3] isEqualToString:@"R"]) d = RIGHT;
+                else d = LEFT;
+            
                 [player setPositionManually:CGPointMake(spawnX, spawnY)];
                 [player setFacing:d];
                 
                 cameraCenter = CGPointMake(240 - player.position.x, player.position.y);
-                
             }
         } else if ([s hasPrefix:@"info"]) {
+            // [self parseInfo:s];
+            
             NSArray * inputBarriers = [s componentsSeparatedByString:@","];
             
             NSString * leftBarrierString = [inputBarriers objectAtIndex:1];
@@ -330,9 +379,7 @@
             Barrier * rightWorldBoundary = [Barrier barrierWithPosition:[rightBarrierString floatValue] withID:@"left_boundary"];
             [rightWorldBoundary setEnabled:true];
             if (Display_Barriers) [self addChild:[rightWorldBoundary getVisual] z:Z_BELOW_PLAYER];
-            
-        } else if ([s hasPrefix:@"//"]) {
-            // Disregard notes!
+
         } else {
             bool isAnimated = false;
             NSArray * tileArray = [s componentsSeparatedByString:@","];
@@ -399,7 +446,6 @@
     }
     
     if (spawnPtID==0) Log(@"Spawn point not provided in map load");
-    
 }
 
 -(void) loadWorldObjects:(NSString *) worldToLoad {
@@ -447,7 +493,6 @@
                 CCAnimation *animation = [CCAnimation animationWithSpriteFrames:animFrames delay:DEFAULTANIMATIONDELAY];
                 animation.restoreOriginalFrame = false;
                 [object addAnimation:animation];
-                
             }
             
             [worldObjectsBatchNode addChild:object z:Z_BELOW_PLAYER];
@@ -477,10 +522,6 @@
     
     CCAnimation *animation = [CCAnimation animationWithSpriteFrames:animFrames delay:d];
     [sprite runAction:[CCRepeatForever actionWithAction: [CCAnimate actionWithAnimation:animation] ]];
-    
-    //animation.restoreOriginalFrame = true;
-    //[sprite runAction:[CCAnimate actionWithAnimation:animation]];
-    
     
     [backgroundBatchNode addChild:sprite];
     
@@ -631,9 +672,7 @@
         }
     }
     
-    //[lightSources release];
     [player release];
-    [spawnPositions release];
     [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrames];
     [super dealloc];
 }

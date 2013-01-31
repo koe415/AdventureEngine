@@ -21,6 +21,12 @@
     
     int xTilePosition;
     
+    //Animations
+    //walk
+    //run
+    //press item
+    //idle
+    //use computer
     CCAnimation *walkAnimation;
 }
 

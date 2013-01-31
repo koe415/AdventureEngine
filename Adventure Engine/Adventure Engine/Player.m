@@ -21,7 +21,6 @@ const int DefaultPlayerDirection = RIGHT;
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:
      [NSString stringWithFormat:@"player.plist"]];
     
-    //self = [CCSpriteBatchNode batchNodeWithFile:@"player.png"];
     self = [super initWithFile:@"player.png" capacity:3];
     if (!self) return nil;
     

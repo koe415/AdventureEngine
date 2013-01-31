@@ -72,6 +72,7 @@
     return [identity isEqualToString:inputString];
 }
 
+//-(CCSprite *) getSpriteReference {
 -(CCSprite *) getVisual {
     return visual;
 }

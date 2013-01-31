@@ -29,13 +29,14 @@
     Player * player;
     int cameraFocusedOnTile;
     id worldTiles[WORLDTILES_X][WORLDTILES_Y];
-    NSMutableArray * spawnPositions;
+    //NSMutableArray * spawnPositions;
     CGPoint cameraCenter;
     
     //CCSpriteBatchNode * foregroundBatchNode;
     CCSpriteBatchNode * backgroundBatchNode;
     CCSpriteBatchNode * worldObjectsBatchNode;
     
+    // Make object
     // todo: Remove from world class
     int shakeIntensity;
     int shakeDuration;
@@ -44,7 +45,7 @@
 
 -(void) clearWorld;
 -(void) loadWorld:(NSString *) worldToLoad;
--(void) loadWorld:(NSString *) worldToLoad withSpawn:(int) spawnPt;
+-(void) loadWorld:(NSString *) worldToLoad withSpawn:(int) playerSpawnPt;
 -(void) loadTiles:(NSString *) worldToLoad withSpawn:(int) spawnPt;
 -(void) loadWorldObjects:(NSString *) worldToLoad;
 -(void) addSprite:(NSString *) s atTileCoords:(CGPoint) pt inFrontOfPlayer:(bool) ifop;
