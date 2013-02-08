@@ -10,8 +10,8 @@
 #define Adventure_Engine_SharedTypes_h
 
 enum Direction {
-    LEFT,
-    RIGHT
+    LEFT=1,
+    RIGHT=2
 };
 typedef enum Direction Direction;
 

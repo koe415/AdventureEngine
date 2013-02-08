@@ -18,6 +18,13 @@
     CGPoint currentShadowOffset;
     
     UITapGestureRecognizer * _doubleTapRecognizer;
+    
+    CCSprite * planet;
+    CCSprite * planet_clouds;
+    CCSprite * planet_clouds_slow;
+    CCSprite * planet_clouds_slowest;
+    CCSprite * planet_cutout;
+    float planet_x;
 }
 
 @property (retain) UITapGestureRecognizer * doubleTapRecognizer;

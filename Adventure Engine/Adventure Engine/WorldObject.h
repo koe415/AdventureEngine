@@ -13,13 +13,14 @@
 
 @interface WorldObject : CCSprite {
     NSString * identity;
-    NSMutableArray * animations; // CCanimations
+    NSMutableArray * animations; // CCAnimations
 }
 
-+(id) objectWithPos:(CGPoint) inputPos withID:(NSString *) inputIdentity;
--(id) initWithPos:(CGPoint) inputPos withID:(NSString *) inputIdentity;
++(id) objectWithPos:(CGPoint) inputPos withID:(NSString *) inputIdentity withIdle:(CCAnimation *) inputIdle;
+-(id) initWithPos:(CGPoint) inputPos withID:(NSString *) inputIdentity withIdle:(CCAnimation *) inputIdle;
 -(void) addAnimation:(CCAnimation *) inputAnimation;
 -(void) playAnimation:(int) animNum;
+-(void) playAnimation:(int) animNum loop:(bool) animLoops;
 -(bool) compareWith:(NSString *) inputString;
 
 @end

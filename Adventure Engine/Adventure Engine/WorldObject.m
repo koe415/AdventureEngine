@@ -10,14 +10,16 @@
 
 @implementation WorldObject
 
-+(id) objectWithPos:(CGPoint) inputPos withID:(NSString *) inputIdentity {
-    WorldObject * o = [[[WorldObject alloc] initWithPos:inputPos withID:inputIdentity] autorelease];
++(id) objectWithPos:(CGPoint) inputPos withID:(NSString *) inputIdentity withIdle:(CCAnimation *) inputIdle {
+    WorldObject * o = [[[WorldObject alloc] initWithPos:inputPos withID:inputIdentity withIdle:(CCAnimation *) inputIdle] autorelease];
     [[GameData instance]._worldObjects addObject:o];
     return o;
 }
 
--(id) initWithPos:(CGPoint) inputPos withID:(NSString *) inputIdentity {
-    self = [super initWithSpriteFrameName:@"objects_01.png"];
+-(id) initWithPos:(CGPoint) inputPos withID:(NSString *) inputIdentity withIdle:(CCAnimation *) inputIdle {
+    CCSpriteFrame * objectInitialFrame = [[[inputIdle frames] objectAtIndex:0] spriteFrame];
+
+    self = [super initWithSpriteFrame:objectInitialFrame];
     if (!self) return nil;
     
     [self setPosition:CGPointMake(((inputPos.x-1) * 20 * 2) + 20, ((inputPos.y-1) * 20 * 2) + 20)];
@@ -27,23 +29,25 @@
     identity = [[NSString alloc] initWithFormat:@"%@",inputIdentity];
     animations = [[NSMutableArray alloc] init];
     
+    [self addAnimation:inputIdle];
+    [self playAnimation:1 loop:true];
+    
     return self;
 }
 
 -(void) addAnimation:(CCAnimation *) inputAnimation {
     [animations addObject:inputAnimation];
-    
-    if ([animations count]==1) { // if first animation added, make it idle
-        //if ([inputAnimation.frames count] >1) {
-        //    [self runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:inputAnimation]]];
-        //} else {
-        [self runAction:[CCAnimate actionWithAnimation:inputAnimation]];
-        //}
-    }
 }
 
 -(void) playAnimation:(int) animNum {
-    [self runAction:[CCAnimate actionWithAnimation:[animations objectAtIndex:animNum-1]]];
+    [self playAnimation:animNum loop:false];
+}
+
+-(void) playAnimation:(int) animNum loop:(bool) animLoops {
+    [self stopAllActions];
+    if (animLoops)
+        [self runAction:[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:[animations objectAtIndex:animNum-1]]]];
+    else [self runAction:[CCAnimate actionWithAnimation:[animations objectAtIndex:animNum-1]]];
 }
 
 -(bool) compareWith:(NSString *) inputString {

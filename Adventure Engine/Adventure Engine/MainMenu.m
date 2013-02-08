@@ -32,6 +32,7 @@
 -(void) setupBackground {
     CGSize screenSize = [CCDirector sharedDirector].winSize;
     
+    /*
     CCSprite * background = [CCSprite spriteWithFile:@"empty_space.png"];
     [background setPosition:ccp(screenSize.width/2,screenSize.height/2)];
     [background setScale:1.5];
@@ -50,6 +51,59 @@
     [self addChild:background z:Z_BACKGROUND];
     [self addChild:background_shadows z:Z_BACKGROUND];
     [background addChild:particles];
+    */
+    
+    ccTexParams params = {GL_LINEAR,GL_LINEAR,GL_REPEAT,GL_REPEAT};
+    
+    planet = [CCSprite spriteWithFile:@"planet.png"];
+    [planet setPosition:ccp(screenSize.width/2,screenSize.height/2)];
+    [planet setScale:2];
+    [[planet texture] setTexParameters:&params];
+    //[planet setRotation:-10];
+    [self addChild:planet];
+    
+    planet_clouds = [CCSprite spriteWithFile:@"planet_clouds.png"];
+    [planet_clouds setPosition:ccp(screenSize.width/2,screenSize.height/2)];
+    [planet_clouds setScale:2];
+    [[planet_clouds texture] setTexParameters:&params];
+    [planet_clouds setOpacity:40];
+    //[planet_clouds setRotation:-10];
+    [self addChild:planet_clouds];
+    
+    planet_clouds_slow = [CCSprite spriteWithFile:@"planet_clouds.png"];
+    [planet_clouds_slow setPosition:ccp(screenSize.width/2,screenSize.height/2)];
+    [planet_clouds_slow setScale:-2];
+    [[planet_clouds_slow texture] setTexParameters:&params];
+    [planet_clouds_slow setOpacity:20];
+    //[planet_clouds_slow setRotation:-10];
+    [self addChild:planet_clouds_slow];
+    
+    planet_clouds_slowest = [CCSprite spriteWithFile:@"planet_clouds.png"];
+    [planet_clouds_slowest setPosition:ccp(screenSize.width/2,screenSize.height/2)];
+    [planet_clouds_slowest setScale:2];
+    [[planet_clouds_slowest texture] setTexParameters:&params];
+    [planet_clouds_slowest setOpacity:20];
+    //[planet_clouds_slowest setRotation:-10];
+    [self addChild:planet_clouds_slowest];
+    
+    planet_cutout = [CCSprite spriteWithFile:@"planet_cutout.png"];
+    [planet_cutout setPosition:ccp(screenSize.width/2,screenSize.height/2)];
+    [planet_cutout setScale:2];
+    [[planet_cutout texture] setTexParameters:&params];
+    //[planet_cutout setRotation:-10];
+    [self addChild:planet_cutout];
+    
+    
+}
+
+-(void) tick:(ccTime) dt {
+    planet_x += 0.04;
+    
+    [planet setTextureRect:CGRectMake(planet_x, 0, 128, 128)];
+    [planet_clouds setTextureRect:CGRectMake(- planet_x * 4, 0, 128, 128)];
+    [planet_clouds_slow setTextureRect:CGRectMake(50 + planet_x * 3.5, 100, 128, 128)];
+    [planet_clouds_slowest setTextureRect:CGRectMake(100 + planet_x * 2.0, 50, 128, 128)];
+    
 }
 
 -(void) setupText {
@@ -163,6 +217,8 @@
         [self setupBackground];
         [self setupShadows];
         [self setupText];
+        
+        [self schedule:@selector(tick:)];
     }
     return self;
 }

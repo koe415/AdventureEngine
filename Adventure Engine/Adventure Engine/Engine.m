@@ -122,6 +122,7 @@
     }
 }
 
+// TODO: Add in screen shake!
 -(void) run:(GameAction *) ga {
     [(HUD *) hud endUserInteraction];
     
@@ -175,7 +176,8 @@
             break;
         case ACTIONSHAKE:
             [GameData instance]._actionRunning = true;
-            [(World *) world setScreenShakeIntensity:[(ActionShake *) ga getIntensity] withDuration:[(ActionShake *) ga getDuration]];
+            //[(World *) world setScreenShakeIntensity:[(ActionShake *) ga getIntensity] withDuration:[(ActionShake *) ga getDuration]];
+//            #warning Need to implement screen shake!
             break;
         case  ACTIONBARRIER:
             for (Barrier * b in [GameData instance]._barriers) {

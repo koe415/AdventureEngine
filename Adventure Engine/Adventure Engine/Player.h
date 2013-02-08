@@ -26,12 +26,16 @@
     //run
     //press item
     //idle
-    //use computer
-    CCAnimation *walkAnimation;
+    
+    CCAnimation *idle1;
+    CCAnimation *walk1a;
+    CCAnimation *walk1b;
+    bool playingWalk1a;
 }
 
 -(id) init;
 -(id) initAtPosition:(CGPoint) pos facing:(Direction) d;
+-(void) setupAnimations;
 -(bool) attemptMoveInDirection:(Direction) d;
 -(bool) attemptNoMove;
 -(bool) moveToPosition:(CGPoint)position;

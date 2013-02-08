@@ -24,7 +24,7 @@ const int DefaultPlayerDirection = RIGHT;
     self = [super initWithFile:@"player.png" capacity:3];
     if (!self) return nil;
     
-    playerAvatar = [[CCSprite alloc] initWithSpriteFrameName:@"player_01.png"];
+    playerAvatar = [[CCSprite alloc] initWithSpriteFrameName:@"player_idle1_01.png"];
     [playerAvatar setScale:2.0f];
     [[playerAvatar texture] setAliasTexParameters];
     
@@ -35,21 +35,47 @@ const int DefaultPlayerDirection = RIGHT;
     
     [self addChild:playerAvatar];
     
-    
-    NSMutableArray * walkFrames = [[NSMutableArray alloc] init];
-    
-    for (int i = 2; i <= 3; i++) {
-        CCSpriteFrame * frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"player_0%d.png",i]];
-        [walkFrames addObject:frame];
-    }
-    
-    walkAnimation = [[CCAnimation alloc] initWithSpriteFrames:walkFrames delay:0.2f];
-    walkAnimation.restoreOriginalFrame = true;
+    [self setupAnimations];
     
     return self;
 }
 
+-(void) setupAnimations {
+    NSMutableArray * idle1Frames = [[NSMutableArray alloc] init];
+    
+    for (int i = 1; i <= 4; i++) {
+        CCSpriteFrame * frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"player_idle1_0%d.png",i]];
+        [idle1Frames addObject:frame];
+    }
+    
+    idle1 = [[CCAnimation alloc] initWithSpriteFrames:idle1Frames delay:0.5f];
+    idle1.restoreOriginalFrame = true;
+    
+    NSMutableArray * walk1aFrames = [[NSMutableArray alloc] init];
+    
+    for (int i = 1; i <= 4; i++) {
+        CCSpriteFrame * frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"player_walk1_0%d.png",i]];
+        [walk1aFrames addObject:frame];
+    }
+    
+    walk1a = [[CCAnimation alloc] initWithSpriteFrames:walk1aFrames delay:0.15f];
+    walk1a.restoreOriginalFrame = true;
+    
+    NSMutableArray * walk1bFrames = [[NSMutableArray alloc] init];
+    
+    for (int i = 5; i <= 8; i++) {
+        CCSpriteFrame * frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"player_walk1_0%d.png",i]];
+        [walk1bFrames addObject:frame];
+    }
+    
+    walk1b = [[CCAnimation alloc] initWithSpriteFrames:walk1bFrames delay:0.15f];
+    walk1b.restoreOriginalFrame = true;
+}
+
 -(bool) attemptMoveInDirection:(Direction) d {
+    if (playerVelocity == 0.0f)
+        [playerAvatar stopAllActions];
+    
     if (d == LEFT) {
         if (playerVelocity < -2.0f) playerVelocity -= 0.005f;
         else if (playerVelocity < -1.5f) playerVelocity -= 0.01f;
@@ -77,6 +103,9 @@ const int DefaultPlayerDirection = RIGHT;
 }
 
 -(bool) attemptNoMove {
+    if ([playerAvatar numberOfRunningActions]==0)
+        [playerAvatar runAction:[CCRepeat actionWithAction:[CCAnimate actionWithAnimation:idle1] times:1]];
+    
     if (playerVelocity == 0.0f) {
         return false;
     } else if (playerVelocity > 0.0f) {
@@ -100,8 +129,16 @@ const int DefaultPlayerDirection = RIGHT;
     
     // Determine Valid Move
     if ([Logic checkValidPosition:position]) {
-        if ([playerAvatar numberOfRunningActions]==0)
-            [playerAvatar runAction:[CCRepeat actionWithAction:[CCAnimate actionWithAnimation:walkAnimation] times:1]];
+        //[playerAvatar stopAllActions];
+        if ([playerAvatar numberOfRunningActions]==0) {
+            if (playingWalk1a) {
+                [playerAvatar runAction:[CCRepeat actionWithAction:[CCAnimate actionWithAnimation:walk1b] times:1]];
+                playingWalk1a = false;
+            } else {
+                [playerAvatar runAction:[CCRepeat actionWithAction:[CCAnimate actionWithAnimation:walk1a] times:1]];
+                playingWalk1a = true;
+            }
+        }
         
         [GameData instance]._playerPosition = position.x;
         [playerAvatar setPosition:position];
@@ -143,7 +180,9 @@ const int DefaultPlayerDirection = RIGHT;
 
 -(void) dealloc {
     [playerAvatar release];
-    [walkAnimation release];
+    [idle1 release];
+    [walk1a release];
+    [walk1b release];
     [super dealloc];
 }
 

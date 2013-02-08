@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "GameData.h"
 #import "Barrier.h"
+#import "DebugFlags.h"
 
 @interface Tappable : NSObject {
     int identity;

@@ -26,6 +26,8 @@
     self = [super init];
     if (!self) return nil;
     
+    Log(@"tap inited!");
+    
     tilePosition = inputPt;
     gameActionsToRun = [[NSArray alloc] initWithArray:actions];
     identity = inputIdent;
