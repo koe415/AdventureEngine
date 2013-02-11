@@ -33,6 +33,18 @@
     [data addObject:[PersistentData dataWithID:ident status:inputStatus]];
 }
 
+-(bool) hasValueForID:(NSString *) ident {
+    Log(@"Checking for %@",ident);
+    for (PersistentData * pD in data) {
+        if ([pD compareID:ident]) {
+            Log(@"Found '%@', has status:%i",ident,[pD getStatus]);
+            return true;
+        }
+    }
+    
+    return false;
+}
+
 -(bool) checkValueForID:(NSString *) ident {
     Log(@"Checking for %@",ident);
     for (PersistentData * pD in data) {

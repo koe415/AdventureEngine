@@ -28,8 +28,6 @@
 		512FC94B16B46FEA003D45F8 /* Act 1 Design Doc.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 512FC94A16B46FEA003D45F8 /* Act 1 Design Doc.rtf */; };
 		51390B6916AD02F500889E55 /* falling_debris.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51390B6816AD02F500889E55 /* falling_debris.plist */; };
 		513E5E4916BE01F8009EEAE2 /* GameActionSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 513E5E4816BE01F8009EEAE2 /* GameActionSequence.m */; };
-		5140D49716C4CDFC001AB14B /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 5140D49516C4CDFC001AB14B /* player.png */; };
-		5140D49816C4CDFC001AB14B /* player.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5140D49616C4CDFC001AB14B /* player.plist */; };
 		514D48941693B1FA008813F4 /* GameAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 514D48931693B1FA008813F4 /* GameAction.m */; };
 		5152E260168FC51A00D2B85B /* WorldObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5152E25F168FC51A00D2B85B /* WorldObject.m */; };
 		51532112167D32A900863C43 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51532111167D32A900863C43 /* QuartzCore.framework */; };
@@ -188,6 +186,8 @@
 		51875B0F169F6AFA004D2443 /* test_bed.png in Resources */ = {isa = PBXBuildFile; fileRef = 51875B0D169F6AFA004D2443 /* test_bed.png */; };
 		51875B10169F6AFA004D2443 /* test_bed.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51875B0E169F6AFA004D2443 /* test_bed.plist */; };
 		51875B12169F6B25004D2443 /* test_bed.txt in Resources */ = {isa = PBXBuildFile; fileRef = 51875B11169F6B25004D2443 /* test_bed.txt */; };
+		51881F7616C75A14000C7E1D /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 51881F7416C75A14000C7E1D /* player.png */; };
+		51881F7716C75A14000C7E1D /* player.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51881F7516C75A14000C7E1D /* player.plist */; };
 		5188E9A516A6013A00D5C8C9 /* Misc.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5188E9A416A6013A00D5C8C9 /* Misc.rtf */; };
 		5189C1E916980192008381FC /* small_glow_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 5189C1E816980192008381FC /* small_glow_red.png */; };
 		518FBE1A169FD82700E5E057 /* bath.plist in Resources */ = {isa = PBXBuildFile; fileRef = 518FBE18169FD82700E5E057 /* bath.plist */; };
@@ -229,8 +229,6 @@
 		51390B6816AD02F500889E55 /* falling_debris.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = falling_debris.plist; sourceTree = "<group>"; };
 		513E5E4716BE01F8009EEAE2 /* GameActionSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameActionSequence.h; sourceTree = "<group>"; };
 		513E5E4816BE01F8009EEAE2 /* GameActionSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameActionSequence.m; sourceTree = "<group>"; };
-		5140D49516C4CDFC001AB14B /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
-		5140D49616C4CDFC001AB14B /* player.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = player.plist; sourceTree = "<group>"; };
 		514D48921693B1FA008813F4 /* GameAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAction.h; sourceTree = "<group>"; };
 		514D48931693B1FA008813F4 /* GameAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameAction.m; sourceTree = "<group>"; };
 		5152E25E168FC51A00D2B85B /* WorldObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldObject.h; sourceTree = "<group>"; };
@@ -539,6 +537,8 @@
 		51875B0D169F6AFA004D2443 /* test_bed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_bed.png; sourceTree = "<group>"; };
 		51875B0E169F6AFA004D2443 /* test_bed.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test_bed.plist; sourceTree = "<group>"; };
 		51875B11169F6B25004D2443 /* test_bed.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_bed.txt; sourceTree = "<group>"; };
+		51881F7416C75A14000C7E1D /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
+		51881F7516C75A14000C7E1D /* player.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = player.plist; sourceTree = "<group>"; };
 		5188E9A416A6013A00D5C8C9 /* Misc.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Misc.rtf; sourceTree = "<group>"; };
 		5189C1E816980192008381FC /* small_glow_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = small_glow_red.png; sourceTree = "<group>"; };
 		518FBE18169FD82700E5E057 /* bath.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bath.plist; sourceTree = "<group>"; };
@@ -714,8 +714,8 @@
 				518FBE25169FF29B00E5E057 /* compscreen_side.png */,
 				51A11ED3169A669E00916521 /* red_checkers.png */,
 				5184A4F3169E800100C58EEE /* small_glow.png */,
-				5140D49516C4CDFC001AB14B /* player.png */,
-				5140D49616C4CDFC001AB14B /* player.plist */,
+				51881F7416C75A14000C7E1D /* player.png */,
+				51881F7516C75A14000C7E1D /* player.plist */,
 				51240F97169376F300985E7C /* bath_13.png */,
 				51225EA116926E43001732FF /* HUD.plist */,
 				51225EA216926E43001732FF /* HUD.png */,
@@ -1308,8 +1308,8 @@
 				511B809616BCBAE600826782 /* planet_clouds.png in Resources */,
 				511B80A316BCCC8100826782 /* planet.png in Resources */,
 				511B80A416BCCC8100826782 /* planet_cutout.png in Resources */,
-				5140D49716C4CDFC001AB14B /* player.png in Resources */,
-				5140D49816C4CDFC001AB14B /* player.plist in Resources */,
+				51881F7616C75A14000C7E1D /* player.png in Resources */,
+				51881F7716C75A14000C7E1D /* player.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

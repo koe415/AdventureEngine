@@ -67,7 +67,6 @@ object:door_to_hall,16,3,61,62-63-64-65-66-67-68-69-70,69-68-67-66-65-64-63-62-6
 object:door_to_hall,16,4,61,62-63-64-65-66-67-68-69-70,69-68-67-66-65-64-63-62-61
 object:door_to_hall,16,5,61,62-63-64-65-66-67-68-69-70,69-68-67-66-65-64-63-62-61
 
-
 action:unlockBathDoor,ACTIONBARRIER,bath_door_barrier,disabled
 action:unlockBathDoor,ACTIONOBJECTANIMATION,door_to_bath,2
 action:unlockBathDoor,ACTIONTAP,1,disabled

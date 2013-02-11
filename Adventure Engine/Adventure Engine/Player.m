@@ -41,15 +41,65 @@ const int DefaultPlayerDirection = RIGHT;
 }
 
 -(void) setupAnimations {
-    NSMutableArray * idle1Frames = [[NSMutableArray alloc] init];
     
-    for (int i = 1; i <= 4; i++) {
+    NSMutableArray * allIdleFrames = [[NSMutableArray alloc] init];
+    
+    for (int i = 1; i <= 5; i++) {
         CCSpriteFrame * frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"player_idle1_0%d.png",i]];
-        [idle1Frames addObject:frame];
+        [allIdleFrames addObject:frame];
     }
     
-    idle1 = [[CCAnimation alloc] initWithSpriteFrames:idle1Frames delay:0.5f];
-    idle1.restoreOriginalFrame = true;
+    // Do nothing for 1 sec
+    CCAnimation * idle1 = [CCAnimation animationWithSpriteFrames:[NSArray arrayWithObjects:[allIdleFrames objectAtIndex:0], nil] delay:1.0];
+    idle1.restoreOriginalFrame = false;
+    CCAnimate * idle1Animate = [CCAnimate actionWithAnimation:idle1];
+    
+    // Do nothing for 3 secs
+    CCAnimation * idle2 = [CCAnimation animationWithSpriteFrames:[NSArray arrayWithObjects:[allIdleFrames objectAtIndex:0], nil] delay:3.0];
+    idle2.restoreOriginalFrame = false;
+    CCAnimate * idle2Animate = [CCAnimate actionWithAnimation:idle2];
+    
+    // blink
+    CCAnimation * idle3 = [CCAnimation animationWithSpriteFrames:[NSArray arrayWithObjects:[allIdleFrames objectAtIndex:1], nil] delay:0.1];
+    idle3.restoreOriginalFrame = false;
+    CCAnimate * idle3Animate = [CCAnimate actionWithAnimation:idle3];
+    
+    // Mid arm movement to pocket
+    CCAnimation * idle4 = [CCAnimation animationWithSpriteFrames:[NSArray arrayWithObjects:[allIdleFrames objectAtIndex:3], nil] delay:0.2];
+    idle4.restoreOriginalFrame = false;
+    CCAnimate * idle4Animate = [CCAnimate actionWithAnimation:idle4];
+    
+    // Hands in pocket
+    CCAnimation * idle5 = [CCAnimation animationWithSpriteFrames:[NSArray arrayWithObjects:[allIdleFrames objectAtIndex:4], nil] delay:3.0];
+    idle5.restoreOriginalFrame = false;
+    CCAnimate * idle5Animate = [CCAnimate actionWithAnimation:idle5];
+    
+    // Look up
+    CCAnimation * idle6 = [CCAnimation animationWithSpriteFrames:[NSArray arrayWithObjects:[allIdleFrames objectAtIndex:2], nil] delay:3.0];
+    idle6.restoreOriginalFrame = false;
+    CCAnimate * idle6Animate = [CCAnimate actionWithAnimation:idle6];
+    
+    // blink long
+    CCAnimation * idle7 = [CCAnimation animationWithSpriteFrames:[NSArray arrayWithObjects:[allIdleFrames objectAtIndex:1], nil] delay:2.0];
+    idle7.restoreOriginalFrame = false;
+    CCAnimate * idle7Animate = [CCAnimate actionWithAnimation:idle7];
+    
+    CCSequence * seqDoNothing1Secs = [CCSequence actions:idle1Animate, nil];
+    CCSequence * seqDoNothing2Secs = [CCSequence actions:idle1Animate,idle1Animate, nil];
+    CCSequence * seqDoNothing3Secs = [CCSequence actions:idle2Animate, nil];
+    CCSequence * seqBlink = [CCSequence actions:idle1Animate,idle3Animate,idle1Animate, nil];
+    CCSequence * seqBlinkLong = [CCSequence actions:idle7Animate, nil];
+    CCSequence * seqBlinkNap = [CCSequence actions:idle7Animate,idle7Animate,idle7Animate, nil];
+    CCSequence * seqBlinkDouble = [CCSequence actions:idle1Animate,idle3Animate,idle2Animate,idle3Animate,idle1Animate,idle3Animate,idle1Animate, nil];
+    CCSequence * seqHandsInPocketsLong = [CCSequence actions:idle1Animate,idle4Animate,idle5Animate,idle5Animate,idle4Animate,idle1Animate, nil];
+    CCSequence * seqLookUp = [CCSequence actions:idle1Animate,idle3Animate,idle6Animate,idle3Animate,idle1Animate, nil];
+    
+    
+    
+    idleAnims = [[NSArray alloc] initWithObjects:seqDoNothing1Secs,seqDoNothing1Secs,seqDoNothing1Secs,seqDoNothing1Secs,seqDoNothing2Secs,seqDoNothing2Secs,seqDoNothing3Secs,seqBlink,seqBlink,seqBlink,seqBlink,seqBlinkDouble,seqHandsInPocketsLong,seqLookUp,seqBlinkLong,seqBlinkNap, nil];
+    
+    
+    
     
     NSMutableArray * walk1aFrames = [[NSMutableArray alloc] init];
     
@@ -59,7 +109,7 @@ const int DefaultPlayerDirection = RIGHT;
     }
     
     walk1a = [[CCAnimation alloc] initWithSpriteFrames:walk1aFrames delay:0.15f];
-    walk1a.restoreOriginalFrame = true;
+    walk1a.restoreOriginalFrame = false;
     
     NSMutableArray * walk1bFrames = [[NSMutableArray alloc] init];
     
@@ -69,7 +119,7 @@ const int DefaultPlayerDirection = RIGHT;
     }
     
     walk1b = [[CCAnimation alloc] initWithSpriteFrames:walk1bFrames delay:0.15f];
-    walk1b.restoreOriginalFrame = true;
+    walk1b.restoreOriginalFrame = false;
 }
 
 -(bool) attemptMoveInDirection:(Direction) d {
@@ -103,8 +153,13 @@ const int DefaultPlayerDirection = RIGHT;
 }
 
 -(bool) attemptNoMove {
-    if ([playerAvatar numberOfRunningActions]==0)
-        [playerAvatar runAction:[CCRepeat actionWithAction:[CCAnimate actionWithAnimation:idle1] times:1]];
+    if ([playerAvatar numberOfRunningActions]==0) {
+        int randomIdle = rand()%[idleAnims count];
+        [playerAvatar runAction:[CCRepeat actionWithAction:[idleAnims objectAtIndex:randomIdle] times:1]];
+        
+        //[playerAvatar runAction:[CCRepeat actionWithAction:[CCAnimate actionWithAnimation:[CCAnimation a] times:1]];
+        
+    }
     
     if (playerVelocity == 0.0f) {
         return false;
@@ -178,9 +233,44 @@ const int DefaultPlayerDirection = RIGHT;
     playerDirection = d;
 }
 
+-(void) updateLightingWith: (NSArray *) lightsArray {
+    float runningLightVal = 0.0f;
+    
+    for (NSNumber * l in lightsArray) {
+        int lightPos = [l intValue];
+        int dist = playerAvatar.position.x - lightPos;
+        if (dist < 0) dist = -dist;
+        
+        // 0 - 400, has an effect on player
+        // 0 - 200 is fully lit
+        // 200 - 400 is partial die off
+        
+        if (dist > 200) continue;
+        else if (dist > 100) runningLightVal += (155.0f - (155.0f * ((dist - 100.0f) / 100.0f))); // 0 - 200
+        else runningLightVal += 155.0f;
+    }
+    /*
+    float lval = runningDist/[lightsArray count];
+    if (lval>255.0f) lval = 255.0f;
+    else if (lval < 0.0f) lval = 0.0f;*/
+    
+    
+    // lightingValue = 100 - 255
+    
+    if (runningLightVal > 155.0f) runningLightVal = 155.0f;
+    //lightingValue -= 255.0f;
+    //lightingValue *= -1.0f;
+    float lightingValue = 100 + runningLightVal;
+    //lightingValue = 0.0f;
+    
+    //Log(@"%f",lightingValue);
+    [playerAvatar setColor:ccc3(lightingValue, lightingValue, lightingValue)];
+    //[playerAvatar setColor:ccc3(255.0f,255.0f, 255.0f)];
+}
+
 -(void) dealloc {
     [playerAvatar release];
-    [idle1 release];
+    [idleAnims release];
     [walk1a release];
     [walk1b release];
     [super dealloc];

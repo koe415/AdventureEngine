@@ -163,7 +163,14 @@
         case ACTIONTAP:
             for (Tappable * t in [GameData instance]._worldTappables) {
                 if ([t getIdentity] == [((ActionTap *) ga) getID]) {
-                    [t setEnabled:[((ActionTap *) ga) getStatus]];
+                    
+                    NSString * tapID = [[NSString alloc] initWithFormat:@"%d",[((ActionTap *) ga) getID]];
+                    bool tapStatus = [((ActionTap *) ga) getStatus];
+                    
+                    [t setEnabled:tapStatus];
+                    //[[GameData instance]._encounteredTaps setStatus:tapStatus forID:tapID];
+                    
+                    [tapID release];
                 }
             }
             break;
@@ -224,10 +231,8 @@
     [[CCDirector sharedDirector] replaceScene:[MainMenu node]];
 }
 
-
 -(void) newGame {
     // Set all game data to default!
-    
     [(World *) world loadWorld:@"bath" withSpawn:1];
 }
 
@@ -235,80 +240,6 @@
     // Read in saved string, parse it
     // Saved data has to have current map, and spawn point
 }
-
-
-    // Check for triggers at spawn
-    // todo: move to loadMap method
-    // issue as is, can't run pushscene during class initiation which causes map load flicker
-    /*
-    if (firstTimeRunningWorld) {
-        GameActionArray * potentialArray = [Logic checkPlayerTriggeringGameActionArray];
-        
-        if (potentialArray) {
-            if (![potentialArray isEmpty]) {
-                // add array to running actions
-                [runningActions addArray:potentialArray];
-                
-                // run first action
-                [self runNextAction];
-            }
-        }
-        
-        firstTimeRunningWorld = false;
-    }
-    
-    if ([_hudLayer isItemPickupShown]) {
-        // Ignore running anything if item pickup screen shown
-    } else if ([_dialogueLayer displayingDialogue]) {
-        // Ignore running actions or any movement attempts
-    } else if (gameActionDelay>0) {
-        if ([_hudLayer isMovePanelVisible])
-            [_hudLayer setMovePanelVisibility:false];
-        //Log(@"waiting!");
-        gameActionDelay--;
-    } else if (![runningActions isEmpty]) {
-        [self runNextAction];
-    } else if (movingLeft) {
-        [Logic attemptPlayerMoveLeft];
-        // check for trigger
-        GameActionArray * potentialArray = [Logic checkPlayerTriggeringGameActionArray];
-        
-        if (potentialArray) {
-            if (![potentialArray isEmpty]) {
-                // add array to running actions
-                [runningActions addArray:potentialArray];
-                
-                // run first action
-                [self runNextAction];
-            }
-        }
-        
-    } else if (movingRight) {
-        [Logic attemptPlayerMoveRight];
-        // check for trigger
-        GameActionArray * potentialArray = [Logic checkPlayerTriggeringGameActionArray];
-        
-        if (potentialArray) {
-            if (![potentialArray isEmpty]) {
-                // add array to running actions
-                [runningActions addArray:potentialArray];
-                
-                // run first action
-                [self runNextAction];
-            }
-        }
-    }
-    
-    [_worldLayer updateWorld];*/
-//}
-
-
-/*
--(void) pickupItem:(NSString *) item {
-    [_hudLayer setItemPickup:item];
-    [Logic addPlayerItem:item];
-}
-*/
 
 // on "dealloc" you need to release all your retained objects
 -(void) dealloc

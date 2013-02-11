@@ -27,7 +27,10 @@
     //press item
     //idle
     
-    CCAnimation *idle1;
+    //CCAnimation *idle1; // no motion then blink
+    //CCAnimation *idle2; // shift down then up
+    //CCAnimation *idle3; // hands in pocket for a bit
+    NSArray * idleAnims;
     CCAnimation *walk1a;
     CCAnimation *walk1b;
     bool playingWalk1a;
@@ -42,5 +45,7 @@
 -(void) setPositionManually:(CGPoint)position; // Overrides any barrier
 -(CGPoint) getPosition;
 -(void) setFacing:(Direction) d;
+
+-(void) updateLightingWith: (NSArray *) lightsArray;
 
 @end

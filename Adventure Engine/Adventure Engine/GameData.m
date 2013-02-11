@@ -30,13 +30,23 @@ static GameData *_instance = nil;
         self._barriers = [[NSMutableArray alloc] init];
         self._worldObjects = [[NSMutableArray alloc] init];
         self._dialogueInstant = true;
+        
         self._worldHistory = [[WorldHistory alloc] init];
+        self._encounteredTaps = [[WorldHistory alloc] init];
+        self._encounteredTrigs = [[WorldHistory alloc] init];
         
         self._mmShadowsOffsets = ccp(2,-2);
         self._mmShadowsVisible = true;
     }
     
     return self;
+}
+
+-(void) clearWorld {
+    [self._worldObjects removeAllObjects];
+    [self._worldTappables removeAllObjects];
+    [self._worldTriggerables removeAllObjects];
+    [self._barriers removeAllObjects];
 }
 
 -(void) clear {
@@ -51,6 +61,8 @@ static GameData *_instance = nil;
     [self._worldObjects removeAllObjects];
     [self._barriers removeAllObjects];
     [self._worldHistory clear];
+    [self._encounteredTaps clear];
+    [self._encounteredTrigs clear];
 }
 
 -(void) dealloc {
@@ -59,7 +71,10 @@ static GameData *_instance = nil;
     [self._worldTriggerables release];
     [self._worldObjects release];
     [self._barriers release];
+    
     [self._worldHistory release];
+    [self._encounteredTaps release];
+    [self._encounteredTrigs release];
     [super dealloc];
 }
 
@@ -73,7 +88,7 @@ static GameData *_instance = nil;
 @synthesize _actionRunning;
 @synthesize _endingGame;
 @synthesize _dialogueInstant;
-@synthesize _worldHistory;
+@synthesize _worldHistory,_encounteredTaps,_encounteredTrigs;
 
 @synthesize _mmShadowsOffsets;
 @synthesize _mmShadowsVisible;

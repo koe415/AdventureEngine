@@ -27,12 +27,19 @@
 
 @property(nonatomic) bool _dialogueInstant;
 @property(nonatomic, retain) WorldHistory * _worldHistory;
+@property(nonatomic, retain) WorldHistory * _encounteredTaps;
+@property(nonatomic, retain) WorldHistory * _encounteredTrigs;
 
 @property(nonatomic) CGPoint _mmShadowsOffsets;
 @property(nonatomic) bool _mmShadowsVisible;
 
 +(GameData *) instance;
 -(id) init;
+
+/* Called for when a new world is being loaded */
+-(void) clearWorld;
+
+/* Called for when ending a game. Clears all data */
 -(void) clear;
 
 @end

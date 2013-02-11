@@ -39,8 +39,6 @@
     
     gameActionsLoaded = [[NSMutableArray alloc] init];
     
-    //[gd._worldHistory setStatus:false forID:@"has_bath_key"];
-    
     return self;
 }
 
@@ -59,11 +57,7 @@
     [worldObjectsBatchNode removeFromParentAndCleanup:true];
     [gameActionsLoaded removeAllObjects];
     
-    [[GameData instance]._worldObjects removeAllObjects];
-    [[GameData instance]._worldTappables removeAllObjects];
-    [[GameData instance]._worldTriggerables removeAllObjects];
-    [[GameData instance]._barriers removeAllObjects];
-    
+    [[GameData instance] clearWorld];
 }
 
 // Defaults to the first spawn available
@@ -389,18 +383,18 @@
     
     NSAssert([actions count]>0, @"Action Sequence not found to be loaded.");
     
-    bool enabled; // Check for persistent data otherwise load default
-    
-    NSNumber * newTappableEnabled = nil; // Check if tap is in persistent data, else load default value and add to persistent data(?)
-    
-    if (newTappableEnabled == nil) { // if tap wasn't found in persistent data
+    bool enabled;
+/*
+    if ([[GameData instance]._encounteredTaps hasValueForID:[NSString stringWithFormat:@"%d",identity]]) {
+        enabled = [[GameData instance]._encounteredTaps checkValueForID:[NSString stringWithFormat:@"%d",identity]];
+    } else {*/
         NSString * newTappableIsEnabledString = [tapInfo objectAtIndex:6];
         if ([newTappableIsEnabledString isEqualToString:@"enabled"])
-            newTappableEnabled = [NSNumber numberWithBool:YES];
-        else newTappableEnabled = [NSNumber numberWithBool:NO];
+            enabled = true;
+        else enabled = false;
         
-        enabled = [newTappableEnabled boolValue];
-    }
+        //[[GameData instance]._encounteredTaps setStatus:enabled forID:[NSString stringWithFormat:@"%d",identity]];
+    //}
     
     Tappable * t = [Tappable tappableWithPosition:position withActions:actions withSize:size withIdentity:identity isEnabled:enabled];
     
@@ -458,9 +452,10 @@
         enabled = [newTriggerableEnabled boolValue];
     }
     
-    Triggerable * t = [Triggerable triggerableWithPosition:position withActions:actions withIdentity:identity isEnabled:enabled];//[Tappable tappableWithPosition:position withActions:actions withSize:size withIdentity:identity isEnabled:enabled];
+    Triggerable * t = [Triggerable triggerableWithPosition:position withActions:actions withIdentity:identity isEnabled:enabled];
     
     // check for prereqs
+    /*
     if ([trigInfo count]>5) {
         NSString * prereq = [[trigInfo objectAtIndex:7] retain];
         NSString * actionsWithoutPrereq = [trigInfo objectAtIndex:8];
@@ -476,7 +471,7 @@
         
         //[t addPrereq:prereq];
         //[t addGameActionsIfPrereqsNotMet:actionsIfPrereqNotMet];
-    }
+    }*/
     
     if (Display_Triggers) [self addChild:[t getGlow] z:Z_BELOW_PLAYER];
 }
@@ -543,6 +538,9 @@
     } else {
         playerChangedPos = [player attemptNoMove];
     }
+    
+    //NSArray * lights = [NSArray arrayWithObjects:[NSNumber numberWithInt:350], nil];
+    //if (Display_Lighting) [player updateLightingWith:lights];
     
     if(playerChangedPos) {
         for (Tappable * t in [GameData instance]._worldTappables) {
