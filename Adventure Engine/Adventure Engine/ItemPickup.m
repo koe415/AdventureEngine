@@ -3,7 +3,6 @@
 //  Adventure Engine
 //
 //  Created by Galen Koehne on 12/16/12.
-//  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "ItemPickup.h"

@@ -3,7 +3,6 @@
 //  Adventure Engine
 //
 //  Created by Galen Koehne on 12/27/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #ifndef Adventure_Engine_SharedTypes_h

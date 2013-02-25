@@ -1,9 +1,8 @@
 //
-//  TestLayerBottom.m
+//  World.m
 //  AdventureEngine
 //
 //  Created by Galen Koehne on 12/13/12.
-//  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "World.h"
@@ -34,11 +33,15 @@
         }
     }
     
+    creatureManager = [[CreatureManager alloc] init];
+    [self addChild:creatureManager z:Z_PLAYER];
+    
     player = [[Player alloc] init];
     [self addChild:player z:Z_PLAYER];
     
     gameActionsLoaded = [[NSMutableArray alloc] init];
     
+    //[self runAction:[CCRepeatForever actionWithAction:[CCSequence actions:[CCRotateBy actionWithDuration:5 angle:15],[CCRotateBy actionWithDuration:4 angle:-15], nil]]];
     return self;
 }
 
@@ -56,6 +59,7 @@
     [backgroundBatchNode removeFromParentAndCleanup:true];
     [worldObjectsBatchNode removeFromParentAndCleanup:true];
     [gameActionsLoaded removeAllObjects];
+    [creatureManager clear];
     
     [[GameData instance] clearWorld];
 }
@@ -110,6 +114,8 @@
             [self parseTappable:[s substringFromIndex:4]];
         } else if ([s hasPrefix:@"trig"]) {
             [self parseTriggerable:[s substringFromIndex:5]];
+        } else if ([s hasPrefix:@"creature:"]) {
+            [self parseCreature:[s substringFromIndex:9]];
         } else {
             NSAssert1(false, @"Line not recognized:%@",s);
         }
@@ -476,6 +482,15 @@
     if (Display_Triggers) [self addChild:[t getGlow] z:Z_BELOW_PLAYER];
 }
 
+-(void) parseCreature:(NSString *) inputString {
+    NSArray * creatureInfo = [inputString componentsSeparatedByString:@","];
+    
+    int type = [[creatureInfo objectAtIndex:0] intValue];
+    int xPos = [[creatureInfo objectAtIndex:1] intValue];
+    
+    [creatureManager createCreature:type at:xPos];
+}
+
 -(void) addAnimatedSprite:(NSArray *) spriteFrames atTileCoords:(CGPoint) pt inFrontOfPlayer:(bool) ifop delay:(float) d {
     CCSprite * sprite = [CCSprite spriteWithSpriteFrameName:[spriteFrames objectAtIndex:0]];
     [sprite setScale:2];
@@ -529,7 +544,12 @@
     
 }
 
--(void) tick:(ccTime) dt {
+-(void) tick:(ccTime) dt {    
+    if (gd._playerPressedFlash) {
+        [creatureManager handleFlashFrom: gd._playerPosition];
+        gd._playerPressedFlash = false;
+    }
+    
     bool playerChangedPos;
     if (gd._playerHoldingLeft) {
         playerChangedPos = [player attemptMoveInDirection:LEFT];
@@ -548,6 +568,8 @@
         }
     }
     
+    [creatureManager update];
+    
     [self updateCamera];
 }
 
@@ -556,6 +578,7 @@
     CGPoint viewPoint = ccpSub(centerOfView, self.position);
     
     cameraCenter.x = 240 - [player getPosition].x;
+    
 
     [GameData instance]._cameraPosition = self.position = cameraCenter;
     
@@ -610,6 +633,17 @@
     CGPoint tileLocation = CGPointMake((int)worldLocation.x/40 + 1, (int)worldLocation.y/40 + 1);
     
     [(Engine *) self.parent handleTileTapAt:tileLocation];
+    
+    float newScale = self.scale;
+    
+    if(location.x > 240.0f) newScale += 0.01f;
+    else newScale -= 0.01f;
+    
+    if (newScale > 1.5f) newScale = 1.5f;
+    else if (newScale < 0.5f) newScale = 0.5f;
+    
+    self.scale = newScale;
+    Log(@"scale level = %f",newScale);
 }
 
 -(void) dealloc {
@@ -620,10 +654,11 @@
         }
     }
     
+    [creatureManager release];
     [player release];
     [gameActionsLoaded removeAllObjects];
     [gameActionsLoaded release];
-    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrames];
+    //[[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFrames];
     [super dealloc];
 }
 

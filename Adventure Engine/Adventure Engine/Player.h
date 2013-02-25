@@ -3,7 +3,6 @@
 //  AdventureEngine
 //
 //  Created by Galen Koehne on 12/8/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -27,9 +26,6 @@
     //press item
     //idle
     
-    //CCAnimation *idle1; // no motion then blink
-    //CCAnimation *idle2; // shift down then up
-    //CCAnimation *idle3; // hands in pocket for a bit
     NSArray * idleAnims;
     CCAnimation *walk1a;
     CCAnimation *walk1b;
@@ -44,6 +40,7 @@
 -(bool) moveToPosition:(CGPoint)position;
 -(void) setPositionManually:(CGPoint)position; // Overrides any barrier
 -(CGPoint) getPosition;
+-(float) getVelocity;
 -(void) setFacing:(Direction) d;
 
 -(void) updateLightingWith: (NSArray *) lightsArray;

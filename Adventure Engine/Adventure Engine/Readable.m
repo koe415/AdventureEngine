@@ -3,7 +3,6 @@
 //  Adventure Engine
 //
 //  Created by Galen Koehne on 1/9/13.
-//  Copyright 2013 __MyCompanyName__. All rights reserved.
 //
 
 #import "Readable.h"
@@ -104,7 +103,7 @@
      */
     endingScene = true;
     
-    [(Engine *) self.parent setMoveVisibility:true];
+    [(Engine *) self.parent setHUDVisibility:true];
     [GameData instance]._actionRunning = false;
     [self endReadable];
 }

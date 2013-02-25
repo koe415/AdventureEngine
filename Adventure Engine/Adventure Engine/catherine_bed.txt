@@ -82,7 +82,7 @@ action:unlockHallDoor,ACTIONBARRIER,hall_door_barrier,disabled
 action:unlockHallDoorNoPrereq,ACTIONDIALOGUE,fuck_no_key
 tap:15,2,unlockHallDoor,1,4,3,enabled,has_cat_key,unlockHallDoorNoPrereq
 
-action:loadHall,ACTIONLOADWORLD,test_bed,1
+action:loadHall,ACTIONLOADWORLD,hall1,3
 trig:17,2,loadHall,4,enabled
 
 action:forebodingStory,ACTIONDIALOGUE,Theres_a_book

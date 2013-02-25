@@ -3,7 +3,6 @@
 //  Certainty
 //
 //  Created by Galen Koehne on 11/17/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "GameData.h"
@@ -43,16 +42,18 @@ static GameData *_instance = nil;
 }
 
 -(void) clearWorld {
+    Log(@"Cleared");
     [self._worldObjects removeAllObjects];
     [self._worldTappables removeAllObjects];
     [self._worldTriggerables removeAllObjects];
     [self._barriers removeAllObjects];
 }
 
--(void) clear {
-    Log(@"Cleared");
+-(void) resetAllData {
+    Log(@"All data reset");
     self._playerHoldingLeft = false;
     self._playerHoldingRight = false;
+    self._playerPressedFlash = false;
     self._actionDelay = false;
     self._actionRunning = false;
     
@@ -78,19 +79,11 @@ static GameData *_instance = nil;
     [super dealloc];
 }
 
+@synthesize _playerHoldingLeft, _playerHoldingRight,_playerPressedFlash;
 @synthesize _playerPosition, _cameraPosition;
-@synthesize _playerHoldingLeft, _playerHoldingRight;
-@synthesize _barriers;
-@synthesize _worldObjects;
-@synthesize _worldTappables;
-@synthesize _worldTriggerables;
-@synthesize _actionDelay;
-@synthesize _actionRunning;
-@synthesize _endingGame;
-@synthesize _dialogueInstant;
+@synthesize _worldObjects,_barriers,_worldTappables,_worldTriggerables;
+@synthesize _actionDelay,_actionRunning,_endingGame,_dialogueInstant;
 @synthesize _worldHistory,_encounteredTaps,_encounteredTrigs;
-
-@synthesize _mmShadowsOffsets;
-@synthesize _mmShadowsVisible;
+@synthesize _mmShadowsOffsets,_mmShadowsVisible;
 
 @end

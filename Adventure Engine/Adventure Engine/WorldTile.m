@@ -3,7 +3,6 @@
 //  Adventure Engine
 //
 //  Created by Galen Koehne on 12/23/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "WorldTile.h"

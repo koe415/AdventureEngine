@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		510377A4168AF769007A4EA7 /* Dialogue.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 510377A3168AF769007A4EA7 /* Dialogue.rtf */; };
+		5113629E16D07C0D003E15D7 /* Creature.m in Sources */ = {isa = PBXBuildFile; fileRef = 5113629D16D07C0D003E15D7 /* Creature.m */; };
+		511362A316D07C9E003E15D7 /* CreatureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 511362A216D07C9E003E15D7 /* CreatureManager.m */; };
+		511362A616D07FD3003E15D7 /* Zombie.m in Sources */ = {isa = PBXBuildFile; fileRef = 511362A516D07FD2003E15D7 /* Zombie.m */; };
+		511362A916D0812A003E15D7 /* creatures.png in Resources */ = {isa = PBXBuildFile; fileRef = 511362A716D0812A003E15D7 /* creatures.png */; };
+		511362AA16D0812A003E15D7 /* creatures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 511362A816D0812A003E15D7 /* creatures.plist */; };
 		511B809616BCBAE600826782 /* planet_clouds.png in Resources */ = {isa = PBXBuildFile; fileRef = 511B809316BCBAE600826782 /* planet_clouds.png */; };
 		511B80A316BCCC8100826782 /* planet.png in Resources */ = {isa = PBXBuildFile; fileRef = 511B80A116BCCC8100826782 /* planet.png */; };
 		511B80A416BCCC8100826782 /* planet_cutout.png in Resources */ = {isa = PBXBuildFile; fileRef = 511B80A216BCCC8100826782 /* planet_cutout.png */; };
@@ -183,9 +188,6 @@
 		5184A4F4169E800100C58EEE /* small_glow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5184A4F3169E800100C58EEE /* small_glow.png */; };
 		51874DE1169CC581003EA43C /* WorldHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 51874DE0169CC581003EA43C /* WorldHistory.m */; };
 		51874DE5169CC7DD003EA43C /* PersistentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 51874DE4169CC7DD003EA43C /* PersistentData.m */; };
-		51875B0F169F6AFA004D2443 /* test_bed.png in Resources */ = {isa = PBXBuildFile; fileRef = 51875B0D169F6AFA004D2443 /* test_bed.png */; };
-		51875B10169F6AFA004D2443 /* test_bed.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51875B0E169F6AFA004D2443 /* test_bed.plist */; };
-		51875B12169F6B25004D2443 /* test_bed.txt in Resources */ = {isa = PBXBuildFile; fileRef = 51875B11169F6B25004D2443 /* test_bed.txt */; };
 		51881F7616C75A14000C7E1D /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 51881F7416C75A14000C7E1D /* player.png */; };
 		51881F7716C75A14000C7E1D /* player.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51881F7516C75A14000C7E1D /* player.plist */; };
 		5188E9A516A6013A00D5C8C9 /* Misc.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 5188E9A416A6013A00D5C8C9 /* Misc.rtf */; };
@@ -199,13 +201,30 @@
 		51A11ED4169A669F00916521 /* red_checkers.png in Resources */ = {isa = PBXBuildFile; fileRef = 51A11ED3169A669E00916521 /* red_checkers.png */; };
 		51D048C3169BC83E000BCA63 /* gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 51D048C1169BC83E000BCA63 /* gray.png */; };
 		51D048C4169BC83E000BCA63 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 51D048C2169BC83E000BCA63 /* white.png */; };
+		51E0B59D16D307C300ABC8AC /* hall1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 51E0B59C16D307C300ABC8AC /* hall1.txt */; };
+		51E0B59F16D307FE00ABC8AC /* hall2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 51E0B59E16D307FE00ABC8AC /* hall2.txt */; };
+		51E0B5A116D3080A00ABC8AC /* hall3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 51E0B5A016D3080A00ABC8AC /* hall3.txt */; };
+		51E0B5A316D3081F00ABC8AC /* to_cockpit1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 51E0B5A216D3081F00ABC8AC /* to_cockpit1.txt */; };
+		51E0B5A516D3082E00ABC8AC /* to_cockpit2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 51E0B5A416D3082E00ABC8AC /* to_cockpit2.txt */; };
+		51E0B5A716D3084600ABC8AC /* cockpit.txt in Resources */ = {isa = PBXBuildFile; fileRef = 51E0B5A616D3084500ABC8AC /* cockpit.txt */; };
+		51E0B5A916D3085400ABC8AC /* cockpit_elevator.txt in Resources */ = {isa = PBXBuildFile; fileRef = 51E0B5A816D3085400ABC8AC /* cockpit_elevator.txt */; };
 		51E2C3F21693E1C500ABD1C2 /* Triggerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 51E2C3F11693E1C500ABD1C2 /* Triggerable.m */; };
+		51E4F79E16D3106800308C6D /* hall.png in Resources */ = {isa = PBXBuildFile; fileRef = 51E4F79C16D3106800308C6D /* hall.png */; };
+		51E4F79F16D3106800308C6D /* hall.plist in Resources */ = {isa = PBXBuildFile; fileRef = 51E4F79D16D3106800308C6D /* hall.plist */; };
 		51F08C4B1687FC5A0007AAB3 /* size_comparisonHD.png in Resources */ = {isa = PBXBuildFile; fileRef = 51F08C4A1687FC5A0007AAB3 /* size_comparisonHD.png */; };
 		51F08C80168831AD0007AAB3 /* WorldTile.m in Sources */ = {isa = PBXBuildFile; fileRef = 51F08C7F168831AD0007AAB3 /* WorldTile.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		510377A3168AF769007A4EA7 /* Dialogue.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Dialogue.rtf; sourceTree = "<group>"; };
+		5113629C16D07C0D003E15D7 /* Creature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Creature.h; sourceTree = "<group>"; };
+		5113629D16D07C0D003E15D7 /* Creature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Creature.m; sourceTree = "<group>"; };
+		511362A116D07C9D003E15D7 /* CreatureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatureManager.h; sourceTree = "<group>"; };
+		511362A216D07C9E003E15D7 /* CreatureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatureManager.m; sourceTree = "<group>"; };
+		511362A416D07FD2003E15D7 /* Zombie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Zombie.h; sourceTree = "<group>"; };
+		511362A516D07FD2003E15D7 /* Zombie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Zombie.m; sourceTree = "<group>"; };
+		511362A716D0812A003E15D7 /* creatures.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = creatures.png; sourceTree = "<group>"; };
+		511362A816D0812A003E15D7 /* creatures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = creatures.plist; sourceTree = "<group>"; };
 		511B809316BCBAE600826782 /* planet_clouds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = planet_clouds.png; sourceTree = "<group>"; };
 		511B80A116BCCC8100826782 /* planet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = planet.png; sourceTree = "<group>"; };
 		511B80A216BCCC8100826782 /* planet_cutout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = planet_cutout.png; sourceTree = "<group>"; };
@@ -534,9 +553,6 @@
 		51874DE0169CC581003EA43C /* WorldHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldHistory.m; sourceTree = "<group>"; };
 		51874DE3169CC7DD003EA43C /* PersistentData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistentData.h; sourceTree = "<group>"; };
 		51874DE4169CC7DD003EA43C /* PersistentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistentData.m; sourceTree = "<group>"; };
-		51875B0D169F6AFA004D2443 /* test_bed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_bed.png; sourceTree = "<group>"; };
-		51875B0E169F6AFA004D2443 /* test_bed.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = test_bed.plist; sourceTree = "<group>"; };
-		51875B11169F6B25004D2443 /* test_bed.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_bed.txt; sourceTree = "<group>"; };
 		51881F7416C75A14000C7E1D /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
 		51881F7516C75A14000C7E1D /* player.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = player.plist; sourceTree = "<group>"; };
 		5188E9A416A6013A00D5C8C9 /* Misc.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Misc.rtf; sourceTree = "<group>"; };
@@ -551,8 +567,17 @@
 		51A11ED3169A669E00916521 /* red_checkers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_checkers.png; sourceTree = "<group>"; };
 		51D048C1169BC83E000BCA63 /* gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray.png; sourceTree = "<group>"; };
 		51D048C2169BC83E000BCA63 /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
+		51E0B59C16D307C300ABC8AC /* hall1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hall1.txt; sourceTree = "<group>"; };
+		51E0B59E16D307FE00ABC8AC /* hall2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hall2.txt; sourceTree = "<group>"; };
+		51E0B5A016D3080A00ABC8AC /* hall3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hall3.txt; sourceTree = "<group>"; };
+		51E0B5A216D3081F00ABC8AC /* to_cockpit1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = to_cockpit1.txt; sourceTree = "<group>"; };
+		51E0B5A416D3082E00ABC8AC /* to_cockpit2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = to_cockpit2.txt; sourceTree = "<group>"; };
+		51E0B5A616D3084500ABC8AC /* cockpit.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cockpit.txt; sourceTree = "<group>"; };
+		51E0B5A816D3085400ABC8AC /* cockpit_elevator.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cockpit_elevator.txt; sourceTree = "<group>"; };
 		51E2C3F01693E1C500ABD1C2 /* Triggerable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Triggerable.h; sourceTree = "<group>"; };
 		51E2C3F11693E1C500ABD1C2 /* Triggerable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Triggerable.m; sourceTree = "<group>"; };
+		51E4F79C16D3106800308C6D /* hall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hall.png; sourceTree = "<group>"; };
+		51E4F79D16D3106800308C6D /* hall.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = hall.plist; sourceTree = "<group>"; };
 		51F08C4A1687FC5A0007AAB3 /* size_comparisonHD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = size_comparisonHD.png; sourceTree = "<group>"; };
 		51F08C7E168831AD0007AAB3 /* WorldTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldTile.h; sourceTree = "<group>"; };
 		51F08C7F168831AD0007AAB3 /* WorldTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldTile.m; sourceTree = "<group>"; };
@@ -578,6 +603,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		511362A016D07C17003E15D7 /* Creatures */ = {
+			isa = PBXGroup;
+			children = (
+				511362A116D07C9D003E15D7 /* CreatureManager.h */,
+				511362A216D07C9E003E15D7 /* CreatureManager.m */,
+				5113629C16D07C0D003E15D7 /* Creature.h */,
+				5113629D16D07C0D003E15D7 /* Creature.m */,
+				511362A416D07FD2003E15D7 /* Zombie.h */,
+				511362A516D07FD2003E15D7 /* Zombie.m */,
+			);
+			name = Creatures;
+			sourceTree = "<group>";
+		};
 		51225EA916927DBA001732FF /* HUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -641,6 +679,7 @@
 				51A11EC8169A521600916521 /* Barrier.m */,
 				513E5E4716BE01F8009EEAE2 /* GameActionSequence.h */,
 				513E5E4816BE01F8009EEAE2 /* GameActionSequence.m */,
+				511362A016D07C17003E15D7 /* Creatures */,
 			);
 			name = "World Support";
 			sourceTree = "<group>";
@@ -703,7 +742,8 @@
 			children = (
 				51390B5F16ACF1C800889E55 /* Particle Effects */,
 				51390B5116ACBF7B00889E55 /* Main Menu */,
-				51F08C51168815FE0007AAB3 /* Tiles */,
+				51E0B59816D3074B00ABC8AC /* Tile Sheets */,
+				51F08C51168815FE0007AAB3 /* World Data */,
 				515322CC167D3C4500863C43 /* World Assets */,
 				51225EA916927DBA001732FF /* HUD */,
 				5124294A16B6744600DD57FB /* menuTileSheet.png */,
@@ -716,6 +756,8 @@
 				5184A4F3169E800100C58EEE /* small_glow.png */,
 				51881F7416C75A14000C7E1D /* player.png */,
 				51881F7516C75A14000C7E1D /* player.plist */,
+				511362A716D0812A003E15D7 /* creatures.png */,
+				511362A816D0812A003E15D7 /* creatures.plist */,
 				51240F97169376F300985E7C /* bath_13.png */,
 				51225EA116926E43001732FF /* HUD.plist */,
 				51225EA216926E43001732FF /* HUD.png */,
@@ -1176,23 +1218,36 @@
 			name = "Persistent Data";
 			sourceTree = "<group>";
 		};
-		51F08C51168815FE0007AAB3 /* Tiles */ = {
+		51E0B59816D3074B00ABC8AC /* Tile Sheets */ = {
 			isa = PBXGroup;
 			children = (
 				51596BCD16A370D800C86485 /* objects.png */,
 				51596BCE16A370D800C86485 /* objects.plist */,
-				51875B0D169F6AFA004D2443 /* test_bed.png */,
-				51875B0E169F6AFA004D2443 /* test_bed.plist */,
-				51875B11169F6B25004D2443 /* test_bed.txt */,
 				51559DD316A7C8CD001EDA3A /* catherine_bed.png */,
 				51559DD416A7C8CD001EDA3A /* catherine_bed.plist */,
-				512B70F916991B87000C5698 /* catherine_bed.txt */,
-				518FBE18169FD82700E5E057 /* bath.plist */,
 				518FBE19169FD82700E5E057 /* bath.png */,
+				518FBE18169FD82700E5E057 /* bath.plist */,
+				51E4F79C16D3106800308C6D /* hall.png */,
+				51E4F79D16D3106800308C6D /* hall.plist */,
+			);
+			name = "Tile Sheets";
+			sourceTree = "<group>";
+		};
+		51F08C51168815FE0007AAB3 /* World Data */ = {
+			isa = PBXGroup;
+			children = (
+				512B70F916991B87000C5698 /* catherine_bed.txt */,
 				51225E9B16922E6C001732FF /* bath.txt */,
 				517509431692DE0800A972C4 /* bath_notes.txt */,
+				51E0B59C16D307C300ABC8AC /* hall1.txt */,
+				51E0B59E16D307FE00ABC8AC /* hall2.txt */,
+				51E0B5A016D3080A00ABC8AC /* hall3.txt */,
+				51E0B5A216D3081F00ABC8AC /* to_cockpit1.txt */,
+				51E0B5A416D3082E00ABC8AC /* to_cockpit2.txt */,
+				51E0B5A616D3084500ABC8AC /* cockpit.txt */,
+				51E0B5A816D3085400ABC8AC /* cockpit_elevator.txt */,
 			);
-			name = Tiles;
+			name = "World Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1285,9 +1340,6 @@
 				51D048C3169BC83E000BCA63 /* gray.png in Resources */,
 				51D048C4169BC83E000BCA63 /* white.png in Resources */,
 				5184A4F4169E800100C58EEE /* small_glow.png in Resources */,
-				51875B0F169F6AFA004D2443 /* test_bed.png in Resources */,
-				51875B10169F6AFA004D2443 /* test_bed.plist in Resources */,
-				51875B12169F6B25004D2443 /* test_bed.txt in Resources */,
 				518FBE1A169FD82700E5E057 /* bath.plist in Resources */,
 				518FBE1B169FD82700E5E057 /* bath.png in Resources */,
 				518FBE26169FF29C00E5E057 /* compscreen_bk.png in Resources */,
@@ -1310,6 +1362,17 @@
 				511B80A416BCCC8100826782 /* planet_cutout.png in Resources */,
 				51881F7616C75A14000C7E1D /* player.png in Resources */,
 				51881F7716C75A14000C7E1D /* player.plist in Resources */,
+				511362A916D0812A003E15D7 /* creatures.png in Resources */,
+				511362AA16D0812A003E15D7 /* creatures.plist in Resources */,
+				51E0B59D16D307C300ABC8AC /* hall1.txt in Resources */,
+				51E0B59F16D307FE00ABC8AC /* hall2.txt in Resources */,
+				51E0B5A116D3080A00ABC8AC /* hall3.txt in Resources */,
+				51E0B5A316D3081F00ABC8AC /* to_cockpit1.txt in Resources */,
+				51E0B5A516D3082E00ABC8AC /* to_cockpit2.txt in Resources */,
+				51E0B5A716D3084600ABC8AC /* cockpit.txt in Resources */,
+				51E0B5A916D3085400ABC8AC /* cockpit_elevator.txt in Resources */,
+				51E4F79E16D3106800308C6D /* hall.png in Resources */,
+				51E4F79F16D3106800308C6D /* hall.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1441,6 +1504,9 @@
 				5183BBBD169E1B6800FF9223 /* Cutscene.m in Sources */,
 				5183BBC1169E1B7C00FF9223 /* Readable.m in Sources */,
 				513E5E4916BE01F8009EEAE2 /* GameActionSequence.m in Sources */,
+				5113629E16D07C0D003E15D7 /* Creature.m in Sources */,
+				511362A316D07C9E003E15D7 /* CreatureManager.m in Sources */,
+				511362A616D07FD3003E15D7 /* Zombie.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

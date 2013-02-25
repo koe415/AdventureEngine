@@ -1,3 +1,10 @@
+//
+//  World.h
+//  AdventureEngine
+//
+//  Created by Galen Koehne on 12/13/12.
+//
+
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "GameData.h"
@@ -11,6 +18,7 @@
 #import "Barrier.h"
 #import "WorldHistory.h"
 #import "GameActionSequence.h"
+#import "CreatureManager.h"
 
 #define WORLDTILES_X 72
 #define WORLDTILES_Y 8
@@ -27,6 +35,8 @@
     NSString * worldObjectSpriteSheet;
     NSString * tileSpriteSheet;
     NSMutableArray * gameActionsLoaded;
+    
+    CreatureManager * creatureManager;
     
     //CCSpriteBatchNode * foregroundBatchNode;
     CCSpriteBatchNode * backgroundBatchNode;
@@ -49,6 +59,7 @@
 -(void) parseGameAction:(NSString *) inputString;
 -(void) parseTappable:(NSString *) inputString;
 -(void) parseTriggerable:(NSString *) inputString;
+-(void) parseCreature:(NSString *) inputString;
 
 /* Adding objects to world */
 -(void) addSprite:(NSString *) s atTileCoords:(CGPoint) pt inFrontOfPlayer:(bool) ifop;

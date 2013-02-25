@@ -1,12 +1,10 @@
 //
-//  HelloWorldLayer.m
-//  Certainty
+//  Engine.m
+//  AdventureEngine
 //
 //  Created by Galen Koehne on 11/10/12.
-//  Copyright __MyCompanyName__ 2012. All rights reserved.
 //
 
-// Import the interfaces
 #import "Engine.h"
 
 #pragma mark - Engine
@@ -91,9 +89,9 @@
     }
 }
 
--(void) setMoveVisibility:(bool) v {
+-(void) setHUDVisibility:(bool) v {
     //Log(@"engine received move panel call!");
-    [(HUD *)hud setMovePanelVisibility:v];
+    [(HUD *)hud setPanelVisibility:v];
 }
 
 // Used for running game actions
@@ -104,7 +102,7 @@
         if (actionDelay==0) {
             Log(@"Action delay done.");
             [GameData instance]._actionDelay = false;
-            [self setMoveVisibility:true];
+            [self setHUDVisibility:true];
             
         }
         return;
@@ -133,11 +131,11 @@
             Log(@"Added delay!");
             actionDelay+=[(ActionDelay *) ga getDelay];
             [GameData instance]._actionDelay = true;
-            [self setMoveVisibility:false];
+            [self setHUDVisibility:false];
             break;
         case ACTIONDIALOGUE:
             [self addChild:[Dialogue nodeWithDialogue:[(ActionDialogue *) ga getDialogue]]];
-            [self setMoveVisibility:false];
+            [self setHUDVisibility:false];
             break;
         case ACTIONCUTSCENE:
             Log(@"Running Cutscene: %@", [(ActionCutscene *) ga getCutscene]);
@@ -155,7 +153,7 @@
         case ACTIONREADABLE:
             Log(@"Loading Readable: %@", [(ActionReadable *) ga getReadable]);
             [self addChild:[Readable nodeWithTitle:[(ActionReadable *) ga getReadable]]];
-            [self setMoveVisibility:false];
+            [self setHUDVisibility:false];
             break;
         case ACTIONENDGAME:
             Log(@"Ending Game");
@@ -227,7 +225,7 @@
 
 -(void) endGame {
     [GameData instance]._endingGame = false;
-    [[GameData instance] clear];
+    [[GameData instance] resetAllData];
     [[CCDirector sharedDirector] replaceScene:[MainMenu node]];
 }
 

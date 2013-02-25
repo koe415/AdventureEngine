@@ -111,6 +111,10 @@ tap:1,2,catIDPickup,1,1,5,enabled
 //x,y,ga id,trig id,enabled
 //trig:10,2,trigTest,5,enabled
 
+// Creatures
+// creature:[type],[spawn x pos]
+creature:1,400
+
 
 // Premature end
 #end

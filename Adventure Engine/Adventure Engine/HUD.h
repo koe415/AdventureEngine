@@ -3,7 +3,6 @@
 //  AdventureEngine
 //
 //  Created by Galen Koehne on 12/13/12.
-//  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -12,18 +11,27 @@
 #import "PauseMenu.h"
 #import "DebugFlags.h"
 
+enum touchOrigin {
+    PAUSE,
+    LEFT_MOVE,
+    RIGT_MOVE,
+    FLASH
+} touchOrigin;
+
 @interface HUD : CCLayer {
     GameData * gd;
     
-    bool touchOriginatedOnPause;
-    bool touchDragOffPause;
+    bool touchDraggedOffOriginButton;
+    
     CCSprite * pauseButton;
+    CCSprite * flashButton;
     
     CCSprite * move_panel_left;
     CCSprite * move_panel_right;
 }
 
--(void) setMovePanelVisibility:(bool) v;
+/** Set move panel and any button visibility **/
+-(void) setPanelVisibility:(bool) v;
 -(void) endUserInteraction;
 
 @end

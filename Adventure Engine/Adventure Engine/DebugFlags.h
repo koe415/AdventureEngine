@@ -3,7 +3,6 @@
 //  Certainty
 //
 //  Created by Galen Koehne on 11/21/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 // Note to self: #ifndef means 'if not defined'...not 'if and defined'
@@ -17,10 +16,15 @@
 #define Display_Tappables true
 #define Display_Lighting false
 
+#define Debug_GodMode true
+#define Debug_InfiniteAmmo true
+
 // Format: ClassName(LineNumber)| Debug Text
 #if Display_Debug_Text
     #define Log(FORMAT, ...) \
-    fprintf(stderr,"%20.20s| %s\n", [[NSString stringWithFormat:@"%@(%4.4d)", NSStringFromClass([super class]), __LINE__] UTF8String], [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String] )
+    fprintf(stderr,"%20.20s| %s\n", \
+        [[NSString stringWithFormat:@"%@(%4.4d)", NSStringFromClass([super class]), __LINE__] UTF8String], \
+        [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String] )
 #else
     #define Log(FORMAT, ...)  // Do Nothing
 #endif

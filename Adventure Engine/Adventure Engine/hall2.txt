@@ -1,0 +1,54 @@
+//
+info:0,1000,hall,objects
+
+// From hall1
+spawn:900,100,L
+// From to_cockpit1
+spawn:600,100,L
+// From to_cockpit2
+spawn:400,100,R
+// From hall3
+spawn:100,100,R
+
+tile:31,4-22,1
+
+tile:01,4,2-6
+tile:02,5,2-6
+tile:14,6,2-6
+tile:01,7,2-7
+tile:02,8,2-7
+
+tile:01,9,6-7
+tile:02,10,6-7
+
+tile:01,11,2-7
+tile:02,12,2-7
+tile:14,13,2-7
+tile:01,14,2-7
+tile:02,15,2-7
+
+tile:01,16,6-7
+tile:02,17,6-7
+
+tile:01,18,2-7
+tile:02,19,2-7
+tile:14,20,2-6
+tile:01,21,2-6
+tile:02,22,2-6
+
+tile:21,11,5
+tile:21,18,5
+
+barrier:110,20,hall2_midblock,enabled
+
+action:tapToHall1,ACTIONLOADWORLD,hall1,2
+tap:16,2,tapToHall1,2,4,3,enabled
+
+action:loadHall2,ACTIONLOADWORLD,catherine_bed,1
+trig:2,2,loadHall2,2,enabled
+
+action:loadCore2,ACTIONLOADWORLD,catherine_bed,1
+trig:24,2,loadCore2,2,enabled
+
+action:loadCore2,ACTIONLOADWORLD,catherine_bed,1
+trig:24,2,loadCore2,2,enabled

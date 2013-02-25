@@ -1,9 +1,8 @@
 //
-//  HelloWorldLayer.h
-//  Certainty
+//  Engine.h
+//  AdventureEngine
 //
 //  Created by Galen Koehne on 11/10/12.
-//  Copyright __MyCompanyName__ 2012. All rights reserved.
 //
 
 #import "cocos2d.h"
@@ -40,7 +39,7 @@
 -(void) handleTileTapAt:(CGPoint) tilePt;
 -(void) handleTriggerAt:(CGPoint) tilePt;
 -(void) run:(GameAction *) ga;
--(void) setMoveVisibility:(bool) v;
+-(void) setHUDVisibility:(bool) v;
 -(void) newGame;
 -(void) endGame;
 -(void) dealloc;

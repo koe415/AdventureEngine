@@ -3,7 +3,6 @@
 //  AdventureEngine
 //
 //  Created by Galen Koehne on 12/8/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "Player.h"
@@ -21,7 +20,7 @@ const int DefaultPlayerDirection = RIGHT;
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:
      [NSString stringWithFormat:@"player.plist"]];
     
-    self = [super initWithFile:@"player.png" capacity:3];
+    self = [super initWithFile:@"player.png" capacity:1];
     if (!self) return nil;
     
     playerAvatar = [[CCSprite alloc] initWithSpriteFrameName:@"player_idle1_01.png"];
@@ -155,7 +154,7 @@ const int DefaultPlayerDirection = RIGHT;
 -(bool) attemptNoMove {
     if ([playerAvatar numberOfRunningActions]==0) {
         int randomIdle = rand()%[idleAnims count];
-        [playerAvatar runAction:[CCRepeat actionWithAction:[idleAnims objectAtIndex:randomIdle] times:1]];
+        [playerAvatar runAction:[idleAnims objectAtIndex:randomIdle]];
         
         //[playerAvatar runAction:[CCRepeat actionWithAction:[CCAnimate actionWithAnimation:[CCAnimation a] times:1]];
         
@@ -219,6 +218,10 @@ const int DefaultPlayerDirection = RIGHT;
 
 -(CGPoint) getPosition {
     return playerAvatar.position;
+}
+
+-(float) getVelocity {
+    return playerVelocity;
 }
 
 -(void) setFacing:(Direction) d {

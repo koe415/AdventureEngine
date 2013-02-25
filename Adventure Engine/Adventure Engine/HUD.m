@@ -3,14 +3,20 @@
 //  AdventureEngine
 //
 //  Created by Galen Koehne on 12/13/12.
-//  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "HUD.h"
 
 static int PauseButtonOpacity = 200;
-static float MovePanelTransition = 0.3f;
+static int PauseButtonPressedOpacity = 100;
+
 static int MovePanelOpacity = 30;
+static int MovePanelPressedOpacity = 20;
+
+static int FlashButtonOpacity = 200;
+static int FlashButtonPressedOpacity = 100;
+
+static float HUDVisibilityTransition = 0.3f;
 
 @implementation HUD
 
@@ -43,32 +49,35 @@ static int MovePanelOpacity = 30;
     move_panel_left.opacity = MovePanelOpacity;
     move_panel_right.opacity = MovePanelOpacity;
     
+    flashButton = [[CCSprite alloc] initWithFile:@"gray.png"];
+    flashButton.position = CGPointMake(240, 20);
+    [flashButton setTextureRect:CGRectMake(0, 0, 120, 40)];
+    [flashButton.texture setTexParameters:&params];
+    flashButton.opacity = FlashButtonOpacity;
+    
     [self addChild:pauseButton];
+    [self addChild:flashButton];
     [self addChild:move_panel_left];
     [self addChild:move_panel_right];
 
     return self;
 }
 
--(void) setMovePanelVisibility:(bool) v {
+-(void) setPanelVisibility:(bool) v {
     [move_panel_left stopAllActions];
     [move_panel_right stopAllActions];
     
     if (v) {
         Log(@"Making panels visible");
-        [move_panel_left runAction:[CCFadeTo actionWithDuration:MovePanelTransition opacity:MovePanelOpacity]];
-        [move_panel_right runAction:[CCFadeTo actionWithDuration:MovePanelTransition opacity:MovePanelOpacity]];
+        [move_panel_left runAction:[CCFadeTo actionWithDuration:HUDVisibilityTransition opacity:MovePanelOpacity]];
+        [move_panel_right runAction:[CCFadeTo actionWithDuration:HUDVisibilityTransition opacity:MovePanelOpacity]];
+        [flashButton runAction:[CCFadeTo actionWithDuration:HUDVisibilityTransition opacity:FlashButtonOpacity]];
     } else {
         Log(@"Making panels invisible!!");
-        [move_panel_left runAction:[CCFadeTo actionWithDuration:MovePanelTransition opacity:0]];
-        [move_panel_right runAction:[CCFadeTo actionWithDuration:MovePanelTransition opacity:0]];
+        [move_panel_left runAction:[CCFadeTo actionWithDuration:HUDVisibilityTransition opacity:0]];
+        [move_panel_right runAction:[CCFadeTo actionWithDuration:HUDVisibilityTransition opacity:0]];
+        [flashButton runAction:[CCFadeTo actionWithDuration:HUDVisibilityTransition opacity:0]];
     }
-    
-    // Alternate transition: fade and scale
-    //[move_panel_left runAction:[CCScaleTo actionWithDuration:0.3f scale:1.0f]];
-    //[move_panel_right runAction:[CCScaleTo actionWithDuration:0.3f scale:1.0f]];
-    //[move_panel_left runAction:[CCFadeTo actionWithDuration:0.3f opacity:move_panel_opacity]];
-    //[move_panel_right runAction:[CCFadeTo actionWithDuration:0.3f opacity:move_panel_opacity]];
 }
 
 -(void) registerWithTouchDispatcher {
@@ -80,14 +89,12 @@ static int MovePanelOpacity = 30;
     gd._playerHoldingRight = false;
 }
 
-// Change to check only for move panel visibility
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
     CGPoint location = [touch locationInView:[touch view]];
     
     if (location.x < 60 && location.y < 60) {
-        touchOriginatedOnPause = true;
-        touchDragOffPause = false;
-        pauseButton.opacity = PauseButtonOpacity/2;
+        touchOrigin = PAUSE;
+        pauseButton.opacity = PauseButtonPressedOpacity;
         Log(@"Touch began on pause");
         
         return YES;
@@ -98,14 +105,21 @@ static int MovePanelOpacity = 30;
         Log(@"Touch ignored due to action running");
         return YES;
     } else if (location.x < 60) {
-        [move_panel_left setOpacity:MovePanelOpacity-10];
+        [move_panel_left setOpacity:MovePanelPressedOpacity];
         gd._playerHoldingLeft = true;
+        touchOrigin = LEFT_MOVE;
         Log(@"Touch began on move left");
         return YES;
     } else if (location.x > 420) {
-        [move_panel_right setOpacity:MovePanelOpacity-10];
+        [move_panel_right setOpacity:MovePanelPressedOpacity];
         gd._playerHoldingRight = true;
+        touchOrigin = RIGT_MOVE;
         Log(@"Touch began on move right");
+        return YES;
+    } else if (location.y > 280) {
+        flashButton.opacity = FlashButtonPressedOpacity;
+        touchOrigin = FLASH;
+        Log(@"Touch began on flash button");
         return YES;
     }
     
@@ -115,39 +129,80 @@ static int MovePanelOpacity = 30;
 -(void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
     CGPoint location = [touch locationInView:[touch view]];
     
-    if (touchOriginatedOnPause) {
-        if (location.x >= 60 || location.y >= 60) {
-            if (pauseButton.opacity!=PauseButtonOpacity) {
-                pauseButton.opacity = PauseButtonOpacity;
-                touchDragOffPause = true;
-                Log(@"Touch dragged off pause");
+    switch (touchOrigin) {
+        case PAUSE:
+            if (touchDraggedOffOriginButton) {
+                if (location.x < 60 && location.y < 60) {
+                    pauseButton.opacity = PauseButtonPressedOpacity;
+                    touchDraggedOffOriginButton = false;
+                    Log(@"Touch dragged back onto pause");
+                }
+            } else {
+                if (location.x >= 60 || location.y >= 60) {
+                    pauseButton.opacity = PauseButtonOpacity;
+                    touchDraggedOffOriginButton = true;
+                    Log(@"Touch dragged off pause");
+                }
             }
-        }
+            break;
+        case FLASH:
+            if (touchDraggedOffOriginButton) {
+                if (location.y > 280) {
+                    flashButton.opacity = FlashButtonPressedOpacity;
+                    touchDraggedOffOriginButton = false;
+                    Log(@"Touch dragged back onto flash button");
+                }
+            } else {
+                if (location.y <= 280) {
+                    flashButton.opacity = FlashButtonOpacity;
+                    touchDraggedOffOriginButton = true;
+                    Log(@"Touch dragged off flash button");
+                }
+            }
+            break;
+        default:
+            break;
     }
 }
 
 -(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
-    if (touchOriginatedOnPause) {
-        pauseButton.opacity = PauseButtonOpacity;
-        touchOriginatedOnPause = false;
-        
-        if (!touchDragOffPause) {
-            touchDragOffPause = false;
-            [[CCDirector sharedDirector] pushScene:[PauseMenu node]];
-        }
-    } else if (gd._playerHoldingLeft) {
-        [move_panel_left setOpacity:MovePanelOpacity];
-        gd._playerHoldingLeft = false;
-        Log(@"Touch ended on move left");
-    } else if (gd._playerHoldingRight) {
-        [move_panel_right setOpacity:MovePanelOpacity];
-        gd._playerHoldingRight = false;
-        Log(@"Touch ended on move right");
+    switch (touchOrigin) {
+        case PAUSE:
+            pauseButton.opacity = PauseButtonOpacity;
+            
+            if (!touchDraggedOffOriginButton) {
+                [[CCDirector sharedDirector] pushScene:[PauseMenu node]];
+            }
+            break;
+        case LEFT_MOVE:
+            [move_panel_left setOpacity:MovePanelOpacity];
+            gd._playerHoldingLeft = false;
+            Log(@"Touch ended on move left");
+            break;
+        case RIGT_MOVE:
+            [move_panel_right setOpacity:MovePanelOpacity];
+            gd._playerHoldingRight = false;
+            Log(@"Touch ended on move right");
+            break;
+        case FLASH:
+            flashButton.opacity = FlashButtonOpacity;
+            
+            if (!touchDraggedOffOriginButton) {
+                Log(@"FLASHED!");
+                gd._playerPressedFlash = true;
+            }
+            break;
+        default:
+            
+            break;
     }
+
+    touchDraggedOffOriginButton = false;
 }
 
 -(void) dealloc {
     [pauseButton release];
+    [flashButton release];
     [move_panel_left release];
     [move_panel_right release];
     [super dealloc];

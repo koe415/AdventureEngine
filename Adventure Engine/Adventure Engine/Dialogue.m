@@ -3,7 +3,6 @@
 //  Adventure Engine
 //
 //  Created by Galen Koehne on 12/31/12.
-//  Copyright 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "Dialogue.h"
@@ -97,7 +96,7 @@
     endingScene = true;
     
 
-    [(Engine *) self.parent setMoveVisibility:true];
+    [(Engine *) self.parent setHUDVisibility:true];
     [GameData instance]._actionRunning = false;
 }
 
